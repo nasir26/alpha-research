@@ -1,0 +1,23 @@
+# Python Requirements for Twistor Theory and Spin Networks Visualization
+# Install with: pip install -r requirements.txt
+
+# Main animation library
+manim>=0.17.0
+
+# Core dependencies (usually installed with manim)
+numpy>=1.19.0
+scipy>=1.7.0
+Pillow>=8.0.0
+pycairo>=1.19.0
+manimpango>=0.4.0
+
+# Additional utilities
+matplotlib>=3.3.0
+colour>=0.1.5
+
+# Optional but recommended
+ipython>=7.0.0
+jupyter>=1.0.0
+
+# For better text rendering
+latex>=0.7.0

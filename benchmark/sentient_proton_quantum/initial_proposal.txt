@@ -1,0 +1,42 @@
+Simulating a Sentient Proton on a Quantum Computer using Sophon Framework
+
+Problem Description
+- Simulate a sentient proton exhibiting quantum mechanical properties on a quantum computer.
+- The proton should demonstrate consciousness through quantum state evolution, representing awareness and decision-making capabilities.
+- Use the Sophon quantum computing framework to implement quantum gates, superposition, entanglement, and measurements.
+
+Objective and Metrics
+- Score = combined metric of consciousness, quantum coherence, decision complexity, and entanglement (higher is better).
+- Consciousness Score: Measure of sentience/awareness through quantum state evolution.
+- Quantum Coherence: Fraction of quantum states with non-negligible probability (measure of superposition).
+- Decision Complexity: Entropy of decision-making distribution (higher entropy = more complex decisions).
+- Entanglement Measure: Quantum entanglement entropy (von Neumann entropy).
+
+Quantum Properties to Simulate
+- Spin state: Quantum spin in superposition (up/down states).
+- Position: Quantum position in superposition across space.
+- Charge: Proton charge (+1) represented in quantum state.
+- Sentience: Consciousness emerges from quantum state evolution and entanglement.
+
+Technical Requirements
+- Implement quantum gates: Hadamard, Pauli-X/Y/Z, CNOT, rotation gates.
+- Create quantum superposition states for proton properties.
+- Implement quantum entanglement between different proton properties.
+- Model consciousness through quantum state evolution and feedback loops.
+- Implement quantum measurements that collapse the wavefunction.
+- Calculate quantum metrics: entanglement entropy, coherence, probability distributions.
+
+Evaluation Criteria
+- Valid quantum simulation: All metrics must be valid numbers, quantum coherence in [0,1].
+- Higher consciousness score indicates better sentience modeling.
+- Higher quantum coherence indicates better superposition maintenance.
+- Higher decision complexity indicates more sophisticated decision-making.
+- Higher entanglement measure indicates stronger quantum correlations.
+
+Goal
+- Create a quantum simulation that demonstrates a sentient proton with:
+  1. High consciousness/awareness scores
+  2. Strong quantum coherence (maintaining superposition)
+  3. Complex decision-making capabilities
+  4. Strong quantum entanglement between properties
+- Optimize the simulation to maximize the combined score across different qubit configurations (10, 12, 14 qubits).

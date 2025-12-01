@@ -1,0 +1,1293 @@
+%% =============================================================================
+%% TWISTOR THEORY AND SPIN NETWORKS: A VISUAL EXPLORATION
+%% =============================================================================
+%% Comprehensive LaTeX Document with TikZ Visualizations
+%% Companion Manim animations available in ../manim/
+%% =============================================================================
+
+\documentclass[11pt,a4paper,twoside]{book}
+
+%% -----------------------------------------------------------------------------
+%% PACKAGES
+%% -----------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{physics}                    % For bra-ket notation and derivatives
+\usepackage{tensor}                     % For tensor indices
+\usepackage{slashed}                    % For Feynman slash notation
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{mathrsfs}                   % For script letters
+
+%% TikZ Libraries
+\usetikzlibrary{
+    arrows.meta,
+    calc,
+    decorations.markings,
+    decorations.pathmorphing,
+    patterns,
+    shapes.geometric,
+    positioning,
+    3d,
+    perspective,
+    knots,
+    hobby,
+    backgrounds,
+    fit,
+    quotes,
+    angles,
+    intersections,
+    through,
+    fadings,
+    shadings
+}
+
+%% -----------------------------------------------------------------------------
+%% CUSTOM COLORS - Inspired by Scientific Visualization
+%% -----------------------------------------------------------------------------
+\definecolor{twistorblue}{RGB}{41,98,255}
+\definecolor{twistorgold}{RGB}{255,193,7}
+\definecolor{spinred}{RGB}{244,67,54}
+\definecolor{spingreen}{RGB}{76,175,80}
+\definecolor{spinpurple}{RGB}{156,39,176}
+\definecolor{spacetimedark}{RGB}{33,33,33}
+\definecolor{nullcone}{RGB}{255,152,0}
+\definecolor{lightray}{RGB}{255,235,59}
+\definecolor{complexplane}{RGB}{63,81,181}
+\definecolor{nodecolor}{RGB}{0,150,136}
+\definecolor{edgecolor}{RGB}{103,58,183}
+\definecolor{intertwiner}{RGB}{233,30,99}
+
+%% -----------------------------------------------------------------------------
+%% THEOREM ENVIRONMENTS
+%% -----------------------------------------------------------------------------
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[chapter]
+\newtheorem{remark}{Remark}[chapter]
+
+%% -----------------------------------------------------------------------------
+%% CUSTOM COMMANDS
+%% -----------------------------------------------------------------------------
+\newcommand{\Twistor}{\mathbb{T}}
+\newcommand{\PTwistor}{\mathbb{PT}}
+\newcommand{\Minkowski}{\mathbb{M}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\spinor}[1]{\omega_{#1}}
+\newcommand{\dualspinor}[1]{\pi^{#1}}
+\newcommand{\twistorZ}{Z^{\alpha}}
+\newcommand{\twistorW}{W_{\alpha}}
+\newcommand{\spinnetwork}{\mathcal{S}}
+\newcommand{\hilbert}{\mathcal{H}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\SU}{\mathrm{SU}}
+
+%% Custom tcolorbox styles
+\tcbuselibrary{theorems,skins,breakable}
+
+\newtcolorbox{conceptbox}[1][]{
+    enhanced,
+    colback=twistorblue!5,
+    colframe=twistorblue!80!black,
+    fonttitle=\bfseries,
+    title=#1,
+    breakable
+}
+
+\newtcolorbox{visualbox}[1][]{
+    enhanced,
+    colback=spingreen!5,
+    colframe=spingreen!80!black,
+    fonttitle=\bfseries,
+    title=#1,
+    breakable
+}
+
+%% -----------------------------------------------------------------------------
+%% DOCUMENT METADATA
+%% -----------------------------------------------------------------------------
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=twistorblue,
+    citecolor=spinpurple,
+    urlcolor=spinred
+}
+
+\title{
+    \Huge\textbf{Twistor Theory \& Spin Networks}\\[0.5cm]
+    \Large A Visual Exploration with Manim\\[1cm]
+    \includegraphics[width=0.4\textwidth]{../figures/cover_diagram.pdf}
+}
+\author{Mathematical Physics Visualization Project}
+\date{\today}
+
+%% =============================================================================
+%% DOCUMENT BEGINS
+%% =============================================================================
+\begin{document}
+
+%% Title and Front Matter
+\frontmatter
+\maketitle
+\tableofcontents
+
+%% -----------------------------------------------------------------------------
+%% PREFACE
+%% -----------------------------------------------------------------------------
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+This document provides a comprehensive visual exploration of two fundamental 
+structures in mathematical physics: \textbf{Twistor Theory} and \textbf{Spin Networks}. 
+Both frameworks offer profound insights into the nature of spacetime, quantum gravity, 
+and the geometric foundations of physics.
+
+\begin{conceptbox}[About the Visualizations]
+This document is accompanied by a suite of \textbf{Manim} animations located in 
+the \texttt{../manim/} directory. Each chapter references specific animation 
+scripts that bring the mathematical concepts to life through motion and 
+transformation.
+
+\textbf{Key Animation Files:}
+\begin{itemize}[noitemsep]
+    \item \texttt{twistor\_correspondence.py} -- Twistor-Minkowski correspondence
+    \item \texttt{null\_twistors.py} -- Null twistors and light rays
+    \item \texttt{spin\_network\_basics.py} -- Fundamental spin network concepts
+    \item \texttt{penrose\_evaluation.py} -- Penrose graphical calculus
+    \item \texttt{lqg\_states.py} -- Loop quantum gravity states
+\end{itemize}
+\end{conceptbox}
+
+%% =============================================================================
+%% MAIN MATTER
+%% =============================================================================
+\mainmatter
+
+%% =============================================================================
+%% PART I: TWISTOR THEORY
+%% =============================================================================
+\part{Twistor Theory}
+
+%% -----------------------------------------------------------------------------
+%% CHAPTER 1: INTRODUCTION TO TWISTOR THEORY
+%% -----------------------------------------------------------------------------
+\chapter{Introduction to Twistor Theory}
+\label{ch:twistor_intro}
+
+\section{Historical Context and Motivation}
+
+Twistor theory was introduced by \textbf{Roger Penrose} in 1967 as a novel 
+approach to the fundamental structure of spacetime. The key insight is that 
+\emph{light rays}, rather than spacetime points, should be taken as the 
+primitive elements of physics.
+
+\begin{conceptbox}[Core Philosophy]
+In twistor theory, we shift from thinking about:
+\begin{center}
+\textbf{Points in Spacetime} $\longrightarrow$ \textbf{Light Rays through Spacetime}
+\end{center}
+This seemingly simple shift has profound mathematical and physical consequences.
+\end{conceptbox}
+
+\section{Minkowski Space and Spinor Notation}
+
+\subsection{The Minkowski Metric}
+
+Let $\Minkowski$ denote $(3+1)$-dimensional Minkowski spacetime with coordinates 
+$x^{\mu} = (t, x, y, z)$ and metric:
+\begin{equation}
+    \eta_{\mu\nu} = \text{diag}(+1, -1, -1, -1)
+\end{equation}
+
+\subsection{Two-Component Spinor Formalism}
+
+The fundamental building blocks are two-component spinors:
+
+\begin{definition}[Weyl Spinors]
+A \textbf{Weyl spinor} $\xi^A$ transforms under the $\SU(2)_L$ subgroup of 
+the Lorentz group $\mathrm{SL}(2, \mathbb{C})$:
+\begin{equation}
+    \xi^A \to M^A{}_B \xi^B, \quad M \in \mathrm{SL}(2, \mathbb{C})
+\end{equation}
+where $A, B \in \{0, 1\}$. The dual (dotted) spinor $\bar{\eta}^{A'}$ 
+transforms under the complex conjugate representation.
+\end{definition}
+
+\begin{visualbox}[TikZ: Spinor Correspondence]
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % Minkowski point
+    \node[circle, fill=spacetimedark, minimum size=8pt, 
+          label=below:{$x^{\mu}$}] (x) at (0,0) {};
+    
+    % Spinor matrix representation
+    \node[draw, rounded corners, fill=twistorblue!20, 
+          minimum width=3cm, minimum height=1.5cm] (matrix) at (5,0) {
+        $x^{AA'} = \frac{1}{\sqrt{2}}\begin{pmatrix} 
+            t+z & x-iy \\ x+iy & t-z 
+        \end{pmatrix}$
+    };
+    
+    % Arrow with label
+    \draw[-{Stealth[scale=1.2]}, thick, twistorblue] 
+        (0.5,0) -- (2.8,0) 
+        node[midway, above] {Pauli correspondence};
+    
+    % Annotations
+    \node[anchor=west, text width=4cm, font=\small] at (5,-1.5) {
+        $\det(x^{AA'}) = \frac{1}{2}(t^2 - x^2 - y^2 - z^2)$
+    };
+\end{tikzpicture}
+\end{center}
+\end{visualbox}
+
+The correspondence between vectors and spinors is given by:
+\begin{equation}
+    x^{AA'} = \frac{1}{\sqrt{2}} x^{\mu} \sigma_{\mu}^{AA'}
+\end{equation}
+where $\sigma_{\mu}^{AA'} = (\mathbf{1}, \vec{\sigma})$ are the Pauli matrices.
+
+%% -----------------------------------------------------------------------------
+%% SECTION: TWISTOR SPACE
+%% -----------------------------------------------------------------------------
+\section{Twistor Space}
+\label{sec:twistor_space}
+
+\begin{definition}[Twistor]
+A \textbf{twistor} $Z^{\alpha}$ is a four-component object:
+\begin{equation}
+    Z^{\alpha} = (\omega^A, \pi_{A'}) \in \mathbb{C}^4
+\end{equation}
+where $\omega^A$ is a spinor and $\pi_{A'}$ is a dual spinor.
+\end{definition}
+
+\begin{visualbox}[TikZ: Twistor Space Structure]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    % Twistor space as C^4
+    \draw[thick, twistorblue, fill=twistorblue!10] 
+        (0,0) ellipse (2.5cm and 1.5cm);
+    \node at (0,2) {\textbf{Twistor Space} $\Twistor = \mathbb{C}^4$};
+    
+    % Components
+    \node[circle, fill=spinred, minimum size=6pt, 
+          label=left:{\small $\omega^A$}] at (-1,0.3) {};
+    \node[circle, fill=spingreen, minimum size=6pt, 
+          label=right:{\small $\pi_{A'}$}] at (1,0.3) {};
+    
+    % Projective twistor space
+    \draw[-{Stealth}, thick] (3,0) -- (5,0) node[midway, above] {projectivize};
+    
+    \draw[thick, spinpurple, fill=spinpurple!10] 
+        (7.5,0) ellipse (2cm and 1.2cm);
+    \node at (7.5,1.7) {\textbf{Projective Twistor Space}};
+    \node at (7.5,0) {$\PTwistor = \CP^3$};
+    
+    % Dimension annotation
+    \node[font=\small] at (0,-2) {$\dim_{\mathbb{C}} = 4$};
+    \node[font=\small] at (7.5,-2) {$\dim_{\mathbb{C}} = 3$};
+\end{tikzpicture}
+\end{center}
+\end{visualbox}
+
+\subsection{The Incidence Relation}
+
+The fundamental relationship between twistors and spacetime is:
+
+\begin{definition}[Incidence Relation]
+A twistor $Z^{\alpha} = (\omega^A, \pi_{A'})$ is \textbf{incident} with a 
+spacetime point $x^{AA'}$ if and only if:
+\begin{equation}
+    \boxed{\omega^A = i x^{AA'} \pi_{A'}}
+    \label{eq:incidence}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Twistor Correspondence]
+Given the incidence relation \eqref{eq:incidence}:
+\begin{enumerate}
+    \item A \textbf{point} $x \in \Minkowski$ corresponds to a 
+          \textbf{line} $L_x \subset \PTwistor$
+    \item A \textbf{point} $Z \in \PTwistor$ corresponds to a 
+          \textbf{null geodesic} (light ray) in $\Minkowski$
+\end{enumerate}
+\end{theorem}
+
+%% Large visualization of the correspondence
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85]
+    %% LEFT: Minkowski Space
+    \begin{scope}[shift={(-5,0)}]
+        % Background
+        \fill[spacetimedark!10] (-3,-3) rectangle (3,3);
+        \node at (0,3.5) {\textbf{Minkowski Space $\Minkowski$}};
+        
+        % Light cone
+        \draw[nullcone, thick, fill=nullcone!20, fill opacity=0.3] 
+            (0,0) -- (2,2) -- (2,-2) -- cycle;
+        \draw[nullcone, thick, fill=nullcone!20, fill opacity=0.3] 
+            (0,0) -- (-2,2) -- (-2,-2) -- cycle;
+        
+        % Time axis
+        \draw[-{Stealth}, thick] (0,-2.8) -- (0,2.8) node[right] {$t$};
+        
+        % Space axis
+        \draw[-{Stealth}, thick] (-2.8,0) -- (2.8,0) node[above] {$x$};
+        
+        % Point
+        \node[circle, fill=twistorblue, minimum size=10pt, 
+              label={[twistorblue]above right:$p$}] (point) at (0.8,1.2) {};
+        
+        % Light rays through point
+        \draw[lightray, line width=2pt, -{Stealth}] 
+            (-1.4,-0.2) -- (2.2,1.8);
+        \draw[lightray, line width=2pt, -{Stealth}] 
+            (2,0.2) -- (-0.6,2.4);
+    \end{scope}
+    
+    %% MIDDLE: Correspondence arrows
+    \draw[{Stealth}-{Stealth}, very thick, spinpurple, 
+          decorate, decoration={snake, amplitude=1mm, segment length=5mm}] 
+        (-1.5,0) -- (1.5,0);
+    \node at (0,0.8) {\textbf{Penrose}};
+    \node at (0,-0.5) {\textbf{Transform}};
+    
+    %% RIGHT: Twistor Space
+    \begin{scope}[shift={(5,0)}]
+        % CP^3 representation (as nested spheres)
+        \shade[ball color=twistorblue!30] (0,0) circle (2.5cm);
+        \draw[twistorblue, thick] (0,0) circle (2.5cm);
+        
+        \node at (0,3.5) {\textbf{Projective Twistor Space $\PTwistor$}};
+        
+        % Line corresponding to point p
+        \draw[twistorblue, line width=3pt] (-1.5,-1.2) -- (1.5,1.2);
+        \node[twistorblue, font=\small] at (2,1.5) {Line $L_p$};
+        
+        % Points on the line
+        \foreach \t in {-0.8, 0, 0.8} {
+            \node[circle, fill=lightray, minimum size=6pt] at (\t, 0.8*\t) {};
+        }
+        
+        % Region labels
+        \node[spingreen, font=\small] at (1.8,-1.8) {$\PTwistor^+$};
+        \node[spinred, font=\small] at (-1.8,1.8) {$\PTwistor^-$};
+    \end{scope}
+\end{tikzpicture}
+\caption{The Penrose correspondence: points in Minkowski space correspond to 
+         lines in projective twistor space, and vice versa.}
+\label{fig:penrose_correspondence}
+\end{figure}
+
+%% -----------------------------------------------------------------------------
+%% SECTION: NULL TWISTORS
+%% -----------------------------------------------------------------------------
+\section{Null Twistors and Light Rays}
+
+\begin{definition}[Null Twistor]
+A twistor $Z^{\alpha}$ is called \textbf{null} if:
+\begin{equation}
+    Z^{\alpha} \bar{Z}_{\alpha} = \omega^A \bar{\omega}_A + \bar{\pi}_{A'} \pi^{A'} = 0
+\end{equation}
+The space of null twistors forms a 5-real-dimensional subspace $\mathbf{N} \subset \Twistor$.
+\end{definition}
+
+\begin{visualbox}[TikZ: Null Twistor Geometry]
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+    % Twistor space representation
+    \begin{scope}
+        \shade[left color=spingreen!30, right color=spinred!30] 
+            (-3,-2.5) rectangle (3,2.5);
+        
+        % Null surface
+        \draw[nullcone, line width=2pt] (0,-2.5) -- (0,2.5);
+        \node[nullcone] at (0.8,2.8) {$\mathbf{N}$ (null)};
+        
+        % Regions
+        \node[spingreen, font=\Large] at (-1.5,0) {$\PTwistor^+$};
+        \node at (-1.5,-0.6) {\small $Z \bar{Z} > 0$};
+        
+        \node[spinred, font=\Large] at (1.5,0) {$\PTwistor^-$};
+        \node at (1.5,-0.6) {\small $Z \bar{Z} < 0$};
+        
+        % Points
+        \foreach \y in {-1.5, 0, 1.5} {
+            \node[circle, fill=nullcone, minimum size=5pt] at (0,\y) {};
+        }
+    \end{scope}
+    
+    % Legend
+    \node[anchor=west] at (4,1.5) {$\PTwistor^+$: positive helicity};
+    \node[anchor=west] at (4,0.5) {$\mathbf{N}$: null (light rays)};
+    \node[anchor=west] at (4,-0.5) {$\PTwistor^-$: negative helicity};
+\end{tikzpicture}
+\end{center}
+\end{visualbox}
+
+%% -----------------------------------------------------------------------------
+%% CHAPTER 2: ADVANCED TWISTOR CONSTRUCTIONS
+%% -----------------------------------------------------------------------------
+\chapter{Advanced Twistor Constructions}
+\label{ch:advanced_twistor}
+
+\section{The Penrose Transform}
+
+The Penrose transform provides a powerful correspondence between solutions 
+of massless field equations and cohomology classes on twistor space.
+
+\begin{theorem}[Penrose Transform]
+There is an isomorphism:
+\begin{equation}
+    \{\text{Massless fields of helicity } h \text{ on } \Minkowski\} 
+    \cong H^1(\PTwistor^+, \mathcal{O}(-2h-2))
+\end{equation}
+where $\mathcal{O}(n)$ is the $n$-th power of the tautological line bundle.
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+    %% Sheaf cohomology visualization
+    
+    % Twistor space with open cover
+    \begin{scope}[shift={(-4,0)}]
+        \draw[thick, fill=twistorblue!20] (0,0) ellipse (2.5 and 1.8);
+        \node at (0,2.3) {$\PTwistor^+$};
+        
+        % Open sets
+        \draw[spinred, thick, fill=spinred!20, fill opacity=0.5] 
+            (-0.8,0) ellipse (1.5 and 1.2);
+        \draw[spingreen, thick, fill=spingreen!20, fill opacity=0.5] 
+            (0.8,0) ellipse (1.5 and 1.2);
+        
+        \node[spinred] at (-1.3,0) {$U_0$};
+        \node[spingreen] at (1.3,0) {$U_1$};
+        
+        % Intersection
+        \node at (0,0) {$U_{01}$};
+    \end{scope}
+    
+    % Arrow
+    \draw[-{Stealth}, very thick] (-1,0) -- (1,0) 
+        node[midway, above] {$H^1$};
+    
+    % Field space
+    \begin{scope}[shift={(4,0)}]
+        \draw[thick, fill=spacetimedark!10] (-2,-1.8) rectangle (2,1.8);
+        \node at (0,2.3) {Fields on $\Minkowski$};
+        
+        % Wave pattern
+        \draw[nullcone, thick, domain=-1.8:1.8, samples=50] 
+            plot (\x, {0.5*sin(5*\x r)});
+        \draw[nullcone, thick, domain=-1.8:1.8, samples=50] 
+            plot (\x, {0.5*sin(5*\x r) + 0.8});
+        \draw[nullcone, thick, domain=-1.8:1.8, samples=50] 
+            plot (\x, {0.5*sin(5*\x r) - 0.8});
+        
+        \node at (0,-2.3) {\small $\phi, A_{\mu}, g_{\mu\nu}, \ldots$};
+    \end{scope}
+\end{tikzpicture}
+\caption{The Penrose transform relates cohomology on twistor space to 
+         massless field solutions.}
+\label{fig:penrose_transform}
+\end{figure}
+
+\section{Twistor Diagrams}
+
+Penrose introduced a graphical notation for twistor theory that elegantly 
+encodes complex algebraic relationships.
+
+\begin{visualbox}[Twistor Diagram Notation]
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Twistor line
+    \begin{scope}[shift={(-5,0)}]
+        \draw[twistorblue, line width=2pt] (0,0) -- (0,2);
+        \node[below] at (0,-0.3) {Twistor $Z^{\alpha}$};
+        \node[circle, fill=twistorblue, minimum size=6pt] at (0,0) {};
+        \node[circle, fill=twistorblue, minimum size=6pt] at (0,2) {};
+    \end{scope}
+    
+    % Dual twistor line
+    \begin{scope}[shift={(-2,0)}]
+        \draw[spinred, line width=2pt, dashed] (0,0) -- (0,2);
+        \node[below] at (0,-0.3) {Dual $W_{\alpha}$};
+        \node[circle, fill=spinred, minimum size=6pt] at (0,0) {};
+        \node[circle, fill=spinred, minimum size=6pt] at (0,2) {};
+    \end{scope}
+    
+    % Contraction
+    \begin{scope}[shift={(2,0)}]
+        \draw[twistorblue, line width=2pt] (0,0) -- (0,1);
+        \draw[spinred, line width=2pt, dashed] (0,1) -- (0,2);
+        \node[circle, fill=spinpurple, minimum size=8pt] at (0,1) {};
+        \node[below] at (0,-0.3) {$Z^{\alpha}W_{\alpha}$};
+    \end{scope}
+    
+    % Vertex
+    \begin{scope}[shift={(5,1)}]
+        \draw[twistorblue, line width=2pt] (0,0) -- (-1,-1);
+        \draw[twistorblue, line width=2pt] (0,0) -- (1,-1);
+        \draw[spinred, line width=2pt, dashed] (0,0) -- (0,1);
+        \node[circle, fill=nodecolor, minimum size=10pt] at (0,0) {};
+        \node at (0,-1.6) {3-vertex};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\end{visualbox}
+
+%% =============================================================================
+%% PART II: SPIN NETWORKS
+%% =============================================================================
+\part{Spin Networks}
+
+%% -----------------------------------------------------------------------------
+%% CHAPTER 3: FOUNDATIONS OF SPIN NETWORKS
+%% -----------------------------------------------------------------------------
+\chapter{Foundations of Spin Networks}
+\label{ch:spin_network_foundations}
+
+\section{Historical Development}
+
+Spin networks were originally introduced by \textbf{Roger Penrose} in the 1970s 
+as a purely combinatorial approach to quantum geometry. They were later 
+adopted and developed by \textbf{Carlo Rovelli} and \textbf{Lee Smolin} as 
+the kinematical states of Loop Quantum Gravity (LQG).
+
+\begin{conceptbox}[The Central Idea]
+A spin network is a \textbf{graph} whose edges are labeled with 
+\textbf{spin representations} of $\SU(2)$ and whose vertices carry 
+\textbf{intertwiners}---invariant tensors that couple the incoming 
+representations.
+\end{conceptbox}
+
+\section{SU(2) Representation Theory}
+
+\subsection{Irreducible Representations}
+
+The irreducible representations of $\SU(2)$ are labeled by half-integers 
+$j \in \{0, \frac{1}{2}, 1, \frac{3}{2}, 2, \ldots\}$:
+
+\begin{equation}
+    V_j = \text{span}\{|j, m\rangle : m = -j, -j+1, \ldots, j-1, j\}
+\end{equation}
+
+\begin{visualbox}[TikZ: SU(2) Representations]
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % j = 0
+    \begin{scope}[shift={(-6,0)}]
+        \node[circle, fill=nodecolor, minimum size=15pt, 
+              label=below:{$j=0$}] at (0,0) {};
+        \node at (0,1) {dim = 1};
+    \end{scope}
+    
+    % j = 1/2
+    \begin{scope}[shift={(-3,0)}]
+        \draw[edgecolor, line width=3pt] (-0.4,0) -- (0.4,0);
+        \node[circle, fill=spinred, minimum size=10pt] at (-0.4,0) {};
+        \node[circle, fill=spinred, minimum size=10pt] at (0.4,0) {};
+        \node at (0,-0.8) {$j=\frac{1}{2}$};
+        \node at (0,1) {dim = 2};
+        \node[font=\tiny] at (-0.4,-0.4) {$\downarrow$};
+        \node[font=\tiny] at (0.4,-0.4) {$\uparrow$};
+    \end{scope}
+    
+    % j = 1
+    \begin{scope}[shift={(0,0)}]
+        \draw[edgecolor, line width=3pt] (-0.6,0) -- (0.6,0);
+        \foreach \x in {-0.6, 0, 0.6} {
+            \node[circle, fill=spingreen, minimum size=10pt] at (\x,0) {};
+        }
+        \node at (0,-0.8) {$j=1$};
+        \node at (0,1) {dim = 3};
+    \end{scope}
+    
+    % j = 3/2
+    \begin{scope}[shift={(3.5,0)}]
+        \draw[edgecolor, line width=3pt] (-0.9,0) -- (0.9,0);
+        \foreach \x in {-0.9, -0.3, 0.3, 0.9} {
+            \node[circle, fill=spinpurple, minimum size=10pt] at (\x,0) {};
+        }
+        \node at (0,-0.8) {$j=\frac{3}{2}$};
+        \node at (0,1) {dim = 4};
+    \end{scope}
+    
+    % j = 2
+    \begin{scope}[shift={(7.5,0)}]
+        \draw[edgecolor, line width=3pt] (-1.2,0) -- (1.2,0);
+        \foreach \x in {-1.2, -0.6, 0, 0.6, 1.2} {
+            \node[circle, fill=twistorblue, minimum size=10pt] at (\x,0) {};
+        }
+        \node at (0,-0.8) {$j=2$};
+        \node at (0,1) {dim = 5};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\end{visualbox}
+
+\subsection{Clebsch-Gordan Decomposition}
+
+The tensor product of representations decomposes as:
+\begin{equation}
+    V_{j_1} \otimes V_{j_2} = \bigoplus_{j=|j_1-j_2|}^{j_1+j_2} V_j
+\end{equation}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.75]
+    % Tensor product visualization
+    \node at (0,3) {\textbf{Clebsch-Gordan Decomposition}};
+    
+    % Example: 1 ⊗ 1/2
+    \begin{scope}[shift={(-5,0)}]
+        \draw[spingreen, line width=4pt] (-1,0) -- (0,0);
+        \node[spingreen] at (-1.3,0.4) {$j=1$};
+        
+        \node at (0.3,0) {$\otimes$};
+        
+        \draw[spinred, line width=2pt] (0.6,0) -- (1.6,0);
+        \node[spinred] at (1.9,0.4) {$j=\frac{1}{2}$};
+        
+        \node at (2.5,0) {$=$};
+        
+        \draw[spinpurple, line width=5pt] (3.2,0.5) -- (4.5,0.5);
+        \node at (5,0.5) {$j=\frac{3}{2}$};
+        
+        \node at (3.5,0) {$\oplus$};
+        
+        \draw[spinred, line width=2pt] (3.2,-0.5) -- (4.5,-0.5);
+        \node at (5,-0.5) {$j=\frac{1}{2}$};
+    \end{scope}
+    
+    % Triangle inequality visualization
+    \begin{scope}[shift={(4,-0.5)}]
+        \draw[thick, ->] (0,0) -- (2,0) node[midway, below] {$j_1$};
+        \draw[thick, ->] (2,0) -- (3,1.5) node[midway, right] {$j_2$};
+        \draw[thick, dashed, ->] (0,0) -- (3,1.5) node[midway, above left] {$j$};
+        
+        \node at (1.5,-1.2) {\small Triangle inequality:};
+        \node at (1.5,-1.8) {\small $|j_1-j_2| \leq j \leq j_1+j_2$};
+    \end{scope}
+\end{tikzpicture}
+\caption{The Clebsch-Gordan decomposition of $\SU(2)$ representations.}
+\end{figure}
+
+%% -----------------------------------------------------------------------------
+%% SECTION: SPIN NETWORK DEFINITION
+%% -----------------------------------------------------------------------------
+\section{Definition of Spin Networks}
+
+\begin{definition}[Spin Network]
+A \textbf{spin network} $\spinnetwork = (\Gamma, \{j_e\}, \{i_v\})$ consists of:
+\begin{enumerate}
+    \item A \textbf{graph} $\Gamma = (V, E)$ with vertices $V$ and edges $E$
+    \item A \textbf{spin label} $j_e \in \{\frac{1}{2}, 1, \frac{3}{2}, \ldots\}$ 
+          for each edge $e \in E$
+    \item An \textbf{intertwiner} $i_v$ at each vertex $v \in V$
+\end{enumerate}
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    vertex/.style={circle, draw, fill=nodecolor, minimum size=20pt, 
+                   font=\small\bfseries, text=white},
+    edge label/.style={fill=white, font=\small, inner sep=2pt}
+]
+    %% Main spin network example
+    \node at (0,4.5) {\Large\textbf{Example Spin Network}};
+    
+    % Vertices
+    \node[vertex] (A) at (0,0) {$v_1$};
+    \node[vertex] (B) at (3,2) {$v_2$};
+    \node[vertex] (C) at (6,0) {$v_3$};
+    \node[vertex] (D) at (3,-2) {$v_4$};
+    \node[vertex] (E) at (3,0) {$v_5$};
+    
+    % Edges with spin labels
+    \draw[edgecolor, line width=3pt] (A) -- node[edge label, above left] 
+        {$j=1$} (B);
+    \draw[edgecolor, line width=2pt] (A) -- node[edge label, below left] 
+        {$j=\frac{1}{2}$} (D);
+    \draw[edgecolor, line width=4pt] (B) -- node[edge label, above right] 
+        {$j=\frac{3}{2}$} (C);
+    \draw[edgecolor, line width=2pt] (B) -- node[edge label, left] 
+        {$j=\frac{1}{2}$} (E);
+    \draw[edgecolor, line width=3pt] (C) -- node[edge label, below right] 
+        {$j=1$} (D);
+    \draw[edgecolor, line width=3pt] (D) -- node[edge label, below] 
+        {$j=1$} (E);
+    \draw[edgecolor, line width=4pt] (E) -- node[edge label, right] 
+        {$j=\frac{3}{2}$} (C);
+    \draw[edgecolor, line width=2pt] (A) -- node[edge label, above] 
+        {$j=\frac{1}{2}$} (E);
+    
+    % Legend
+    \begin{scope}[shift={(8,0)}]
+        \node[anchor=west, font=\bfseries] at (0,2) {Legend:};
+        \draw[edgecolor, line width=2pt] (0,1) -- (1,1);
+        \node[anchor=west] at (1.2,1) {$j = \frac{1}{2}$};
+        \draw[edgecolor, line width=3pt] (0,0.3) -- (1,0.3);
+        \node[anchor=west] at (1.2,0.3) {$j = 1$};
+        \draw[edgecolor, line width=4pt] (0,-0.4) -- (1,-0.4);
+        \node[anchor=west] at (1.2,-0.4) {$j = \frac{3}{2}$};
+        \node[vertex, minimum size=15pt] at (0.5,-1.2) {};
+        \node[anchor=west] at (1.2,-1.2) {Intertwiner};
+    \end{scope}
+\end{tikzpicture}
+\caption{A spin network with five vertices and various spin labels on edges.}
+\label{fig:spin_network_example}
+\end{figure}
+
+%% -----------------------------------------------------------------------------
+%% SECTION: INTERTWINERS
+%% -----------------------------------------------------------------------------
+\section{Intertwiners}
+
+\begin{definition}[Intertwiner]
+An \textbf{intertwiner} at a vertex $v$ with $n$ incident edges carrying 
+representations $j_1, \ldots, j_n$ is an invariant tensor:
+\begin{equation}
+    i_v \in \text{Inv}_{\SU(2)}(V_{j_1} \otimes V_{j_2} \otimes \cdots \otimes V_{j_n})
+\end{equation}
+\end{definition}
+
+\begin{visualbox}[TikZ: Intertwiner Space]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    % 3-valent vertex
+    \begin{scope}[shift={(-4,0)}]
+        \node[circle, fill=nodecolor, minimum size=25pt] (v3) at (0,0) {};
+        \draw[edgecolor, line width=3pt] (v3) -- ++(150:2) 
+            node[above] {$j_1$};
+        \draw[edgecolor, line width=3pt] (v3) -- ++(30:2) 
+            node[above] {$j_2$};
+        \draw[edgecolor, line width=3pt] (v3) -- ++(-90:2) 
+            node[below] {$j_3$};
+        \node at (0,-3) {\textbf{3-valent}};
+        \node at (0,-3.6) {\small $\dim = 0$ or $1$};
+    \end{scope}
+    
+    % 4-valent vertex
+    \begin{scope}[shift={(0,0)}]
+        \node[circle, fill=intertwiner, minimum size=25pt] (v4) at (0,0) {};
+        \draw[edgecolor, line width=3pt] (v4) -- ++(135:2) 
+            node[above] {$j_1$};
+        \draw[edgecolor, line width=3pt] (v4) -- ++(45:2) 
+            node[above] {$j_2$};
+        \draw[edgecolor, line width=3pt] (v4) -- ++(-45:2) 
+            node[below] {$j_3$};
+        \draw[edgecolor, line width=3pt] (v4) -- ++(-135:2) 
+            node[below] {$j_4$};
+        \node at (0,-3) {\textbf{4-valent}};
+        \node at (0,-3.6) {\small $\dim \geq 1$};
+    \end{scope}
+    
+    % n-valent vertex
+    \begin{scope}[shift={(4.5,0)}]
+        \node[circle, fill=spinpurple, minimum size=30pt] (vn) at (0,0) {};
+        \foreach \angle in {0, 45, 90, 135, 180, 225, 270, 315} {
+            \draw[edgecolor, line width=2pt] (vn) -- ++(\angle:1.8);
+        }
+        \node at (0,0) {\textcolor{white}{\small$n$}};
+        \node at (0,-3) {\textbf{$n$-valent}};
+        \node at (0,-3.6) {\small Higher dim.};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\end{visualbox}
+
+For a 3-valent vertex, the intertwiner space is at most 1-dimensional, 
+determined by the \textbf{triangle inequality}:
+\begin{equation}
+    |j_1 - j_2| \leq j_3 \leq j_1 + j_2 \quad \text{and} \quad 
+    j_1 + j_2 + j_3 \in \mathbb{Z}
+\end{equation}
+
+%% -----------------------------------------------------------------------------
+%% CHAPTER 4: PENROSE GRAPHICAL CALCULUS
+%% -----------------------------------------------------------------------------
+\chapter{Penrose Graphical Calculus}
+\label{ch:penrose_calculus}
+
+\section{Basic Elements}
+
+The Penrose graphical notation provides a visual language for tensor calculations:
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85]
+    \node at (0,5) {\Large\textbf{Penrose Graphical Calculus}};
+    
+    % Vector
+    \begin{scope}[shift={(-6,2.5)}]
+        \draw[spinred, line width=3pt, -{Stealth}] (0,0) -- (0,1.5);
+        \node at (0,-0.5) {Vector $v^a$};
+    \end{scope}
+    
+    % Covector
+    \begin{scope}[shift={(-3,2.5)}]
+        \draw[spingreen, line width=3pt, {Stealth}-] (0,0) -- (0,1.5);
+        \node at (0,-0.5) {Covector $w_a$};
+    \end{scope}
+    
+    % Tensor
+    \begin{scope}[shift={(0,2.5)}]
+        \node[rectangle, draw, fill=twistorblue!20, minimum size=20pt] 
+            (T) at (0,0.75) {$T$};
+        \draw[spinred, line width=2pt, -{Stealth}] (T.north) -- ++(0,0.7);
+        \draw[spingreen, line width=2pt, {Stealth}-] (T.south) -- ++(0,-0.7);
+        \node at (0,-0.5) {Tensor $T^a{}_b$};
+    \end{scope}
+    
+    % Metric
+    \begin{scope}[shift={(3,2.5)}]
+        \draw[spinpurple, line width=3pt] (-0.5,0) to[out=90, in=90] (0.5,0);
+        \draw[spinpurple, line width=3pt] (-0.5,1.5) to[out=-90, in=-90] (0.5,1.5);
+        \node at (0,-0.5) {Metric $g_{ab}$};
+    \end{scope}
+    
+    % Epsilon
+    \begin{scope}[shift={(6,2.5)}]
+        \node[circle, fill=intertwiner, minimum size=15pt] (eps) at (0,0.75) {};
+        \draw[edgecolor, line width=2pt] (eps) -- ++(120:1);
+        \draw[edgecolor, line width=2pt] (eps) -- ++(60:1);
+        \draw[edgecolor, line width=2pt] (eps) -- ++(-90:1);
+        \node at (0,-0.5) {$\epsilon_{abc}$};
+    \end{scope}
+    
+    %% OPERATIONS
+    \node at (0,0) {\textbf{Operations:}};
+    
+    % Contraction
+    \begin{scope}[shift={(-5,-2)}]
+        \draw[spinred, line width=3pt] (0,0) -- (0,1);
+        \draw[spingreen, line width=3pt] (0,1) -- (0,2);
+        \node[circle, fill=black, minimum size=8pt] at (0,1) {};
+        \node at (0,-0.5) {Contraction};
+    \end{scope}
+    
+    % Tensor product
+    \begin{scope}[shift={(-1.5,-2)}]
+        \draw[spinred, line width=3pt] (-0.5,0) -- (-0.5,2);
+        \draw[spingreen, line width=3pt] (0.5,0) -- (0.5,2);
+        \node at (0,-0.5) {Tensor Product};
+    \end{scope}
+    
+    % Trace
+    \begin{scope}[shift={(2.5,-2)}]
+        \node[rectangle, draw, fill=twistorblue!20, minimum size=15pt] 
+            (T2) at (0,1) {$T$};
+        \draw[edgecolor, line width=2pt] (T2.north) to[out=90, in=0] 
+            (0.8,2) to[out=180, in=180] (-0.8,2) to[out=0, in=90] (T2.north);
+        \node at (0,-0.5) {Trace};
+    \end{scope}
+    
+    % Symmetrization
+    \begin{scope}[shift={(5.5,-2)}]
+        \draw[spinred, line width=3pt] (-0.3,0) -- (-0.3,2);
+        \draw[spinred, line width=3pt] (0.3,0) -- (0.3,2);
+        \draw[thick, dashed] (-0.6,1) rectangle (0.6,1.4);
+        \node at (0,-0.5) {Symmetrizer};
+    \end{scope}
+\end{tikzpicture}
+\caption{Basic elements of Penrose graphical notation.}
+\end{figure}
+
+\section{Spin Network Evaluation}
+
+\begin{theorem}[Spin Network Evaluation]
+A closed spin network (no free edges) evaluates to a complex number:
+\begin{equation}
+    \langle \spinnetwork \rangle = \prod_v \{6j\}_v \prod_e (-1)^{2j_e}[2j_e+1]
+\end{equation}
+where $\{6j\}_v$ are Wigner 6j-symbols and $[n] = \frac{q^{n/2} - q^{-n/2}}{q^{1/2} - q^{-1/2}}$ 
+are quantum dimensions.
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+    \node at (0,4) {\textbf{Theta Network Evaluation}};
+    
+    % Theta network
+    \begin{scope}[shift={(-3,0)}]
+        \node[circle, fill=nodecolor, minimum size=20pt] (L) at (0,0) {};
+        \node[circle, fill=nodecolor, minimum size=20pt] (R) at (3,0) {};
+        
+        \draw[edgecolor, line width=4pt] (L) to[out=60, in=120] 
+            node[above] {$j_1$} (R);
+        \draw[edgecolor, line width=3pt] (L) to 
+            node[above] {$j_2$} (R);
+        \draw[edgecolor, line width=2pt] (L) to[out=-60, in=-120] 
+            node[below] {$j_3$} (R);
+    \end{scope}
+    
+    \node at (2,0) {\Large $=$};
+    
+    % Result
+    \begin{scope}[shift={(4,0)}]
+        \node[draw, rounded corners, fill=twistorblue!10, 
+              minimum width=3cm, minimum height=1.5cm] {
+            $\Delta(j_1, j_2, j_3)$
+        };
+    \end{scope}
+    
+    % Theta coefficient formula
+    \node at (0,-2.5) {
+        $\Delta(j_1, j_2, j_3) = \sqrt{
+            \frac{(j_1+j_2-j_3)!(j_1-j_2+j_3)!(-j_1+j_2+j_3)!}
+                 {(j_1+j_2+j_3+1)!}
+        }$
+    };
+\end{tikzpicture}
+\caption{The theta network evaluates to the triangle coefficient.}
+\end{figure}
+
+%% -----------------------------------------------------------------------------
+%% CHAPTER 5: SPIN NETWORKS IN LOOP QUANTUM GRAVITY
+%% -----------------------------------------------------------------------------
+\chapter{Spin Networks in Loop Quantum Gravity}
+\label{ch:lqg}
+
+\section{Kinematical Hilbert Space}
+
+In Loop Quantum Gravity, spin network states form an orthonormal basis for 
+the kinematical Hilbert space:
+
+\begin{equation}
+    \hilbert_{\text{kin}} = \overline{\bigoplus_{\Gamma} \hilbert_{\Gamma}}
+\end{equation}
+
+\begin{conceptbox}[Physical Interpretation]
+Each spin network represents a \textbf{quantum state of 3-dimensional geometry}:
+\begin{itemize}
+    \item \textbf{Edges} $\leftrightarrow$ Quanta of area
+    \item \textbf{Vertices} $\leftrightarrow$ Quanta of volume
+    \item \textbf{Spin labels} $\leftrightarrow$ Discrete area eigenvalues
+\end{itemize}
+\end{conceptbox}
+
+\section{Area and Volume Operators}
+
+\begin{theorem}[Area Spectrum]
+The area operator $\hat{A}_S$ for a surface $S$ has discrete spectrum:
+\begin{equation}
+    \hat{A}_S |\spinnetwork\rangle = 8\pi \gamma \ell_P^2 
+    \sum_{e \cap S \neq \emptyset} \sqrt{j_e(j_e+1)} |\spinnetwork\rangle
+\end{equation}
+where $\gamma$ is the Barbero-Immirzi parameter and $\ell_P$ is the Planck length.
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85]
+    \node at (0,5) {\Large\textbf{Area Quantization}};
+    
+    % Surface intersecting spin network
+    \begin{scope}
+        % Surface
+        \fill[spinpurple!20, opacity=0.7] (-2,-1) -- (2,-1) -- (3,2) -- (-1,2) -- cycle;
+        \draw[spinpurple, thick] (-2,-1) -- (2,-1) -- (3,2) -- (-1,2) -- cycle;
+        \node[spinpurple] at (3.5,1) {Surface $S$};
+        
+        % Spin network edges crossing
+        \node[circle, fill=nodecolor, minimum size=15pt] (v1) at (-1.5,-2) {};
+        \node[circle, fill=nodecolor, minimum size=15pt] (v2) at (1.5,3) {};
+        \node[circle, fill=nodecolor, minimum size=15pt] (v3) at (0,-2.5) {};
+        \node[circle, fill=nodecolor, minimum size=15pt] (v4) at (2,3.5) {};
+        
+        \draw[edgecolor, line width=4pt] (v1) -- (v2);
+        \draw[edgecolor, line width=3pt] (v3) -- (v4);
+        
+        % Intersection points
+        \node[circle, fill=lightray, minimum size=10pt, 
+              label=left:{\small $j_1=\frac{3}{2}$}] at (-0.3,0.5) {};
+        \node[circle, fill=lightray, minimum size=10pt, 
+              label=right:{\small $j_2=1$}] at (0.8,0.8) {};
+    \end{scope}
+    
+    % Area formula
+    \node at (0,-3.5) {
+        $A_S = 8\pi\gamma\ell_P^2 
+        \left(\sqrt{\frac{3}{2}\cdot\frac{5}{2}} + \sqrt{1\cdot 2}\right)
+        = 8\pi\gamma\ell_P^2 \left(\frac{\sqrt{15}}{2} + \sqrt{2}\right)$
+    };
+\end{tikzpicture}
+\caption{Area quantization: each edge crossing the surface contributes 
+         $\sqrt{j(j+1)}$ to the area eigenvalue.}
+\end{figure}
+
+\section{Volume Operator}
+
+The volume operator acts at vertices:
+
+\begin{equation}
+    \hat{V}_R = \sum_{v \in R} \hat{V}_v
+\end{equation}
+
+\begin{visualbox}[TikZ: Volume Quantization at Vertices]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    % 4-valent vertex with volume
+    \node[circle, fill=nodecolor, minimum size=35pt, 
+          label={[font=\large]center:\textcolor{white}{$V$}}] (v) at (0,0) {};
+    
+    \draw[edgecolor, line width=4pt] (v) -- ++(45:2.5) 
+        node[above right] {$j_1$};
+    \draw[edgecolor, line width=3pt] (v) -- ++(135:2.5) 
+        node[above left] {$j_2$};
+    \draw[edgecolor, line width=3pt] (v) -- ++(-135:2.5) 
+        node[below left] {$j_3$};
+    \draw[edgecolor, line width=2pt] (v) -- ++(-45:2.5) 
+        node[below right] {$j_4$};
+    
+    % Volume formula hint
+    \node at (5,0) {
+        $\hat{V}_v \sim \ell_P^3 
+        \sqrt{\left|\hat{J}_1 \cdot (\hat{J}_2 \times \hat{J}_3)\right|}$
+    };
+\end{tikzpicture}
+\end{center}
+\end{visualbox}
+
+%% =============================================================================
+%% PART III: CONNECTIONS AND VISUALIZATIONS
+%% =============================================================================
+\part{Connections and Visualizations}
+
+%% -----------------------------------------------------------------------------
+%% CHAPTER 6: TWISTOR-SPIN NETWORK CONNECTIONS
+%% -----------------------------------------------------------------------------
+\chapter{Twistor-Spin Network Connections}
+\label{ch:connections}
+
+\section{Penrose's Original Vision}
+
+Both twistor theory and spin networks emerged from Penrose's quest to 
+understand the quantum nature of spacetime geometry. The connections include:
+
+\begin{enumerate}
+    \item \textbf{$\SU(2)$ Structure}: Both use $\SU(2)$ representations
+    \item \textbf{Discrete Geometry}: Both suggest discreteness at Planck scale
+    \item \textbf{Holomorphic Methods}: Both employ complex geometry
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.75]
+    \node at (0,5) {\Large\textbf{Unified Framework}};
+    
+    % Twistor Theory bubble
+    \begin{scope}[shift={(-4,0)}]
+        \draw[twistorblue, thick, fill=twistorblue!15] 
+            (0,0) ellipse (2.5 and 2);
+        \node[twistorblue, font=\large\bfseries] at (0,1) {Twistor Theory};
+        \node[font=\small, text width=4cm, align=center] at (0,-0.3) {
+            Complex geometry\\
+            Light rays\\
+            Holomorphic structures
+        };
+    \end{scope}
+    
+    % Spin Networks bubble
+    \begin{scope}[shift={(4,0)}]
+        \draw[spingreen, thick, fill=spingreen!15] 
+            (0,0) ellipse (2.5 and 2);
+        \node[spingreen, font=\large\bfseries] at (0,1) {Spin Networks};
+        \node[font=\small, text width=4cm, align=center] at (0,-0.3) {
+            Combinatorial graphs\\
+            Quantum geometry\\
+            LQG states
+        };
+    \end{scope}
+    
+    % Connection
+    \draw[spinpurple, very thick, {Stealth}-{Stealth}] (-1.3,0) -- (1.3,0);
+    
+    % Shared concepts
+    \node[draw, fill=spinpurple!20, rounded corners, 
+          minimum width=2.5cm, minimum height=1.2cm] at (0,-3) {
+        \textbf{$\SU(2)$}
+    };
+    
+    \draw[spinpurple, thick, dashed] (-1.5,-2.5) -- (-3,-1);
+    \draw[spinpurple, thick, dashed] (1.5,-2.5) -- (3,-1);
+\end{tikzpicture}
+\caption{The connection between twistor theory and spin networks through 
+         shared $\SU(2)$ structure.}
+\end{figure}
+
+%% -----------------------------------------------------------------------------
+%% CHAPTER 7: MANIM VISUALIZATION GUIDE
+%% -----------------------------------------------------------------------------
+\chapter{Manim Visualization Guide}
+\label{ch:manim_guide}
+
+This chapter provides guidance for the accompanying Manim animations.
+
+\section{Animation Overview}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}llp{6cm}@{}}
+\toprule
+\textbf{File} & \textbf{Scene} & \textbf{Description} \\
+\midrule
+\texttt{twistor\_intro.py} & TwistorSpaceScene & 
+    Introduction to twistor space $\CP^3$ \\
+\texttt{correspondence.py} & PenroseCorrespondence & 
+    Point-line correspondence animation \\
+\texttt{null\_twistors.py} & NullTwistorScene & 
+    Light rays and null twistors \\
+\texttt{spin\_network.py} & SpinNetworkBasics & 
+    Fundamental spin network concepts \\
+\texttt{intertwiner.py} & IntertwinerScene & 
+    Intertwiner spaces and Clebsch-Gordan \\
+\texttt{area\_operator.py} & AreaQuantization & 
+    Area spectrum visualization \\
+\texttt{evaluation.py} & NetworkEvaluation & 
+    Spin network evaluation rules \\
+\bottomrule
+\end{tabular}
+\caption{Manim animation files and their contents.}
+\end{table}
+
+\section{Running the Animations}
+
+\begin{lstlisting}[language=bash, basicstyle=\ttfamily\small]
+# Install Manim
+pip install manim
+
+# Run a specific scene
+manim -pql twistor_intro.py TwistorSpaceScene
+
+# High quality render
+manim -pqh spin_network.py SpinNetworkBasics
+
+# All scenes in a file
+manim -pql twistor_intro.py
+\end{lstlisting}
+
+%% =============================================================================
+%% APPENDICES
+%% =============================================================================
+\appendix
+
+\chapter{Mathematical Prerequisites}
+\label{app:prerequisites}
+
+\section{Spinor Algebra Identities}
+
+Key identities for two-component spinor calculations:
+
+\begin{align}
+    \epsilon_{AB} \epsilon^{CD} &= \delta_A^C \delta_B^D - \delta_A^D \delta_B^C \\
+    \sigma^{\mu}_{AA'} \bar{\sigma}_{\mu}^{BB'} &= 2\epsilon_A{}^B \epsilon_{A'}{}^{B'} \\
+    x_{AA'} y^{AA'} &= \frac{1}{2} x_{\mu} y^{\mu}
+\end{align}
+
+\section{Wigner Symbols}
+
+\subsection{3j-Symbol}
+
+The Wigner 3j-symbol relates to Clebsch-Gordan coefficients:
+\begin{equation}
+    \begin{pmatrix}
+        j_1 & j_2 & j_3 \\
+        m_1 & m_2 & m_3
+    \end{pmatrix}
+    = \frac{(-1)^{j_1-j_2+m_3}}{\sqrt{2j_3+1}} 
+    \langle j_1, m_1; j_2, m_2 | j_3, -m_3 \rangle
+\end{equation}
+
+\subsection{6j-Symbol}
+
+The 6j-symbol appears in recoupling:
+\begin{equation}
+    \begin{Bmatrix}
+        j_1 & j_2 & j_{12} \\
+        j_3 & j & j_{23}
+    \end{Bmatrix}
+\end{equation}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.7]
+    % 6j-symbol as tetrahedron
+    \node at (0,4) {\textbf{6j-Symbol as Tetrahedron}};
+    
+    % Tetrahedron
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (3,0);
+    \coordinate (C) at (1.5,2.5);
+    \coordinate (D) at (1.5,0.8);
+    
+    % Edges with labels
+    \draw[edgecolor, line width=2pt] (A) -- (B) node[midway, below] {$j_3$};
+    \draw[edgecolor, line width=2pt] (B) -- (C) node[midway, right] {$j_2$};
+    \draw[edgecolor, line width=2pt] (C) -- (A) node[midway, left] {$j_1$};
+    \draw[edgecolor, line width=2pt, dashed] (A) -- (D) node[midway, below left] {$j_{23}$};
+    \draw[edgecolor, line width=2pt, dashed] (B) -- (D) node[midway, below right] {$j_{12}$};
+    \draw[edgecolor, line width=2pt] (C) -- (D) node[midway, right] {$j$};
+    
+    % Vertices
+    \foreach \v in {A, B, C, D} {
+        \node[circle, fill=nodecolor, minimum size=8pt] at (\v) {};
+    }
+\end{tikzpicture}
+\caption{The 6j-symbol corresponds to a tetrahedron with spins on edges.}
+\end{figure}
+
+%% =============================================================================
+%% BIBLIOGRAPHY
+%% =============================================================================
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+
+\begin{enumerate}[label={[\arabic*]}]
+    \item R. Penrose, \textit{Twistor algebra}, J. Math. Phys. \textbf{8}, 345 (1967)
+    \item R. Penrose and W. Rindler, \textit{Spinors and Space-Time}, 
+          Cambridge University Press (1984)
+    \item R. Penrose, \textit{Angular momentum: an approach to combinatorial 
+          space-time}, in \textit{Quantum Theory and Beyond}, ed. T. Bastin (1971)
+    \item C. Rovelli and L. Smolin, \textit{Spin networks and quantum gravity}, 
+          Phys. Rev. D \textbf{52}, 5743 (1995)
+    \item C. Rovelli, \textit{Quantum Gravity}, Cambridge University Press (2004)
+    \item T. Thiemann, \textit{Modern Canonical Quantum General Relativity}, 
+          Cambridge University Press (2007)
+    \item A. Ashtekar and J. Lewandowski, \textit{Background independent quantum 
+          gravity: a status report}, Class. Quantum Grav. \textbf{21}, R53 (2004)
+\end{enumerate}
+
+\end{document}

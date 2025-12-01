@@ -1,0 +1,23 @@
+# Twistor Theory and Spin Networks Visualization
+# Requirements for Manim animations
+
+# Core Manim library
+manim>=0.18.0
+
+# Numerical computing
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Additional dependencies
+Pillow>=9.0.0
+pycairo>=1.20.0
+pygments>=2.10.0
+
+# For LaTeX rendering (optional but recommended)
+# Note: LaTeX must be installed separately on your system
+# Ubuntu: sudo apt-get install texlive-full
+# macOS: brew install --cask mactex
+
+# Development tools (optional)
+black>=22.0.0
+flake8>=4.0.0

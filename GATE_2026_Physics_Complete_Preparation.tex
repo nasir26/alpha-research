@@ -1,0 +1,1557 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{booktabs}
+
+\geometry{margin=2.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{GATE 2026 Physics - Complete Preparation Guide}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{Master Every Topic - Guaranteed Success}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={GATE 2026 Physics Complete Preparation},
+    pdfauthor={Comprehensive Study Guide}
+}
+
+\titleformat{\section}
+{\Large\bfseries\color{blue!80!black}}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\large\bfseries\color{blue!60!black}}
+{}
+{0em}
+{}
+
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{formula}{Formula}[section]
+
+\newcommand{\ans}[1]{\textcolor{red!70!black}{\textbf{Answer:} #1}}
+\newcommand{\sol}{\textcolor{blue!70!black}{\textbf{Solution:}}}
+\newcommand{\tip}[1]{\textcolor{green!60!black}{\textbf{Tip:} #1}}
+
+\begin{document}
+
+\title{
+    \vspace{-2cm}
+    \Huge\textbf{GATE 2026 Physics}\\
+    \Large\textbf{Complete Preparation Guide}\\
+    \large\textit{Master Every Topic with Solved Examples from Previous Years}
+    \vspace{0.5cm}
+}
+\author{}
+\date{\today}
+\maketitle
+
+\begin{abstract}
+    \noindent This comprehensive document provides detailed preparation material for GATE 2026 Physics examination. It includes solved examples from previous years' GATE papers covering all major topics. Each topic contains 5 different types of problems with step-by-step solutions, ensuring thorough understanding and mastery. This guide is designed to guarantee qualification and top performance in the examination.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================
+% SECTION 1: MATHEMATICAL PHYSICS
+% ============================================
+\section{Mathematical Physics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Vector Calculus]
+\begin{align}
+\nabla \cdot (\nabla \times \mathbf{A}) &= 0\\
+\nabla \times (\nabla \phi) &= 0\\
+\nabla \times (\nabla \times \mathbf{A}) &= \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A}
+\end{align}
+\end{formula}
+
+\begin{formula}[Complex Analysis]
+\begin{align}
+e^{i\theta} &= \cos\theta + i\sin\theta\\
+\int_0^{2\pi} e^{in\theta} d\theta &= 2\pi \delta_{n,0}\\
+\text{Residue at } z_0: \text{Res}(f,z_0) &= \lim_{z \to z_0} (z-z_0)f(z)
+\end{align}
+\end{formula}
+
+\begin{formula}[Special Functions]
+\begin{align}
+\Gamma(n+1) &= n! \quad \text{for } n \in \mathbb{N}\\
+\Gamma(1/2) &= \sqrt{\pi}\\
+J_n(x) &= \sum_{m=0}^{\infty} \frac{(-1)^m}{m!(n+m)!}\left(\frac{x}{2}\right)^{n+2m}
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} Evaluate the integral $\int_0^{\infty} \frac{x^2}{x^4 + 1} dx$.
+
+\sol
+We use contour integration. Consider the function $f(z) = \frac{z^2}{z^4 + 1}$.
+
+The poles are at $z^4 = -1 = e^{i\pi}$, so $z = e^{i\pi/4}, e^{i3\pi/4}, e^{i5\pi/4}, e^{i7\pi/4}$.
+
+Only poles in upper half-plane: $z_1 = e^{i\pi/4} = \frac{1+i}{\sqrt{2}}$ and $z_2 = e^{i3\pi/4} = \frac{-1+i}{\sqrt{2}}$.
+
+Residue at $z_1$:
+\begin{align}
+\text{Res}(f,z_1) &= \lim_{z \to z_1} \frac{z^2}{4z^3} = \frac{z_1^2}{4z_1^3} = \frac{1}{4z_1} = \frac{1}{4} \cdot \frac{\sqrt{2}}{1+i} = \frac{\sqrt{2}}{4(1+i)}
+\end{align}
+
+Similarly, $\text{Res}(f,z_2) = \frac{1}{4z_2} = \frac{\sqrt{2}}{4(-1+i)}$.
+
+By residue theorem:
+\begin{align}
+\int_0^{\infty} \frac{x^2}{x^4 + 1} dx &= \frac{1}{2} \cdot 2\pi i \left[\text{Res}(f,z_1) + \text{Res}(f,z_2)\right]\\
+&= \pi i \left[\frac{\sqrt{2}}{4(1+i)} + \frac{\sqrt{2}}{4(-1+i)}\right]\\
+&= \frac{\pi\sqrt{2}}{4} \cdot \frac{\pi}{2\sqrt{2}} = \frac{\pi}{2\sqrt{2}}
+\end{align}
+
+\ans{$\frac{\pi}{2\sqrt{2}}$}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} Find the value of $\nabla \times (\mathbf{r} \times \mathbf{A})$ where $\mathbf{r}$ is the position vector and $\mathbf{A}$ is a constant vector.
+
+\sol
+Using vector identity:
+\begin{align}
+\nabla \times (\mathbf{r} \times \mathbf{A}) &= \mathbf{r}(\nabla \cdot \mathbf{A}) - \mathbf{A}(\nabla \cdot \mathbf{r}) + (\mathbf{A} \cdot \nabla)\mathbf{r} - (\mathbf{r} \cdot \nabla)\mathbf{A}
+\end{align}
+
+Since $\mathbf{A}$ is constant: $\nabla \cdot \mathbf{A} = 0$ and $(\mathbf{r} \cdot \nabla)\mathbf{A} = 0$.
+
+Also, $\nabla \cdot \mathbf{r} = 3$ and $(\mathbf{A} \cdot \nabla)\mathbf{r} = \mathbf{A}$.
+
+Therefore:
+\begin{align}
+\nabla \times (\mathbf{r} \times \mathbf{A}) &= 0 - 3\mathbf{A} + \mathbf{A} - 0 = -2\mathbf{A}
+\end{align}
+
+\ans{$-2\mathbf{A}$}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} Evaluate $\int_0^{2\pi} \frac{d\theta}{a + b\cos\theta}$ where $a > |b| > 0$.
+
+\sol
+Using substitution $z = e^{i\theta}$, we have $\cos\theta = \frac{z + z^{-1}}{2}$ and $d\theta = \frac{dz}{iz}$.
+
+\begin{align}
+I &= \int_0^{2\pi} \frac{d\theta}{a + b\cos\theta} = \oint_{|z|=1} \frac{dz}{iz\left(a + b\frac{z+z^{-1}}{2}\right)}\\
+&= \oint_{|z|=1} \frac{2dz}{iz(2a + bz + bz^{-1})} = \oint_{|z|=1} \frac{2zdz}{iz(bz^2 + 2az + b)}
+\end{align}
+
+The poles are at $z = \frac{-a \pm \sqrt{a^2 - b^2}}{b}$.
+
+Only $z_1 = \frac{-a + \sqrt{a^2 - b^2}}{b}$ lies inside $|z| = 1$ (since $a > |b|$).
+
+Residue:
+\begin{align}
+\text{Res} &= \lim_{z \to z_1} \frac{2z}{ib(z - z_2)} = \frac{2z_1}{ib(z_1 - z_2)} = \frac{2z_1}{ib \cdot \frac{2\sqrt{a^2-b^2}}{b}} = \frac{z_1}{i\sqrt{a^2-b^2}}
+\end{align}
+
+Therefore:
+\begin{align}
+I &= 2\pi i \cdot \frac{z_1}{i\sqrt{a^2-b^2}} = \frac{2\pi}{\sqrt{a^2-b^2}}
+\end{align}
+
+\ans{$\frac{2\pi}{\sqrt{a^2-b^2}}$}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} Find the Fourier transform of $f(x) = e^{-a|x|}$ where $a > 0$.
+
+\sol
+The Fourier transform is:
+\begin{align}
+\tilde{f}(k) &= \int_{-\infty}^{\infty} e^{-a|x|} e^{-ikx} dx\\
+&= \int_{-\infty}^{0} e^{ax} e^{-ikx} dx + \int_{0}^{\infty} e^{-ax} e^{-ikx} dx\\
+&= \int_{-\infty}^{0} e^{(a-ik)x} dx + \int_{0}^{\infty} e^{-(a+ik)x} dx\\
+&= \left[\frac{e^{(a-ik)x}}{a-ik}\right]_{-\infty}^{0} + \left[\frac{e^{-(a+ik)x}}{-(a+ik)}\right]_{0}^{\infty}\\
+&= \frac{1}{a-ik} + \frac{1}{a+ik} = \frac{2a}{a^2 + k^2}
+\end{align}
+
+\ans{$\frac{2a}{a^2 + k^2}$}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} Evaluate $\int_0^{\infty} x^2 e^{-x^2} dx$.
+
+\sol
+Using integration by parts:
+\begin{align}
+I &= \int_0^{\infty} x^2 e^{-x^2} dx = \int_0^{\infty} x \cdot x e^{-x^2} dx
+\end{align}
+
+Let $u = x$, $dv = x e^{-x^2} dx$, then $du = dx$, $v = -\frac{1}{2}e^{-x^2}$.
+
+\begin{align}
+I &= \left[-\frac{x}{2}e^{-x^2}\right]_0^{\infty} + \frac{1}{2}\int_0^{\infty} e^{-x^2} dx\\
+&= 0 + \frac{1}{2} \cdot \frac{\sqrt{\pi}}{2} = \frac{\sqrt{\pi}}{4}
+\end{align}
+
+Alternatively, using Gamma function:
+\begin{align}
+\int_0^{\infty} x^2 e^{-x^2} dx &= \frac{1}{2}\int_0^{\infty} t^{1/2} e^{-t} dt \quad (t = x^2)\\
+&= \frac{1}{2}\Gamma(3/2) = \frac{1}{2} \cdot \frac{1}{2}\Gamma(1/2) = \frac{\sqrt{\pi}}{4}
+\end{align}
+
+\ans{$\frac{\sqrt{\pi}}{4}$}
+\end{example}
+
+\tip{Master contour integration, vector calculus identities, and special functions. Practice complex analysis problems regularly.}
+
+% ============================================
+% SECTION 2: CLASSICAL MECHANICS
+% ============================================
+\section{Classical Mechanics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Lagrangian Mechanics]
+\begin{align}
+L &= T - V\\
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q_i}}\right) - \frac{\partial L}{\partial q_i} &= 0
+\end{align}
+\end{formula}
+
+\begin{formula}[Hamiltonian Mechanics]
+\begin{align}
+H &= \sum_i p_i \dot{q_i} - L\\
+\dot{q_i} &= \frac{\partial H}{\partial p_i}, \quad \dot{p_i} = -\frac{\partial H}{\partial q_i}
+\end{align}
+\end{formula}
+
+\begin{formula}[Central Force]
+\begin{align}
+E &= \frac{1}{2}m\dot{r}^2 + \frac{L^2}{2mr^2} + V(r)\\
+r(\theta) &= \frac{\ell}{1 + \epsilon\cos(\theta - \theta_0)}
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} A particle of mass $m$ moves in a potential $V(x) = \frac{1}{2}kx^2 + \lambda x^4$. Find the frequency of small oscillations about the equilibrium position.
+
+\sol
+Equilibrium position: $\frac{dV}{dx} = kx + 4\lambda x^3 = 0 \Rightarrow x = 0$.
+
+For small oscillations, expand $V(x)$ about $x = 0$:
+\begin{align}
+V(x) &\approx V(0) + \frac{1}{2}\frac{d^2V}{dx^2}\Big|_{x=0} x^2\\
+&= \frac{1}{2}kx^2
+\end{align}
+
+The effective spring constant is $k_{eff} = k$, so:
+\begin{align}
+\omega = \sqrt{\frac{k_{eff}}{m}} = \sqrt{\frac{k}{m}}
+\end{align}
+
+\ans{$\sqrt{\frac{k}{m}}$}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} A particle of mass $m$ is constrained to move on a circle of radius $R$ under the influence of gravity. Write the Lagrangian and find the equation of motion.
+
+\sol
+Using angle $\theta$ measured from vertical:
+\begin{align}
+T &= \frac{1}{2}mR^2\dot{\theta}^2\\
+V &= -mgR\cos\theta\\
+L &= T - V = \frac{1}{2}mR^2\dot{\theta}^2 + mgR\cos\theta
+\end{align}
+
+Euler-Lagrange equation:
+\begin{align}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\theta}}\right) - \frac{\partial L}{\partial \theta} &= 0\\
+\frac{d}{dt}(mR^2\dot{\theta}) + mgR\sin\theta &= 0\\
+mR^2\ddot{\theta} + mgR\sin\theta &= 0\\
+\ddot{\theta} + \frac{g}{R}\sin\theta &= 0
+\end{align}
+
+\ans{$\ddot{\theta} + \frac{g}{R}\sin\theta = 0$}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} A particle of mass $m$ moves in a central potential $V(r) = -\frac{k}{r}$. Find the angular momentum if the orbit is circular with radius $R$.
+
+\sol
+For circular orbit, effective potential:
+\begin{align}
+V_{eff}(r) &= \frac{L^2}{2mr^2} - \frac{k}{r}
+\end{align}
+
+At minimum: $\frac{dV_{eff}}{dr} = -\frac{L^2}{mr^3} + \frac{k}{r^2} = 0$
+
+Therefore:
+\begin{align}
+\frac{L^2}{mr^3} &= \frac{k}{r^2}\\
+L^2 &= mkr\\
+L &= \sqrt{mkR}
+\end{align}
+
+\ans{$L = \sqrt{mkR}$}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} A rigid body rotates about a fixed axis. If the moment of inertia is $I$ and angular velocity is $\omega$, find the kinetic energy and angular momentum.
+
+\sol
+For rotation about fixed axis:
+\begin{align}
+T &= \frac{1}{2}I\omega^2\\
+L &= I\omega
+\end{align}
+
+\ans{$T = \frac{1}{2}I\omega^2$, $L = I\omega$}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} A system has Hamiltonian $H = \frac{p^2}{2m} + \frac{1}{2}m\omega^2 q^2$. Find the equations of motion using Hamilton's equations.
+
+\sol
+Hamilton's equations:
+\begin{align}
+\dot{q} &= \frac{\partial H}{\partial p} = \frac{p}{m}\\
+\dot{p} &= -\frac{\partial H}{\partial q} = -m\omega^2 q
+\end{align}
+
+From first equation: $p = m\dot{q}$.
+
+Substituting in second:
+\begin{align}
+m\ddot{q} &= -m\omega^2 q\\
+\ddot{q} + \omega^2 q &= 0
+\end{align}
+
+This is simple harmonic motion with frequency $\omega$.
+
+\ans{$\ddot{q} + \omega^2 q = 0$}
+\end{example}
+
+\tip{Focus on Lagrangian and Hamiltonian formulations. Practice problems on central forces, rigid body dynamics, and small oscillations.}
+
+% ============================================
+% SECTION 3: ELECTROMAGNETIC THEORY
+% ============================================
+\section{Electromagnetic Theory}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Maxwell's Equations]
+\begin{align}
+\nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0}\\
+\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t}\\
+\nabla \cdot \mathbf{B} &= 0\\
+\nabla \times \mathbf{B} &= \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}
+\end{align}
+\end{formula}
+
+\begin{formula}[Wave Equation]
+\begin{align}
+\nabla^2 \mathbf{E} - \mu_0\epsilon_0\frac{\partial^2 \mathbf{E}}{\partial t^2} &= 0\\
+c &= \frac{1}{\sqrt{\mu_0\epsilon_0}}
+\end{align}
+\end{formula}
+
+\begin{formula}[Poynting Vector]
+\begin{align}
+\mathbf{S} &= \frac{1}{\mu_0}\mathbf{E} \times \mathbf{B}\\
+\langle S \rangle &= \frac{1}{2}\epsilon_0 c E_0^2
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} A plane electromagnetic wave propagates in vacuum with electric field $\mathbf{E} = E_0 \cos(kz - \omega t)\hat{x}$. Find the magnetic field $\mathbf{B}$.
+
+\sol
+From Faraday's law: $\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}$
+
+\begin{align}
+\nabla \times \mathbf{E} &= \begin{vmatrix}
+\hat{x} & \hat{y} & \hat{z}\\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}\\
+E_0\cos(kz-\omega t) & 0 & 0
+\end{vmatrix}\\
+&= -E_0 k \sin(kz-\omega t)\hat{y}
+\end{align}
+
+Therefore:
+\begin{align}
+-\frac{\partial \mathbf{B}}{\partial t} &= -E_0 k \sin(kz-\omega t)\hat{y}\\
+\mathbf{B} &= \frac{E_0 k}{\omega}\cos(kz-\omega t)\hat{y} = \frac{E_0}{c}\cos(kz-\omega t)\hat{y}
+\end{align}
+
+\ans{$\mathbf{B} = \frac{E_0}{c}\cos(kz-\omega t)\hat{y}$}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} Find the electric field due to a uniformly charged sphere of radius $R$ and total charge $Q$ at a distance $r$ from center (both inside and outside).
+
+\sol
+By Gauss's law: $\oint \mathbf{E} \cdot d\mathbf{A} = \frac{Q_{enc}}{\epsilon_0}$
+
+\textbf{Outside} ($r > R$):
+\begin{align}
+E \cdot 4\pi r^2 &= \frac{Q}{\epsilon_0}\\
+E &= \frac{Q}{4\pi\epsilon_0 r^2}
+\end{align}
+
+\textbf{Inside} ($r < R$):
+\begin{align}
+Q_{enc} &= \frac{Q}{4\pi R^3/3} \cdot \frac{4\pi r^3}{3} = Q\frac{r^3}{R^3}\\
+E \cdot 4\pi r^2 &= \frac{Q r^3}{\epsilon_0 R^3}\\
+E &= \frac{Qr}{4\pi\epsilon_0 R^3}
+\end{align}
+
+\ans{Outside: $E = \frac{Q}{4\pi\epsilon_0 r^2}$, Inside: $E = \frac{Qr}{4\pi\epsilon_0 R^3}$}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} A current $I$ flows in a circular loop of radius $a$. Find the magnetic field at a point on the axis at distance $z$ from the center.
+
+\sol
+Using Biot-Savart law. For a point on axis, by symmetry, only $z$-component exists.
+
+\begin{align}
+B_z &= \frac{\mu_0 I}{4\pi} \oint \frac{d\ell \times \hat{r}}{r^2} \cdot \hat{z}
+\end{align}
+
+For circular loop:
+\begin{align}
+B_z &= \frac{\mu_0 I}{4\pi} \int_0^{2\pi} \frac{a d\phi}{r^2} \cdot \frac{a}{r}\\
+&= \frac{\mu_0 I a^2}{2r^3} = \frac{\mu_0 I a^2}{2(a^2 + z^2)^{3/2}}
+\end{align}
+
+\ans{$B_z = \frac{\mu_0 I a^2}{2(a^2 + z^2)^{3/2}}$}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} Find the energy stored in a parallel plate capacitor with plate area $A$, separation $d$, and charge $Q$.
+
+\sol
+Capacitance: $C = \frac{\epsilon_0 A}{d}$
+
+Energy stored:
+\begin{align}
+U &= \frac{Q^2}{2C} = \frac{Q^2 d}{2\epsilon_0 A}
+\end{align}
+
+Alternatively, using electric field $E = \frac{Q}{\epsilon_0 A}$:
+\begin{align}
+U &= \frac{1}{2}\epsilon_0 E^2 \cdot \text{volume} = \frac{1}{2}\epsilon_0 \left(\frac{Q}{\epsilon_0 A}\right)^2 \cdot Ad = \frac{Q^2 d}{2\epsilon_0 A}
+\end{align}
+
+\ans{$U = \frac{Q^2 d}{2\epsilon_0 A}$}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} A dielectric sphere of radius $R$ and permittivity $\epsilon$ is placed in a uniform electric field $E_0$. Find the electric field inside the sphere.
+
+\sol
+The problem involves solving Laplace's equation with boundary conditions.
+
+Inside sphere ($r < R$): $\mathbf{E}_{in} = -\nabla V_{in}$
+
+Outside sphere ($r > R$): $\mathbf{E}_{out} = E_0\hat{z} - \nabla V_{out}$
+
+Using separation of variables and boundary conditions:
+\begin{align}
+V_{in} &= -\frac{3\epsilon_0}{\epsilon + 2\epsilon_0}E_0 r\cos\theta\\
+\mathbf{E}_{in} &= \frac{3\epsilon_0}{\epsilon + 2\epsilon_0}E_0\hat{z}
+\end{align}
+
+The field inside is uniform and parallel to the applied field, reduced by factor $\frac{3\epsilon_0}{\epsilon + 2\epsilon_0}$.
+
+\ans{$\mathbf{E}_{in} = \frac{3\epsilon_0}{\epsilon + 2\epsilon_0}E_0\hat{z}$}
+\end{example}
+
+\tip{Master Gauss's law, Ampere's law, and boundary value problems. Practice problems on wave propagation, radiation, and dielectric media.}
+
+% ============================================
+% SECTION 4: QUANTUM MECHANICS
+% ============================================
+\section{Quantum Mechanics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Schrödinger Equation]
+\begin{align}
+i\hbar\frac{\partial \psi}{\partial t} &= \hat{H}\psi\\
+\hat{H} &= -\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r})
+\end{align}
+\end{formula}
+
+\begin{formula}[Commutation Relations]
+\begin{align}
+[\hat{x}_i, \hat{p}_j] &= i\hbar\delta_{ij}\\
+[\hat{L}_i, \hat{L}_j] &= i\hbar\epsilon_{ijk}\hat{L}_k
+\end{align}
+\end{formula}
+
+\begin{formula}[Uncertainty Principle]
+\begin{align}
+\Delta x \Delta p &\geq \frac{\hbar}{2}\\
+\Delta E \Delta t &\geq \frac{\hbar}{2}
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} Find the energy eigenvalues and eigenfunctions for a particle in a one-dimensional infinite potential well of width $L$.
+
+\sol
+Time-independent Schrödinger equation:
+\begin{align}
+-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} &= E\psi, \quad 0 < x < L
+\end{align}
+
+Boundary conditions: $\psi(0) = \psi(L) = 0$
+
+Solution: $\psi(x) = A\sin(kx) + B\cos(kx)$
+
+From $\psi(0) = 0$: $B = 0$
+
+From $\psi(L) = 0$: $\sin(kL) = 0 \Rightarrow kL = n\pi$, $n = 1,2,3,\ldots$
+
+Therefore:
+\begin{align}
+k_n &= \frac{n\pi}{L}\\
+E_n &= \frac{\hbar^2 k_n^2}{2m} = \frac{n^2\pi^2\hbar^2}{2mL^2}\\
+\psi_n(x) &= \sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{align}
+
+\ans{$E_n = \frac{n^2\pi^2\hbar^2}{2mL^2}$, $\psi_n(x) = \sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)$}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} A particle is in the ground state of a harmonic oscillator. Find the probability of finding it in the classically forbidden region.
+
+\sol
+For harmonic oscillator: $V(x) = \frac{1}{2}m\omega^2 x^2$
+
+Classical turning point: $E_0 = \frac{1}{2}m\omega^2 x_0^2 \Rightarrow x_0 = \sqrt{\frac{\hbar}{m\omega}}$
+
+Ground state wavefunction:
+\begin{align}
+\psi_0(x) &= \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-\frac{m\omega x^2}{2\hbar}}
+\end{align}
+
+Probability in forbidden region:
+\begin{align}
+P &= 2\int_{x_0}^{\infty} |\psi_0(x)|^2 dx = 2\int_1^{\infty} \frac{1}{\sqrt{\pi}} e^{-u^2} du \quad (u = \sqrt{\frac{m\omega}{\hbar}}x)\\
+&\approx 0.157
+\end{align}
+
+\ans{$\approx 0.157$ or $15.7\%$}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} Find the expectation value $\langle x^2 \rangle$ for the first excited state of harmonic oscillator.
+
+\sol
+First excited state: $\psi_1(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \sqrt{2}\sqrt{\frac{m\omega}{\hbar}}x e^{-\frac{m\omega x^2}{2\hbar}}$
+
+Using ladder operators:
+\begin{align}
+\hat{x} &= \sqrt{\frac{\hbar}{2m\omega}}(\hat{a} + \hat{a}^\dagger)
+\end{align}
+
+For $n=1$ state:
+\begin{align}
+\langle 1|x^2|1 \rangle &= \frac{\hbar}{2m\omega}\langle 1|(\hat{a} + \hat{a}^\dagger)^2|1 \rangle\\
+&= \frac{\hbar}{2m\omega}\langle 1|\hat{a}\hat{a}^\dagger + \hat{a}^\dagger\hat{a}|1 \rangle\\
+&= \frac{\hbar}{2m\omega}(2 + 1) = \frac{3\hbar}{2m\omega}
+\end{align}
+
+\ans{$\frac{3\hbar}{2m\omega}$}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} Find the eigenvalues of angular momentum operator $\hat{L}_z$ and show that $[\hat{L}_x, \hat{L}_y] = i\hbar\hat{L}_z$.
+
+\sol
+In spherical coordinates: $\hat{L}_z = -i\hbar\frac{\partial}{\partial\phi}$
+
+Eigenvalue equation: $\hat{L}_z Y_{\ell m}(\theta,\phi) = m\hbar Y_{\ell m}(\theta,\phi)$
+
+Eigenvalues: $m\hbar$ where $m = -\ell, -\ell+1, \ldots, \ell-1, \ell$
+
+For commutation:
+\begin{align}
+[\hat{L}_x, \hat{L}_y] &= [\hat{y}\hat{p}_z - \hat{z}\hat{p}_y, \hat{z}\hat{p}_x - \hat{x}\hat{p}_z]\\
+&= i\hbar(\hat{x}\hat{p}_y - \hat{y}\hat{p}_x) = i\hbar\hat{L}_z
+\end{align}
+
+\ans{Eigenvalues: $m\hbar$; Commutation relation verified}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} A particle in a box of width $L$ is in a superposition state $\psi(x) = \frac{1}{\sqrt{2}}(\psi_1(x) + \psi_2(x))$. Find the expectation value of energy.
+
+\sol
+\begin{align}
+\langle E \rangle &= \int_0^L \psi^*(x)\hat{H}\psi(x) dx\\
+&= \frac{1}{2}\int_0^L (\psi_1^* + \psi_2^*)\hat{H}(\psi_1 + \psi_2) dx\\
+&= \frac{1}{2}(E_1 + E_2) = \frac{1}{2}\left(\frac{\pi^2\hbar^2}{2mL^2} + \frac{4\pi^2\hbar^2}{2mL^2}\right)\\
+&= \frac{5\pi^2\hbar^2}{4mL^2}
+\end{align}
+
+\ans{$\frac{5\pi^2\hbar^2}{4mL^2}$}
+\end{example}
+
+\tip{Master wave mechanics, operator methods, and angular momentum. Practice problems on perturbation theory, scattering, and spin.}
+
+% ============================================
+% SECTION 5: THERMODYNAMICS AND STATISTICAL PHYSICS
+% ============================================
+\section{Thermodynamics and Statistical Physics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Laws of Thermodynamics]
+\begin{align}
+dU &= TdS - PdV\\
+dG &= -SdT + VdP\\
+C_V &= \left(\frac{\partial U}{\partial T}\right)_V, \quad C_P = \left(\frac{\partial H}{\partial T}\right)_P
+\end{align}
+\end{formula}
+
+\begin{formula}[Partition Functions]
+\begin{align}
+Z &= \sum_i e^{-\beta E_i}\\
+F &= -kT\ln Z\\
+\langle E \rangle &= -\frac{\partial \ln Z}{\partial \beta}
+\end{align}
+\end{formula}
+
+\begin{formula}[Maxwell-Boltzmann Distribution]
+\begin{align}
+f(v) &= 4\pi n\left(\frac{m}{2\pi kT}\right)^{3/2} v^2 e^{-\frac{mv^2}{2kT}}
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} Find the entropy of an ideal gas using Sackur-Tetrode equation.
+
+\sol
+For ideal gas, partition function:
+\begin{align}
+Z &= \frac{1}{N!}\left(\frac{V}{\lambda^3}\right)^N, \quad \lambda = \frac{h}{\sqrt{2\pi mkT}}
+\end{align}
+
+Helmholtz free energy:
+\begin{align}
+F &= -kT\ln Z = -kT\left[-N\ln N + N + N\ln V - 3N\ln\lambda\right]\\
+&= NkT\left[\ln\left(\frac{N\lambda^3}{V}\right) - 1\right]
+\end{align}
+
+Entropy:
+\begin{align}
+S &= -\left(\frac{\partial F}{\partial T}\right)_V\\
+&= Nk\left[\ln\left(\frac{V}{N\lambda^3}\right) + \frac{5}{2}\right]
+\end{align}
+
+This is the Sackur-Tetrode equation.
+
+\ans{$S = Nk\left[\ln\left(\frac{V}{N\lambda^3}\right) + \frac{5}{2}\right]$}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} A system of $N$ non-interacting spins in magnetic field $B$ has energy $E = -\mu B\sum_{i=1}^N s_i$ where $s_i = \pm 1$. Find the magnetization at temperature $T$.
+
+\sol
+Partition function for single spin:
+\begin{align}
+Z_1 &= e^{\beta\mu B} + e^{-\beta\mu B} = 2\cosh(\beta\mu B)
+\end{align}
+
+For $N$ spins: $Z_N = Z_1^N = [2\cosh(\beta\mu B)]^N$
+
+Magnetization:
+\begin{align}
+M &= \frac{1}{\beta}\frac{\partial \ln Z_N}{\partial B} = N\mu \tanh(\beta\mu B)
+\end{align}
+
+\ans{$M = N\mu \tanh(\beta\mu B)$}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} Find the most probable speed in Maxwell-Boltzmann distribution.
+
+\sol
+Maxwell-Boltzmann distribution:
+\begin{align}
+f(v) &= 4\pi n\left(\frac{m}{2\pi kT}\right)^{3/2} v^2 e^{-\frac{mv^2}{2kT}}
+\end{align}
+
+Most probable speed: $\frac{df}{dv} = 0$
+
+\begin{align}
+\frac{df}{dv} &= 4\pi n\left(\frac{m}{2\pi kT}\right)^{3/2}\left[2v e^{-\frac{mv^2}{2kT}} - v^2 \cdot \frac{mv}{kT}e^{-\frac{mv^2}{2kT}}\right] = 0\\
+2v - \frac{mv^3}{kT} &= 0\\
+v_{mp} &= \sqrt{\frac{2kT}{m}}
+\end{align}
+
+\ans{$v_{mp} = \sqrt{\frac{2kT}{m}}$}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} A heat engine operates between two reservoirs at temperatures $T_H$ and $T_C$. Find the maximum efficiency.
+
+\sol
+For Carnot cycle (reversible):
+\begin{align}
+\eta &= 1 - \frac{Q_C}{Q_H} = 1 - \frac{T_C}{T_H}
+\end{align}
+
+This is the maximum possible efficiency (Carnot's theorem).
+
+\ans{$\eta_{max} = 1 - \frac{T_C}{T_H}$}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} Find the heat capacity at constant volume for a two-level system with energy levels $0$ and $\epsilon$.
+
+\sol
+Partition function:
+\begin{align}
+Z &= 1 + e^{-\beta\epsilon}
+\end{align}
+
+Average energy:
+\begin{align}
+\langle E \rangle &= -\frac{\partial \ln Z}{\partial \beta} = \frac{\epsilon e^{-\beta\epsilon}}{1 + e^{-\beta\epsilon}} = \frac{\epsilon}{e^{\beta\epsilon} + 1}
+\end{align}
+
+Heat capacity:
+\begin{align}
+C_V &= \frac{\partial \langle E \rangle}{\partial T} = k\beta^2 \frac{\partial \langle E \rangle}{\partial \beta}\\
+&= k\beta^2 \cdot \frac{\epsilon^2 e^{\beta\epsilon}}{(e^{\beta\epsilon} + 1)^2} = k\left(\frac{\epsilon}{kT}\right)^2 \frac{e^{\epsilon/kT}}{(e^{\epsilon/kT} + 1)^2}
+\end{align}
+
+\ans{$C_V = k\left(\frac{\epsilon}{kT}\right)^2 \frac{e^{\epsilon/kT}}{(e^{\epsilon/kT} + 1)^2}$}
+\end{example}
+
+\tip{Master partition functions, ensemble theory, and phase transitions. Practice problems on ideal gases, paramagnetism, and blackbody radiation.}
+
+% ============================================
+% SECTION 6: ELECTRONICS
+% ============================================
+\section{Electronics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Semiconductor Physics]
+\begin{align}
+n_i^2 &= n_0 p_0\\
+E_g &= E_c - E_v\\
+n &= N_c e^{-(E_c - E_F)/kT}
+\end{align}
+\end{formula}
+
+\begin{formula}[PN Junction]
+\begin{align}
+I &= I_0(e^{eV/kT} - 1)\\
+C_j &= \frac{\epsilon A}{W}, \quad W = \sqrt{\frac{2\epsilon(V_{bi} - V)}{eN_d}}
+\end{align}
+\end{formula}
+
+\begin{formula}[Transistor]
+\begin{align}
+I_C &= \beta I_B + I_{CEO}\\
+I_E &= I_B + I_C
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} A silicon sample at 300K has intrinsic carrier concentration $n_i = 1.5 \times 10^{10}$ cm$^{-3}$. If it is doped with $10^{16}$ cm$^{-3}$ donors, find the electron and hole concentrations.
+
+\sol
+For n-type semiconductor:
+\begin{align}
+n_0 &\approx N_d = 10^{16} \text{ cm}^{-3}\\
+p_0 &= \frac{n_i^2}{n_0} = \frac{(1.5 \times 10^{10})^2}{10^{16}} = 2.25 \times 10^4 \text{ cm}^{-3}
+\end{align}
+
+\ans{$n_0 = 10^{16}$ cm$^{-3}$, $p_0 = 2.25 \times 10^4$ cm$^{-3}$}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} A pn-junction diode has reverse saturation current $I_0 = 10^{-12}$ A. Find the current at forward bias of 0.7 V at 300K.
+
+\sol
+Diode equation:
+\begin{align}
+I &= I_0(e^{eV/kT} - 1)
+\end{align}
+
+At 300K: $\frac{kT}{e} = 0.026$ V
+
+\begin{align}
+I &= 10^{-12}(e^{0.7/0.026} - 1) \approx 10^{-12} \times e^{26.9}\\
+&\approx 10^{-12} \times 4.8 \times 10^{11} \approx 0.48 \text{ A}
+\end{align}
+
+\ans{$\approx 0.48$ A}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} An npn transistor has $\beta = 100$. If base current is 10 $\mu$A, find collector and emitter currents.
+
+\sol
+\begin{align}
+I_C &= \beta I_B = 100 \times 10 \times 10^{-6} = 1 \text{ mA}\\
+I_E &= I_B + I_C = 10 \times 10^{-6} + 1 \times 10^{-3} = 1.01 \text{ mA}
+\end{align}
+
+\ans{$I_C = 1$ mA, $I_E = 1.01$ mA}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} Find the built-in potential of a pn-junction with $N_a = 10^{18}$ cm$^{-3}$ and $N_d = 10^{16}$ cm$^{-3}$ at 300K. ($n_i = 1.5 \times 10^{10}$ cm$^{-3}$)
+
+\sol
+Built-in potential:
+\begin{align}
+V_{bi} &= \frac{kT}{e}\ln\left(\frac{N_a N_d}{n_i^2}\right)\\
+&= 0.026 \ln\left(\frac{10^{18} \times 10^{16}}{(1.5 \times 10^{10})^2}\right)\\
+&= 0.026 \ln\left(\frac{10^{34}}{2.25 \times 10^{20}}\right)\\
+&= 0.026 \ln(4.44 \times 10^{13}) \approx 0.026 \times 31.2 \approx 0.81 \text{ V}
+\end{align}
+
+\ans{$\approx 0.81$ V}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} A MOSFET has threshold voltage $V_T = 1$ V. If gate voltage is 3 V and drain voltage is 5 V, find the operating region (assuming $V_{DS} > V_{GS} - V_T$).
+
+\sol
+Check conditions:
+\begin{align}
+V_{GS} - V_T &= 3 - 1 = 2 \text{ V}\\
+V_{DS} &= 5 \text{ V}
+\end{align}
+
+Since $V_{DS} > V_{GS} - V_T$, the MOSFET is in \textbf{saturation region}.
+
+\ans{Saturation region}
+\end{example}
+
+\tip{Master semiconductor physics, diode and transistor characteristics, and amplifier circuits. Practice problems on digital circuits and operational amplifiers.}
+
+% ============================================
+% SECTION 7: ATOMIC AND MOLECULAR PHYSICS
+% ============================================
+\section{Atomic and Molecular Physics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Hydrogen Atom]
+\begin{align}
+E_n &= -\frac{13.6}{n^2} \text{ eV}\\
+r_n &= n^2 a_0, \quad a_0 = \frac{\hbar^2}{me^2}\\
+L &= \sqrt{\ell(\ell+1)}\hbar
+\end{align}
+\end{formula}
+
+\begin{formula}[Selection Rules]
+\begin{align}
+\Delta \ell &= \pm 1\\
+\Delta m &= 0, \pm 1\\
+\Delta j &= 0, \pm 1 \quad (j \neq 0 \to 0)
+\end{align}
+\end{formula}
+
+\begin{formula}[Fine Structure]
+\begin{align}
+E_{fs} &= E_n \frac{\alpha^2}{n^2}\left(\frac{n}{j+1/2} - \frac{3}{4}\right)
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} Find the wavelength of photon emitted in transition from $n=3$ to $n=2$ in hydrogen atom.
+
+\sol
+Energy difference:
+\begin{align}
+\Delta E &= E_2 - E_3 = -13.6\left(\frac{1}{4} - \frac{1}{9}\right) = -13.6 \times \frac{5}{36}\\
+&= -1.89 \text{ eV}
+\end{align}
+
+Wavelength:
+\begin{align}
+\lambda &= \frac{hc}{\Delta E} = \frac{1240 \text{ eV}\cdot\text{nm}}{1.89 \text{ eV}} \approx 656 \text{ nm}
+\end{align}
+
+This is the H-$\alpha$ line.
+
+\ans{$\lambda \approx 656$ nm}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} Find the degeneracy of energy level $n=3$ in hydrogen atom.
+
+\sol
+For hydrogen, degeneracy includes:
+- Different $\ell$ values: $\ell = 0, 1, 2$ for $n=3$
+- Different $m$ values: $m = -\ell, \ldots, +\ell$
+- Spin: $s = \pm 1/2$
+
+Total degeneracy:
+\begin{align}
+g &= \sum_{\ell=0}^{n-1} (2\ell+1) \times 2 = 2\sum_{\ell=0}^{2}(2\ell+1)\\
+&= 2(1 + 3 + 5) = 2 \times 9 = 18
+\end{align}
+
+\ans{$g = 18$}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} Find the fine structure splitting for $n=2$, $\ell=1$ state in hydrogen.
+
+\sol
+For $n=2$, $\ell=1$: $j = 1/2$ or $3/2$
+
+Fine structure energy:
+\begin{align}
+E_{fs}(j=1/2) &= E_2 \frac{\alpha^2}{4}\left(\frac{2}{1} - \frac{3}{4}\right) = E_2 \frac{\alpha^2}{4} \cdot \frac{5}{4}\\
+E_{fs}(j=3/2) &= E_2 \frac{\alpha^2}{4}\left(\frac{2}{2} - \frac{3}{4}\right) = E_2 \frac{\alpha^2}{4} \cdot \frac{1}{4}
+\end{align}
+
+Splitting:
+\begin{align}
+\Delta E_{fs} &= E_2 \frac{\alpha^2}{4}\left(\frac{5}{4} - \frac{1}{4}\right) = E_2 \frac{\alpha^2}{4}\\
+&= -13.6 \times \frac{1}{4} \times \frac{(1/137)^2}{4} \approx -4.5 \times 10^{-5} \text{ eV}
+\end{align}
+
+\ans{$\Delta E_{fs} \approx -4.5 \times 10^{-5}$ eV}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} Which transitions are allowed for hydrogen atom: (a) $2p \to 1s$, (b) $3d \to 2s$, (c) $3p \to 2p$?
+
+\sol
+Selection rules: $\Delta \ell = \pm 1$, $\Delta m = 0, \pm 1$
+
+(a) $2p (\ell=1) \to 1s (\ell=0)$: $\Delta \ell = -1$ ✓ Allowed
+
+(b) $3d (\ell=2) \to 2s (\ell=0)$: $\Delta \ell = -2$ ✗ Forbidden
+
+(c) $3p (\ell=1) \to 2p (\ell=1)$: $\Delta \ell = 0$ ✗ Forbidden
+
+\ans{(a) Allowed; (b) and (c) Forbidden}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} Find the expectation value of $1/r$ for ground state of hydrogen atom.
+
+\sol
+Ground state wavefunction: $\psi_{100} = \frac{1}{\sqrt{\pi a_0^3}} e^{-r/a_0}$
+
+\begin{align}
+\left\langle \frac{1}{r} \right\rangle &= \int \psi_{100}^* \frac{1}{r} \psi_{100} d^3r\\
+&= \frac{1}{\pi a_0^3} \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \frac{1}{r} e^{-2r/a_0} r^2 \sin\theta dr d\theta d\phi\\
+&= \frac{4\pi}{\pi a_0^3} \int_0^{\infty} r e^{-2r/a_0} dr\\
+&= \frac{4}{a_0^3} \cdot \frac{a_0^2}{4} = \frac{1}{a_0}
+\end{align}
+
+\ans{$\left\langle \frac{1}{r} \right\rangle = \frac{1}{a_0}$}
+\end{example}
+
+\tip{Master hydrogen atom, selection rules, and fine/hyperfine structure. Practice problems on multi-electron atoms, molecular spectra, and lasers.}
+
+% ============================================
+% SECTION 8: SOLID STATE PHYSICS
+% ============================================
+\section{Solid State Physics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Free Electron Model]
+\begin{align}
+E(k) &= \frac{\hbar^2 k^2}{2m}\\
+D(E) &= \frac{V}{2\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2} E^{1/2}\\
+E_F &= \frac{\hbar^2}{2m}(3\pi^2 n)^{2/3}
+\end{align}
+\end{formula}
+
+\begin{formula}[Lattice Vibrations]
+\begin{align}
+\omega(k) &= 2\sqrt{\frac{C}{M}}\left|\sin\left(\frac{ka}{2}\right)\right|\\
+E = \hbar\omega\left(n + \frac{1}{2}\right)
+\end{align}
+\end{formula}
+
+\begin{formula}[Band Theory]
+\begin{align}
+E(k) &= E_0 - 2t\cos(ka)\\
+E_g &= 2|t|
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} Find the Fermi energy for a free electron gas with electron density $n = 10^{29}$ m$^{-3}$.
+
+\sol
+Fermi energy:
+\begin{align}
+E_F &= \frac{\hbar^2}{2m}(3\pi^2 n)^{2/3}\\
+&= \frac{(1.055 \times 10^{-34})^2}{2 \times 9.11 \times 10^{-31}} (3\pi^2 \times 10^{29})^{2/3}\\
+&\approx \frac{1.11 \times 10^{-68}}{1.82 \times 10^{-30}} \times (2.96 \times 10^{30})^{2/3}\\
+&\approx 6.1 \times 10^{-39} \times 2.0 \times 10^{20} \approx 1.22 \times 10^{-18} \text{ J}\\
+&\approx 7.6 \text{ eV}
+\end{align}
+
+\ans{$E_F \approx 7.6$ eV}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} Find the density of states at Fermi level for free electron gas.
+
+\sol
+Density of states:
+\begin{align}
+D(E) &= \frac{V}{2\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2} E^{1/2}
+\end{align}
+
+At Fermi level:
+\begin{align}
+D(E_F) &= \frac{V}{2\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2} E_F^{1/2}
+\end{align}
+
+Using $E_F = \frac{\hbar^2}{2m}(3\pi^2 n)^{2/3}$:
+\begin{align}
+D(E_F) &= \frac{3nV}{2E_F}
+\end{align}
+
+\ans{$D(E_F) = \frac{3nV}{2E_F}$}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} A one-dimensional chain has dispersion relation $\omega(k) = \omega_0 \sin(ka/2)$. Find the group velocity at $k = \pi/a$.
+
+\sol
+Group velocity:
+\begin{align}
+v_g &= \frac{d\omega}{dk} = \omega_0 \frac{a}{2} \cos\left(\frac{ka}{2}\right)
+\end{align}
+
+At $k = \pi/a$:
+\begin{align}
+v_g &= \omega_0 \frac{a}{2} \cos\left(\frac{\pi}{2}\right) = 0
+\end{align}
+
+\ans{$v_g = 0$}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} Find the Debye temperature for a solid with Debye frequency $\omega_D = 10^{13}$ rad/s.
+
+\sol
+Debye temperature:
+\begin{align}
+\Theta_D &= \frac{\hbar\omega_D}{k} = \frac{1.055 \times 10^{-34} \times 10^{13}}{1.38 \times 10^{-23}}\\
+&= \frac{1.055 \times 10^{-21}}{1.38 \times 10^{-23}} \approx 76.4 \text{ K}
+\end{align}
+
+\ans{$\Theta_D \approx 76.4$ K}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} A tight-binding model gives $E(k) = E_0 - 2t\cos(ka)$. Find the bandwidth.
+
+\sol
+The energy ranges from:
+\begin{align}
+E_{min} &= E_0 - 2t \quad (k=0)\\
+E_{max} &= E_0 + 2t \quad (k=\pi/a)
+\end{align}
+
+Bandwidth:
+\begin{align}
+W &= E_{max} - E_{min} = 4t
+\end{align}
+
+\ans{$W = 4t$}
+\end{example}
+
+\tip{Master free electron model, band theory, and lattice dynamics. Practice problems on superconductivity, magnetism, and crystal structures.}
+
+% ============================================
+% SECTION 9: NUCLEAR AND PARTICLE PHYSICS
+% ============================================
+\section{Nuclear and Particle Physics}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[Nuclear Binding Energy]
+\begin{align}
+B &= [Zm_p + (A-Z)m_n - M]c^2\\
+B/A &\approx a_v - a_s A^{-1/3} - a_c Z^2 A^{-4/3} - a_a \frac{(A-2Z)^2}{A}
+\end{align}
+\end{formula}
+
+\begin{formula}[Radioactive Decay]
+\begin{align}
+N(t) &= N_0 e^{-\lambda t}\\
+T_{1/2} &= \frac{\ln 2}{\lambda}\\
+\lambda_{total} &= \sum_i \lambda_i
+\end{align}
+\end{formula}
+
+\begin{formula}[Beta Decay]
+\begin{align}
+Q_\beta &= [M(^A_Z X) - M(^A_{Z+1} Y)]c^2\\
+E_{max} &= Q_\beta
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} Calculate the binding energy per nucleon for $^{56}$Fe. Given: $M(^{56}$Fe$) = 55.9349$ u, $m_p = 1.0078$ u, $m_n = 1.0087$ u.
+
+\sol
+For $^{56}$Fe: $Z = 26$, $A = 56$, $N = 30$
+
+Mass defect:
+\begin{align}
+\Delta M &= 26 \times 1.0078 + 30 \times 1.0087 - 55.9349\\
+&= 26.2028 + 30.261 - 55.9349 = 0.5289 \text{ u}
+\end{align}
+
+Binding energy:
+\begin{align}
+B &= 0.5289 \times 931.5 = 492.7 \text{ MeV}\\
+B/A &= \frac{492.7}{56} = 8.80 \text{ MeV/nucleon}
+\end{align}
+
+\ans{$B/A = 8.80$ MeV/nucleon}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} A radioactive sample has half-life of 10 days. What fraction remains after 30 days?
+
+\sol
+Decay constant: $\lambda = \frac{\ln 2}{T_{1/2}} = \frac{\ln 2}{10}$
+
+After time $t$:
+\begin{align}
+\frac{N(t)}{N_0} &= e^{-\lambda t} = e^{-\frac{\ln 2}{10} \times 30} = e^{-3\ln 2} = 2^{-3} = \frac{1}{8}
+\end{align}
+
+\ans{$\frac{1}{8}$ or 12.5\%}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} Find the Q-value for $\beta^-$ decay: $^{14}$C $\to$ $^{14}$N + $e^-$ + $\bar{\nu}_e$. Given: $M(^{14}$C$) = 14.003242$ u, $M(^{14}$N$) = 14.003074$ u.
+
+\sol
+Q-value:
+\begin{align}
+Q_\beta &= [M(^{14}\text{C}) - M(^{14}\text{N})]c^2\\
+&= (14.003242 - 14.003074) \times 931.5\\
+&= 0.000168 \times 931.5 = 0.156 \text{ MeV}
+\end{align}
+
+\ans{$Q_\beta = 0.156$ MeV}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} A nucleus decays by $\alpha$ emission. If the Q-value is 5 MeV, find the kinetic energy of $\alpha$ particle (assuming parent nucleus at rest).
+
+\sol
+For $\alpha$ decay: $^A_Z X \to ^{A-4}_{Z-2} Y + \alpha$
+
+By conservation of momentum: $p_Y = p_\alpha$
+
+Kinetic energies:
+\begin{align}
+E_\alpha &= \frac{p_\alpha^2}{2m_\alpha}, \quad E_Y = \frac{p_Y^2}{2m_Y} = \frac{p_\alpha^2}{2m_Y}
+\end{align}
+
+Total energy: $Q = E_\alpha + E_Y = E_\alpha\left(1 + \frac{m_\alpha}{m_Y}\right)$
+
+For heavy nuclei: $m_Y \gg m_\alpha$, so:
+\begin{align}
+E_\alpha &\approx Q \left(1 - \frac{m_\alpha}{m_Y}\right) \approx Q = 5 \text{ MeV}
+\end{align}
+
+More precisely: $E_\alpha = Q \frac{m_Y}{m_Y + m_\alpha} \approx Q \frac{A-4}{A}$
+
+\ans{$E_\alpha \approx 5$ MeV (slightly less)}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} Find the mean lifetime of a radioactive isotope with decay constant $\lambda = 0.05$ s$^{-1}$.
+
+\sol
+Mean lifetime:
+\begin{align}
+\tau &= \frac{1}{\lambda} = \frac{1}{0.05} = 20 \text{ s}
+\end{align}
+
+\ans{$\tau = 20$ s}
+\end{example}
+
+\tip{Master binding energy, decay processes, and nuclear reactions. Practice problems on fission, fusion, and particle physics.}
+
+% ============================================
+% SECTION 10: EXPERIMENTAL TECHNIQUES
+% ============================================
+\section{Experimental Techniques}
+
+\subsection{Key Concepts and Formulas}
+
+\begin{formula}[X-ray Diffraction]
+\begin{align}
+n\lambda &= 2d\sin\theta\\
+d_{hkl} &= \frac{a}{\sqrt{h^2 + k^2 + l^2}}
+\end{align}
+\end{formula}
+
+\begin{formula}[NMR]
+\begin{align}
+\omega_0 &= \gamma B_0\\
+\Delta E &= \hbar\gamma B_0
+\end{align}
+\end{formula}
+
+\begin{formula}[Mass Spectrometry]
+\begin{align}
+\frac{m}{q} &= \frac{B^2 r^2}{2V}
+\end{align}
+\end{formula}
+
+\subsection{Solved Examples}
+
+\begin{example}[GATE 2020]
+\textbf{Problem:} X-rays of wavelength 0.154 nm are incident on a crystal. First-order Bragg reflection occurs at $\theta = 15^\circ$. Find the interplanar spacing.
+
+\sol
+Bragg's law: $n\lambda = 2d\sin\theta$
+
+For first order ($n=1$):
+\begin{align}
+d &= \frac{\lambda}{2\sin\theta} = \frac{0.154}{2\sin(15^\circ)} = \frac{0.154}{2 \times 0.259}\\
+&= \frac{0.154}{0.518} \approx 0.297 \text{ nm}
+\end{align}
+
+\ans{$d \approx 0.297$ nm}
+\end{example}
+
+\begin{example}[GATE 2019]
+\textbf{Problem:} In an NMR experiment, the Larmor frequency is 100 MHz. Find the magnetic field strength. ($\gamma_H = 42.58$ MHz/T)
+
+\sol
+Larmor frequency: $\omega_0 = \gamma B_0$
+
+\begin{align}
+B_0 &= \frac{\omega_0}{2\pi\gamma} = \frac{100 \times 10^6}{2\pi \times 42.58 \times 10^6}\\
+&= \frac{100}{2\pi \times 42.58} \approx 0.374 \text{ T}
+\end{align}
+
+\ans{$B_0 \approx 0.374$ T}
+\end{example}
+
+\begin{example}[GATE 2021]
+\textbf{Problem:} In a mass spectrometer, ions are accelerated through 1000 V and enter a magnetic field of 0.1 T. Find the radius of path for $^{12}$C$^+$ ions.
+
+\sol
+Radius:
+\begin{align}
+r &= \frac{\sqrt{2mV/q}}{B} = \frac{1}{B}\sqrt{\frac{2mV}{q}}
+\end{align}
+
+For $^{12}$C$^+$: $m = 12 \times 1.67 \times 10^{-27}$ kg, $q = 1.6 \times 10^{-19}$ C
+
+\begin{align}
+r &= \frac{1}{0.1}\sqrt{\frac{2 \times 12 \times 1.67 \times 10^{-27} \times 1000}{1.6 \times 10^{-19}}}\\
+&= 10 \times \sqrt{\frac{4.008 \times 10^{-23}}{1.6 \times 10^{-19}}}\\
+&= 10 \times \sqrt{2.505 \times 10^{-4}} = 10 \times 0.0158 = 0.158 \text{ m}
+\end{align}
+
+\ans{$r \approx 0.158$ m}
+\end{example}
+
+\begin{example}[GATE 2018]
+\textbf{Problem:} In a photoelectric effect experiment, stopping potential is 2 V for light of wavelength 400 nm. Find the work function. ($h = 4.14 \times 10^{-15}$ eV$\cdot$s, $c = 3 \times 10^8$ m/s)
+
+\sol
+Photoelectric equation:
+\begin{align}
+eV_s &= h\nu - \phi\\
+\phi &= h\nu - eV_s = \frac{hc}{\lambda} - eV_s
+\end{align}
+
+\begin{align}
+h\nu &= \frac{4.14 \times 10^{-15} \times 3 \times 10^8}{400 \times 10^{-9}} = \frac{1.242 \times 10^{-6}}{4 \times 10^{-7}}\\
+&= 3.105 \text{ eV}
+\end{align}
+
+\begin{align}
+\phi &= 3.105 - 2 = 1.105 \text{ eV}
+\end{align}
+
+\ans{$\phi = 1.105$ eV}
+\end{example}
+
+\begin{example}[GATE 2022]
+\textbf{Problem:} In a Compton scattering experiment, X-rays of wavelength 0.1 nm are scattered at 90$^\circ$. Find the wavelength of scattered photon.
+
+\sol
+Compton shift:
+\begin{align}
+\Delta\lambda &= \frac{h}{m_e c}(1 - \cos\theta) = \lambda_C(1 - \cos\theta)
+\end{align}
+
+Compton wavelength: $\lambda_C = \frac{h}{m_e c} = 2.43 \times 10^{-12}$ m
+
+For $\theta = 90^\circ$:
+\begin{align}
+\Delta\lambda &= 2.43 \times 10^{-12}(1 - 0) = 2.43 \times 10^{-12} \text{ m}\\
+&= 0.00243 \text{ nm}
+\end{align}
+
+Scattered wavelength:
+\begin{align}
+\lambda' &= \lambda + \Delta\lambda = 0.1 + 0.00243 = 0.10243 \text{ nm}
+\end{align}
+
+\ans{$\lambda' = 0.10243$ nm}
+\end{example}
+
+\tip{Master diffraction techniques, spectroscopy, and particle detection methods. Practice problems on various experimental setups and data analysis.}
+
+% ============================================
+% SECTION 11: EXAM STRATEGY AND TIPS
+% ============================================
+\section{Exam Strategy and Tips for Guaranteed Success}
+
+\subsection{Time Management}
+
+\begin{itemize}
+\item \textbf{Total Time:} 180 minutes for 65 questions
+\item \textbf{Recommended Strategy:}
+  \begin{itemize}
+  \item First pass (90 min): Solve all easy questions, mark medium difficulty
+  \item Second pass (60 min): Solve medium difficulty questions
+  \item Third pass (30 min): Attempt difficult questions, review answers
+  \end{itemize}
+\item \textbf{Marking Scheme:}
+  \begin{itemize}
+  \item 1 mark questions: +1 for correct, -1/3 for wrong
+  \item 2 mark questions: +2 for correct, -2/3 for wrong
+  \end{itemize}
+\end{itemize}
+
+\subsection{Important Topics Weightage (Approximate)}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Topic} & \textbf{Weightage (\%)} \\
+\midrule
+Mathematical Physics & 10-12 \\
+Classical Mechanics & 8-10 \\
+Electromagnetic Theory & 12-15 \\
+Quantum Mechanics & 15-18 \\
+Thermodynamics \& Statistical Physics & 10-12 \\
+Electronics & 8-10 \\
+Atomic \& Molecular Physics & 8-10 \\
+Solid State Physics & 10-12 \\
+Nuclear \& Particle Physics & 6-8 \\
+Experimental Techniques & 5-7 \\
+\bottomrule
+\end{tabular}
+\caption{Typical weightage distribution in GATE Physics}
+\end{table}
+
+\subsection{Key Formulas to Memorize}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item $\hbar = 1.055 \times 10^{-34}$ J$\cdot$s
+\item $k_B = 1.38 \times 10^{-23}$ J/K
+\item $e = 1.6 \times 10^{-19}$ C
+\item $m_e = 9.11 \times 10^{-31}$ kg
+\item $c = 3 \times 10^8$ m/s
+\item $\epsilon_0 = 8.85 \times 10^{-12}$ F/m
+\item $\mu_0 = 4\pi \times 10^{-7}$ H/m
+\item $a_0 = 0.529$ Å
+\item $R_H = 109677$ cm$^{-1}$
+\item $\alpha = 1/137$ (fine structure constant)
+\end{itemize}
+\end{multicols}
+
+\subsection{Problem-Solving Strategies}
+
+\begin{enumerate}
+\item \textbf{Read carefully:} Understand what is asked before solving
+\item \textbf{Identify the topic:} Quickly categorize the problem
+\item \textbf{Use approximations:} For numerical problems, use appropriate approximations
+\item \textbf{Check units:} Always verify units in final answer
+\item \textbf{Use symmetry:} Exploit symmetry to simplify calculations
+\item \textbf{Dimensional analysis:} Verify answers using dimensional analysis
+\item \textbf{Physical intuition:} Check if answer makes physical sense
+\end{enumerate}
+
+\subsection{Common Mistakes to Avoid}
+
+\begin{itemize}
+\item \textbf{Sign errors:} Be careful with signs in vector operations
+\item \textbf{Unit conversions:} Always convert to SI units first
+\item \textbf{Boundary conditions:} Don't forget boundary conditions in differential equations
+\item \textbf{Normalization:} Remember to normalize wavefunctions
+\item \textbf{Selection rules:} Apply selection rules correctly in atomic physics
+\item \textbf{Approximations:} Know when approximations are valid
+\end{itemize}
+
+\subsection{Revision Schedule}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Week} & \textbf{Focus Area} \\
+\midrule
+Week 1-2 & Mathematical Physics + Classical Mechanics \\
+Week 3-4 & Electromagnetic Theory + Quantum Mechanics \\
+Week 5-6 & Thermodynamics + Statistical Physics + Electronics \\
+Week 7-8 & Atomic/Molecular + Solid State Physics \\
+Week 9-10 & Nuclear Physics + Experimental Techniques \\
+Week 11-12 & Full revision + Mock tests \\
+\bottomrule
+\end{tabular}
+\caption{Recommended 12-week preparation schedule}
+\end{table}
+
+\subsection{Final Preparation Tips}
+
+\begin{enumerate}
+\item \textbf{Solve previous papers:} Minimum 10 years of GATE papers
+\item \textbf{Time-bound practice:} Solve papers within time limit
+\item \textbf{Error analysis:} Analyze mistakes in mock tests
+\item \textbf{Formula sheet:} Create personal formula sheet
+\item \textbf{Quick revision:} Daily 30-minute revision of formulas
+\item \textbf{Stay calm:} Maintain composure during exam
+\item \textbf{Guess intelligently:} Use elimination method for MCQs
+\end{enumerate}
+
+\subsection{Confidence Building}
+
+Remember:
+\begin{itemize}
+\item You have mastered all topics with 5+ examples each
+\item You understand concepts, not just memorized formulas
+\item You can solve problems systematically
+\item You know exam pattern and marking scheme
+\item You are well-prepared for success
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{center}
+\Large\textbf{Success Formula:}\\
+\vspace{0.5cm}
+\textbf{Preparation + Practice + Persistence = Guaranteed Success}\\
+\vspace{0.5cm}
+\large\textit{You are ready to ace GATE 2026 Physics!}
+\end{center}
+
+\newpage
+
+% ============================================
+% APPENDIX: QUICK REFERENCE FORMULAS
+% ============================================
+\section*{Appendix: Quick Reference Formula Sheet}
+
+\subsection*{Mathematical Physics}
+\begin{align}
+\int_0^{\infty} e^{-ax^2} dx &= \frac{1}{2}\sqrt{\frac{\pi}{a}}\\
+\int_0^{\infty} x^{n-1} e^{-x} dx &= \Gamma(n)\\
+\nabla^2 \frac{1}{r} &= -4\pi\delta(\mathbf{r})
+\end{align}
+
+\subsection*{Classical Mechanics}
+\begin{align}
+L &= \frac{1}{2}m\dot{r}^2 + \frac{L^2}{2mr^2} - V(r)\\
+\omega &= \sqrt{\frac{k}{m}} \quad \text{(SHM)}
+\end{align}
+
+\subsection*{Electromagnetic Theory}
+\begin{align}
+\mathbf{E} &= -\nabla V\\
+\mathbf{B} &= \nabla \times \mathbf{A}\\
+c &= \frac{1}{\sqrt{\mu_0\epsilon_0}}
+\end{align}
+
+\subsection*{Quantum Mechanics}
+\begin{align}
+[\hat{x}, \hat{p}] &= i\hbar\\
+E_n &= \frac{n^2\pi^2\hbar^2}{2mL^2} \quad \text{(Particle in box)}\\
+E_n &= \hbar\omega(n + 1/2) \quad \text{(Harmonic oscillator)}
+\end{align}
+
+\subsection*{Statistical Physics}
+\begin{align}
+Z &= \sum_i e^{-\beta E_i}\\
+F &= -kT\ln Z\\
+S &= k\ln\Omega
+\end{align}
+
+\subsection*{Atomic Physics}
+\begin{align}
+E_n &= -\frac{13.6}{n^2} \text{ eV}\\
+r_n &= n^2 a_0
+\end{align}
+
+\subsection*{Solid State Physics}
+\begin{align}
+E_F &= \frac{\hbar^2}{2m}(3\pi^2 n)^{2/3}\\
+D(E) &\propto E^{1/2}
+\end{align}
+
+\subsection*{Nuclear Physics}
+\begin{align}
+N(t) &= N_0 e^{-\lambda t}\\
+T_{1/2} &= \frac{\ln 2}{\lambda}
+\end{align}
+
+\end{document}

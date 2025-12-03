@@ -1,0 +1,1571 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+% Page geometry
+\geometry{margin=1in}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{GATE 2026 Mathematical Physics Study Guide}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% Custom theorem environments
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{formula}[theorem]{Formula}
+
+% Custom boxes
+\tcbuselibrary{theorems}
+\newtcolorbox{importantbox}{
+    colback=red!5!white,
+    colframe=red!75!black,
+    title=Important for GATE
+}
+
+\newtcolorbox{tipbox}{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    title=Exam Tip
+}
+
+\newtcolorbox{notebox}{
+    colback=yellow!5!white,
+    colframe=orange!75!black,
+    title=Note
+}
+
+% Title page
+\title{\Huge\textbf{Mathematical Physics}\\[0.3cm]
+\Large Complete Study Guide for GATE 2026\\[0.2cm]
+\large Foundation for Success}
+\author{Comprehensive Coverage of All Topics}
+\date{Prepared: December 2025}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+%======================================================================
+% INTRODUCTION
+%======================================================================
+\section{Introduction}
+
+\begin{importantbox}
+Mathematical Physics is the foundation of all physics topics in GATE. Mastering this ensures success in Quantum Mechanics, Classical Mechanics, Electrodynamics, and Statistical Mechanics. This guide covers every essential topic with no stone left unturned.
+\end{importantbox}
+
+\subsection{How to Use This Guide}
+\begin{enumerate}
+    \item Study each section thoroughly with understanding, not memorization
+    \item Solve all examples provided
+    \item Practice problems after each major topic
+    \item Revise formulas regularly
+    \item Focus on physical interpretation
+    \item Time yourself on practice problems
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 1: VECTOR CALCULUS
+%======================================================================
+\newpage
+\section{Vector Calculus}
+
+\subsection{Vector Fields and Scalar Fields}
+
+\begin{definition}
+A \textbf{scalar field} assigns a scalar value to each point in space: $\phi(\vec{r}) = \phi(x,y,z)$
+
+A \textbf{vector field} assigns a vector to each point in space: $\vec{F}(\vec{r}) = F_x\hat{i} + F_y\hat{j} + F_z\hat{k}$
+\end{definition}
+
+\subsection{The Gradient (grad)}
+
+\begin{definition}
+The gradient of a scalar field $\phi$ is a vector field defined as:
+\[
+\nabla\phi = \frac{\partial\phi}{\partial x}\hat{i} + \frac{\partial\phi}{\partial y}\hat{j} + \frac{\partial\phi}{\partial z}\hat{k}
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Physical Interpretation:}
+\begin{itemize}
+    \item $\nabla\phi$ points in the direction of maximum increase of $\phi$
+    \item $|\nabla\phi|$ gives the rate of maximum increase
+    \item $\nabla\phi$ is perpendicular to level surfaces $\phi = \text{const}$
+\end{itemize}
+\end{importantbox}
+
+\begin{formula}[Gradient in Different Coordinate Systems]
+\textbf{Cartesian:} 
+\[
+\nabla\phi = \frac{\partial\phi}{\partial x}\hat{i} + \frac{\partial\phi}{\partial y}\hat{j} + \frac{\partial\phi}{\partial z}\hat{k}
+\]
+
+\textbf{Cylindrical $(r,\theta,z)$:}
+\[
+\nabla\phi = \frac{\partial\phi}{\partial r}\hat{r} + \frac{1}{r}\frac{\partial\phi}{\partial\theta}\hat{\theta} + \frac{\partial\phi}{\partial z}\hat{z}
+\]
+
+\textbf{Spherical $(r,\theta,\phi)$:}
+\[
+\nabla\phi = \frac{\partial\phi}{\partial r}\hat{r} + \frac{1}{r}\frac{\partial\phi}{\partial\theta}\hat{\theta} + \frac{1}{r\sin\theta}\frac{\partial\phi}{\partial\phi}\hat{\phi}
+\]
+\end{formula}
+
+\begin{example}
+Find $\nabla\phi$ where $\phi = x^2y + xyz - z^3$.
+
+\textbf{Solution:}
+\begin{align*}
+\nabla\phi &= \left(2xy + yz\right)\hat{i} + \left(x^2 + xz\right)\hat{j} + \left(xy - 3z^2\right)\hat{k}
+\end{align*}
+\end{example}
+
+\subsection{The Divergence (div)}
+
+\begin{definition}
+The divergence of a vector field $\vec{F} = F_x\hat{i} + F_y\hat{j} + F_z\hat{k}$ is:
+\[
+\nabla \cdot \vec{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Physical Interpretation:}
+\begin{itemize}
+    \item $\nabla \cdot \vec{F} > 0$: Source (fluid flowing out)
+    \item $\nabla \cdot \vec{F} < 0$: Sink (fluid flowing in)
+    \item $\nabla \cdot \vec{F} = 0$: Solenoidal/Incompressible field
+\end{itemize}
+\end{importantbox}
+
+\begin{formula}[Divergence in Different Coordinate Systems]
+\textbf{Cartesian:}
+\[
+\nabla \cdot \vec{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}
+\]
+
+\textbf{Cylindrical:}
+\[
+\nabla \cdot \vec{F} = \frac{1}{r}\frac{\partial(rF_r)}{\partial r} + \frac{1}{r}\frac{\partial F_\theta}{\partial\theta} + \frac{\partial F_z}{\partial z}
+\]
+
+\textbf{Spherical:}
+\[
+\nabla \cdot \vec{F} = \frac{1}{r^2}\frac{\partial(r^2F_r)}{\partial r} + \frac{1}{r\sin\theta}\frac{\partial(\sin\theta F_\theta)}{\partial\theta} + \frac{1}{r\sin\theta}\frac{\partial F_\phi}{\partial\phi}
+\]
+\end{formula}
+
+\begin{example}
+Find $\nabla \cdot \vec{F}$ where $\vec{F} = x^2\hat{i} + y^2\hat{j} + z^2\hat{k}$.
+
+\textbf{Solution:}
+\[
+\nabla \cdot \vec{F} = \frac{\partial(x^2)}{\partial x} + \frac{\partial(y^2)}{\partial y} + \frac{\partial(z^2)}{\partial z} = 2x + 2y + 2z
+\]
+\end{example}
+
+\subsection{The Curl}
+
+\begin{definition}
+The curl of a vector field $\vec{F}$ is:
+\[
+\nabla \times \vec{F} = \begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k} \\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+F_x & F_y & F_z
+\end{vmatrix}
+\]
+\[
+= \left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}\right)\hat{i} + \left(\frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x}\right)\hat{j} + \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right)\hat{k}
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Physical Interpretation:}
+\begin{itemize}
+    \item Measures rotation/circulation of a vector field
+    \item $\nabla \times \vec{F} = 0$: Irrotational/Conservative field
+    \item $|\nabla \times \vec{F}|$: Magnitude of rotation
+    \item Direction: Axis of rotation (right-hand rule)
+\end{itemize}
+\end{importantbox}
+
+\begin{formula}[Curl in Different Coordinate Systems]
+\textbf{Cylindrical:}
+\[
+\nabla \times \vec{F} = \left(\frac{1}{r}\frac{\partial F_z}{\partial\theta} - \frac{\partial F_\theta}{\partial z}\right)\hat{r} + \left(\frac{\partial F_r}{\partial z} - \frac{\partial F_z}{\partial r}\right)\hat{\theta} + \frac{1}{r}\left(\frac{\partial(rF_\theta)}{\partial r} - \frac{\partial F_r}{\partial\theta}\right)\hat{z}
+\]
+
+\textbf{Spherical:}
+\[
+\nabla \times \vec{F} = \frac{1}{r\sin\theta}\left(\frac{\partial(\sin\theta F_\phi)}{\partial\theta} - \frac{\partial F_\theta}{\partial\phi}\right)\hat{r} + \frac{1}{r}\left(\frac{1}{\sin\theta}\frac{\partial F_r}{\partial\phi} - \frac{\partial(rF_\phi)}{\partial r}\right)\hat{\theta}
+\]
+\[
++ \frac{1}{r}\left(\frac{\partial(rF_\theta)}{\partial r} - \frac{\partial F_r}{\partial\theta}\right)\hat{\phi}
+\]
+\end{formula}
+
+\begin{example}
+Find $\nabla \times \vec{F}$ where $\vec{F} = y\hat{i} + z\hat{j} + x\hat{k}$.
+
+\textbf{Solution:}
+\begin{align*}
+\nabla \times \vec{F} &= \begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k} \\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+y & z & x
+\end{vmatrix} \\
+&= \left(0 - 1\right)\hat{i} + \left(1 - 0\right)\hat{j} + \left(0 - 1\right)\hat{k} \\
+&= -\hat{i} + \hat{j} - \hat{k}
+\end{align*}
+\end{example}
+
+\subsection{The Laplacian}
+
+\begin{definition}
+The Laplacian of a scalar field $\phi$ is:
+\[
+\nabla^2\phi = \nabla \cdot (\nabla\phi) = \frac{\partial^2\phi}{\partial x^2} + \frac{\partial^2\phi}{\partial y^2} + \frac{\partial^2\phi}{\partial z^2}
+\]
+\end{definition}
+
+\begin{formula}[Laplacian in Different Coordinate Systems]
+\textbf{Cartesian:}
+\[
+\nabla^2\phi = \frac{\partial^2\phi}{\partial x^2} + \frac{\partial^2\phi}{\partial y^2} + \frac{\partial^2\phi}{\partial z^2}
+\]
+
+\textbf{Cylindrical:}
+\[
+\nabla^2\phi = \frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial\phi}{\partial r}\right) + \frac{1}{r^2}\frac{\partial^2\phi}{\partial\theta^2} + \frac{\partial^2\phi}{\partial z^2}
+\]
+
+\textbf{Spherical:}
+\[
+\nabla^2\phi = \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\phi}{\partial r}\right) + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial\phi}{\partial\theta}\right) + \frac{1}{r^2\sin^2\theta}\frac{\partial^2\phi}{\partial\phi^2}
+\]
+\end{formula}
+
+\subsection{Important Vector Identities}
+
+\begin{importantbox}
+\textbf{Must Memorize for GATE:}
+\begin{align}
+\nabla \times (\nabla\phi) &= 0 \quad \text{(curl of gradient is zero)} \\
+\nabla \cdot (\nabla \times \vec{F}) &= 0 \quad \text{(divergence of curl is zero)} \\
+\nabla \times (\nabla \times \vec{F}) &= \nabla(\nabla \cdot \vec{F}) - \nabla^2\vec{F} \\
+\nabla \cdot (\phi\vec{F}) &= \phi(\nabla \cdot \vec{F}) + \vec{F} \cdot (\nabla\phi) \\
+\nabla \times (\phi\vec{F}) &= \phi(\nabla \times \vec{F}) + (\nabla\phi) \times \vec{F} \\
+\nabla(\vec{A} \cdot \vec{B}) &= (\vec{A} \cdot \nabla)\vec{B} + (\vec{B} \cdot \nabla)\vec{A} + \vec{A} \times (\nabla \times \vec{B}) + \vec{B} \times (\nabla \times \vec{A}) \\
+\nabla \cdot (\vec{A} \times \vec{B}) &= \vec{B} \cdot (\nabla \times \vec{A}) - \vec{A} \cdot (\nabla \times \vec{B}) \\
+\nabla \times (\vec{A} \times \vec{B}) &= \vec{A}(\nabla \cdot \vec{B}) - \vec{B}(\nabla \cdot \vec{A}) + (\vec{B} \cdot \nabla)\vec{A} - (\vec{A} \cdot \nabla)\vec{B}
+\end{align}
+\end{importantbox}
+
+\subsection{Line Integrals}
+
+\begin{definition}
+The line integral of a vector field $\vec{F}$ along a curve $C$ from point $A$ to point $B$ is:
+\[
+\int_C \vec{F} \cdot d\vec{r} = \int_C (F_x\,dx + F_y\,dy + F_z\,dz)
+\]
+\end{definition}
+
+\begin{tipbox}
+\textbf{How to Evaluate Line Integrals:}
+\begin{enumerate}
+    \item Parameterize the curve: $\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}$, $t \in [a,b]$
+    \item Find $d\vec{r} = \frac{d\vec{r}}{dt}dt$
+    \item Express $\vec{F}$ in terms of parameter $t$
+    \item Evaluate $\int_a^b \vec{F}(\vec{r}(t)) \cdot \frac{d\vec{r}}{dt}\,dt$
+\end{enumerate}
+\end{tipbox}
+
+\begin{example}
+Evaluate $\int_C \vec{F} \cdot d\vec{r}$ where $\vec{F} = y\hat{i} + x\hat{j}$ along the straight line from $(0,0)$ to $(1,1)$.
+
+\textbf{Solution:}
+Parameterize: $\vec{r}(t) = t\hat{i} + t\hat{j}$, $t \in [0,1]$
+
+$d\vec{r} = (\hat{i} + \hat{j})dt$
+
+$\vec{F}(\vec{r}(t)) = t\hat{i} + t\hat{j}$
+
+\begin{align*}
+\int_C \vec{F} \cdot d\vec{r} &= \int_0^1 (t\hat{i} + t\hat{j}) \cdot (\hat{i} + \hat{j})dt \\
+&= \int_0^1 2t\,dt = \left[t^2\right]_0^1 = 1
+\end{align*}
+\end{example}
+
+\subsection{Conservative Fields and Potential Functions}
+
+\begin{definition}
+A vector field $\vec{F}$ is \textbf{conservative} if:
+\begin{itemize}
+    \item $\vec{F} = \nabla\phi$ for some scalar function $\phi$ (called potential)
+    \item $\nabla \times \vec{F} = 0$ (irrotational)
+    \item $\oint_C \vec{F} \cdot d\vec{r} = 0$ for any closed path
+    \item Line integral is path-independent
+\end{itemize}
+\end{definition}
+
+\begin{importantbox}
+\textbf{Test for Conservative Field (in simply-connected region):}
+\[
+\vec{F} = F_x\hat{i} + F_y\hat{j} + F_z\hat{k} \text{ is conservative if } \nabla \times \vec{F} = 0
+\]
+Equivalently:
+\[
+\frac{\partial F_x}{\partial y} = \frac{\partial F_y}{\partial x}, \quad \frac{\partial F_y}{\partial z} = \frac{\partial F_z}{\partial y}, \quad \frac{\partial F_z}{\partial x} = \frac{\partial F_x}{\partial z}
+\]
+\end{importantbox}
+
+\begin{example}
+Determine if $\vec{F} = (2xy + z^3)\hat{i} + x^2\hat{j} + 3xz^2\hat{k}$ is conservative. If yes, find the potential.
+
+\textbf{Solution:}
+Check: $\frac{\partial F_x}{\partial y} = 2x = \frac{\partial F_y}{\partial x}$ ✓
+
+$\frac{\partial F_y}{\partial z} = 0 = \frac{\partial F_z}{\partial y}$ ✓
+
+$\frac{\partial F_z}{\partial x} = 3z^2 = \frac{\partial F_x}{\partial z}$ ✓
+
+Conservative! To find $\phi$: $\nabla\phi = \vec{F}$
+
+$\frac{\partial\phi}{\partial x} = 2xy + z^3 \implies \phi = x^2y + xz^3 + f(y,z)$
+
+$\frac{\partial\phi}{\partial y} = x^2 + \frac{\partial f}{\partial y} = x^2 \implies f(y,z) = g(z)$
+
+$\frac{\partial\phi}{\partial z} = 3xz^2 + g'(z) = 3xz^2 \implies g'(z) = 0$
+
+Therefore: $\phi = x^2y + xz^3 + C$
+\end{example}
+
+\subsection{Surface Integrals}
+
+\begin{definition}
+The surface integral of a vector field $\vec{F}$ over a surface $S$ is:
+\[
+\iint_S \vec{F} \cdot d\vec{A} = \iint_S \vec{F} \cdot \hat{n}\,dA
+\]
+where $\hat{n}$ is the unit normal to the surface.
+\end{definition}
+
+\begin{tipbox}
+\textbf{How to Evaluate Surface Integrals:}
+\begin{enumerate}
+    \item Parameterize the surface: $\vec{r}(u,v)$
+    \item Find normal vector: $\vec{n} = \frac{\partial\vec{r}}{\partial u} \times \frac{\partial\vec{r}}{\partial v}$
+    \item Calculate: $\iint_D \vec{F}(\vec{r}(u,v)) \cdot \vec{n}\,du\,dv$
+\end{enumerate}
+\end{tipbox}
+
+\subsection{Fundamental Theorems}
+
+\begin{theorem}[Gradient Theorem]
+For a scalar field $\phi$ and curve $C$ from $A$ to $B$:
+\[
+\int_C \nabla\phi \cdot d\vec{r} = \phi(B) - \phi(A)
+\]
+\end{theorem}
+
+\begin{theorem}[Gauss's Divergence Theorem]
+\[
+\iiint_V (\nabla \cdot \vec{F})\,dV = \oiint_S \vec{F} \cdot d\vec{A}
+\]
+Relates volume integral of divergence to flux through closed surface.
+\end{theorem}
+
+\begin{theorem}[Stokes' Theorem]
+\[
+\iint_S (\nabla \times \vec{F}) \cdot d\vec{A} = \oint_C \vec{F} \cdot d\vec{r}
+\]
+Relates surface integral of curl to line integral around boundary.
+\end{theorem}
+
+\begin{theorem}[Green's Theorem (2D version of Stokes)]
+\[
+\iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dA = \oint_C (P\,dx + Q\,dy)
+\]
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Quick Reference - When to Use Which Theorem:}
+\begin{itemize}
+    \item \textbf{Gradient Theorem}: Line integral of conservative field
+    \item \textbf{Divergence Theorem}: Converting volume to surface integral (flux)
+    \item \textbf{Stokes' Theorem}: Converting surface to line integral (circulation)
+    \item \textbf{Green's Theorem}: 2D problems in plane
+\end{itemize}
+\end{importantbox}
+
+\subsection{Practice Problems - Vector Calculus}
+
+\begin{enumerate}
+    \item Calculate $\nabla \times \vec{F}$ and $\nabla \cdot \vec{F}$ for $\vec{F} = x^2y\hat{i} + y^2z\hat{j} + z^2x\hat{k}$
+    
+    \item Show that $\vec{F} = (y^2\cos x + z^3)\hat{i} + (2y\sin x - 4)\hat{j} + (3xz^2 + 2)\hat{k}$ is conservative and find its potential.
+    
+    \item Verify Stokes' theorem for $\vec{F} = -y\hat{i} + x\hat{j}$ over the hemisphere $x^2 + y^2 + z^2 = 1$, $z \geq 0$.
+    
+    \item Use divergence theorem to evaluate $\oiint_S \vec{F} \cdot d\vec{A}$ where $\vec{F} = x^3\hat{i} + y^3\hat{j} + z^3\hat{k}$ and $S$ is the sphere $x^2 + y^2 + z^2 = a^2$.
+    
+    \item Find the work done by $\vec{F} = (x^2 + y^2)\hat{i} + 2xy\hat{j}$ along the path $y = x^2$ from $(0,0)$ to $(1,1)$.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 2: COMPLEX ANALYSIS
+%======================================================================
+\newpage
+\section{Complex Analysis}
+
+\subsection{Complex Numbers - Foundation}
+
+\begin{definition}
+A complex number $z$ is written as:
+\[
+z = x + iy = r e^{i\theta}
+\]
+where $x = \text{Re}(z)$, $y = \text{Im}(z)$, $r = |z| = \sqrt{x^2 + y^2}$, $\theta = \arg(z) = \tan^{-1}(y/x)$
+\end{definition}
+
+\begin{importantbox}
+\textbf{Key Formulas:}
+\begin{align}
+e^{i\theta} &= \cos\theta + i\sin\theta \quad \text{(Euler's formula)} \\
+\cos\theta &= \frac{e^{i\theta} + e^{-i\theta}}{2}, \quad \sin\theta = \frac{e^{i\theta} - e^{-i\theta}}{2i} \\
+z^* &= x - iy = re^{-i\theta} \quad \text{(complex conjugate)} \\
+|z|^2 &= zz^* = x^2 + y^2 \\
+\frac{1}{z} &= \frac{z^*}{|z|^2}
+\end{align}
+\end{importantbox}
+
+\subsection{Analytic Functions}
+
+\begin{definition}
+A function $f(z) = u(x,y) + iv(x,y)$ is \textbf{analytic} (holomorphic) at point $z_0$ if:
+\begin{itemize}
+    \item $f'(z_0) = \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}$ exists
+    \item The limit is independent of the path of approach
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Cauchy-Riemann Equations]
+$f(z) = u(x,y) + iv(x,y)$ is analytic if and only if:
+\[
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+\]
+and all partial derivatives are continuous.
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Testing for Analyticity - GATE Shortcut:}
+\begin{enumerate}
+    \item Identify $u(x,y)$ and $v(x,y)$
+    \item Check if C-R equations are satisfied
+    \item Check continuity of partial derivatives
+\end{enumerate}
+\end{importantbox}
+
+\begin{example}
+Is $f(z) = z^2$ analytic?
+
+\textbf{Solution:}
+$f(z) = (x + iy)^2 = x^2 - y^2 + 2ixy$
+
+$u = x^2 - y^2$, $v = 2xy$
+
+$\frac{\partial u}{\partial x} = 2x = \frac{\partial v}{\partial y}$ ✓
+
+$\frac{\partial u}{\partial y} = -2y = -\frac{\partial v}{\partial x}$ ✓
+
+Yes, $f(z) = z^2$ is analytic everywhere (entire function).
+\end{example}
+
+\subsection{Harmonic Functions}
+
+\begin{definition}
+A function $u(x,y)$ is \textbf{harmonic} if it satisfies Laplace's equation:
+\[
+\nabla^2 u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0
+\]
+\end{definition}
+
+\begin{theorem}
+If $f(z) = u + iv$ is analytic, then both $u$ and $v$ are harmonic functions, and $v$ is the \textbf{harmonic conjugate} of $u$.
+\end{theorem}
+
+\begin{tipbox}
+\textbf{Finding Harmonic Conjugate:}
+Given harmonic $u$, to find $v$:
+\begin{enumerate}
+    \item From C-R: $\frac{\partial v}{\partial y} = \frac{\partial u}{\partial x}$, integrate w.r.t. $y$
+    \item From C-R: $\frac{\partial v}{\partial x} = -\frac{\partial u}{\partial y}$, use to find integration constant
+\end{enumerate}
+\end{tipbox}
+
+\subsection{Complex Integration}
+
+\begin{definition}
+The contour integral of $f(z)$ along curve $C$ is:
+\[
+\int_C f(z)\,dz
+\]
+\end{definition}
+
+\begin{theorem}[Cauchy's Integral Theorem]
+If $f(z)$ is analytic in a simply-connected domain $D$, then for any closed contour $C$ in $D$:
+\[
+\oint_C f(z)\,dz = 0
+\]
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Implications of Cauchy's Theorem:}
+\begin{itemize}
+    \item Integral of analytic function around closed loop = 0
+    \item Integral between two points is path-independent
+    \item Can deform contours without changing integral value
+\end{itemize}
+\end{importantbox}
+
+\begin{theorem}[Cauchy's Integral Formula]
+If $f(z)$ is analytic inside and on a simple closed contour $C$, and $z_0$ is inside $C$:
+\[
+f(z_0) = \frac{1}{2\pi i}\oint_C \frac{f(z)}{z - z_0}\,dz
+\]
+
+For derivatives:
+\[
+f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_C \frac{f(z)}{(z - z_0)^{n+1}}\,dz
+\]
+\end{theorem}
+
+\begin{example}
+Evaluate $\oint_C \frac{e^z}{z - i}\,dz$ where $C$ is the circle $|z| = 2$.
+
+\textbf{Solution:}
+$z_0 = i$ is inside $C$, and $f(z) = e^z$ is analytic.
+
+By Cauchy's Integral Formula:
+\[
+\oint_C \frac{e^z}{z - i}\,dz = 2\pi i \cdot e^i = 2\pi i(\cos 1 + i\sin 1)
+\]
+\end{example}
+
+\subsection{Taylor and Laurent Series}
+
+\begin{theorem}[Taylor Series]
+If $f(z)$ is analytic at $z_0$, it can be expanded as:
+\[
+f(z) = \sum_{n=0}^{\infty} a_n(z - z_0)^n
+\]
+where $a_n = \frac{f^{(n)}(z_0)}{n!}$
+\end{theorem}
+
+\begin{theorem}[Laurent Series]
+If $f(z)$ is analytic in annulus $r_1 < |z - z_0| < r_2$:
+\[
+f(z) = \sum_{n=-\infty}^{\infty} a_n(z - z_0)^n
+\]
+where:
+\[
+a_n = \frac{1}{2\pi i}\oint_C \frac{f(z)}{(z - z_0)^{n+1}}\,dz
+\]
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Types of Singularities:}
+\begin{itemize}
+    \item \textbf{Removable}: Finite number of negative powers (can be removed)
+    \item \textbf{Pole of order $m$}: Laurent series has $(z-z_0)^{-m}$ as highest negative power
+    \item \textbf{Essential}: Infinite number of negative powers
+\end{itemize}
+\end{importantbox}
+
+\subsection{Residue Calculus}
+
+\begin{definition}
+The \textbf{residue} of $f(z)$ at isolated singularity $z_0$ is the coefficient $a_{-1}$ in Laurent series:
+\[
+\text{Res}(f, z_0) = a_{-1} = \frac{1}{2\pi i}\oint_C f(z)\,dz
+\]
+\end{definition}
+
+\begin{theorem}[Residue Theorem]
+If $f(z)$ is analytic inside and on closed contour $C$ except at isolated singularities $z_1, z_2, \ldots, z_n$ inside $C$:
+\[
+\oint_C f(z)\,dz = 2\pi i \sum_{k=1}^{n} \text{Res}(f, z_k)
+\]
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Formulas for Finding Residues:}
+
+\textbf{1. Simple Pole at $z_0$:}
+\[
+\text{Res}(f, z_0) = \lim_{z \to z_0} (z - z_0)f(z)
+\]
+
+\textbf{2. Pole of Order $m$ at $z_0$:}
+\[
+\text{Res}(f, z_0) = \frac{1}{(m-1)!}\lim_{z \to z_0} \frac{d^{m-1}}{dz^{m-1}}\left[(z - z_0)^m f(z)\right]
+\]
+
+\textbf{3. Function of form $\frac{g(z)}{h(z)}$ with simple zero of $h$ at $z_0$:}
+\[
+\text{Res}\left(\frac{g}{h}, z_0\right) = \frac{g(z_0)}{h'(z_0)}
+\]
+\end{importantbox}
+
+\begin{example}
+Find $\text{Res}\left(\frac{z^2 + 1}{z(z - 1)^2}, 0\right)$ and $\text{Res}\left(\frac{z^2 + 1}{z(z - 1)^2}, 1\right)$.
+
+\textbf{Solution:}
+At $z = 0$ (simple pole):
+\[
+\text{Res}(f, 0) = \lim_{z \to 0} z \cdot \frac{z^2 + 1}{z(z - 1)^2} = \lim_{z \to 0} \frac{z^2 + 1}{(z - 1)^2} = \frac{1}{1} = 1
+\]
+
+At $z = 1$ (pole of order 2):
+\[
+\text{Res}(f, 1) = \lim_{z \to 1} \frac{d}{dz}\left[(z-1)^2 \cdot \frac{z^2 + 1}{z(z - 1)^2}\right] = \lim_{z \to 1} \frac{d}{dz}\left(\frac{z^2 + 1}{z}\right)
+\]
+\[
+= \lim_{z \to 1} \frac{z \cdot 2z - (z^2 + 1)}{z^2} = \frac{2 - 2}{1} = 0
+\]
+\end{example}
+
+\subsection{Evaluation of Real Integrals}
+
+\begin{tipbox}
+\textbf{Types of Real Integrals Solvable by Residues:}
+
+\textbf{Type 1:} $\int_0^{2\pi} F(\cos\theta, \sin\theta)\,d\theta$
+
+Substitute: $z = e^{i\theta}$, $\cos\theta = \frac{z + z^{-1}}{2}$, $\sin\theta = \frac{z - z^{-1}}{2i}$, $d\theta = \frac{dz}{iz}$
+
+Contour: $|z| = 1$
+
+\textbf{Type 2:} $\int_{-\infty}^{\infty} f(x)\,dx$ where $f(z) \to 0$ as $|z| \to \infty$ in upper half-plane
+
+Use semicircular contour in upper half-plane, sum residues of poles in upper half-plane.
+
+\textbf{Type 3:} $\int_{-\infty}^{\infty} f(x)e^{iax}\,dx$ (Fourier integrals)
+
+Use Jordan's lemma with appropriate contour.
+\end{tipbox}
+
+\begin{example}
+Evaluate $\int_0^{2\pi} \frac{d\theta}{2 + \cos\theta}$.
+
+\textbf{Solution:}
+Let $z = e^{i\theta}$, then $\cos\theta = \frac{z + z^{-1}}{2}$, $d\theta = \frac{dz}{iz}$
+
+\[
+\int_0^{2\pi} \frac{d\theta}{2 + \cos\theta} = \oint_{|z|=1} \frac{1}{2 + \frac{z + z^{-1}}{2}} \cdot \frac{dz}{iz} = \oint_{|z|=1} \frac{2\,dz}{iz(4 + z + z^{-1})}
+\]
+\[
+= \oint_{|z|=1} \frac{2\,dz}{i(4z + z^2 + 1)} = \oint_{|z|=1} \frac{-2i\,dz}{z^2 + 4z + 1}
+\]
+
+Poles: $z = \frac{-4 \pm \sqrt{16 - 4}}{2} = -2 \pm \sqrt{3}$
+
+Only $z_1 = -2 + \sqrt{3}$ (≈ -0.268) is inside $|z| = 1$.
+
+\[
+\text{Res}(f, z_1) = \frac{-2i}{2z_1 + 4} = \frac{-2i}{2\sqrt{3}} = \frac{-i}{\sqrt{3}}
+\]
+
+\[
+\int_0^{2\pi} \frac{d\theta}{2 + \cos\theta} = 2\pi i \cdot \frac{-i}{\sqrt{3}} = \frac{2\pi}{\sqrt{3}}
+\]
+\end{example}
+
+\subsection{Conformal Mapping}
+
+\begin{definition}
+A mapping $w = f(z)$ is \textbf{conformal} at $z_0$ if it preserves angles between curves and $f'(z_0) \neq 0$.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Important Conformal Maps:}
+\begin{enumerate}
+    \item $w = z + c$: Translation
+    \item $w = az$ ($a$ real): Scaling and rotation
+    \item $w = \frac{1}{z}$: Inversion
+    \item $w = z^2$: Squaring
+    \item $w = e^z$: Exponential
+    \item $w = \frac{az + b}{cz + d}$: Möbius transformation
+\end{enumerate}
+\end{importantbox}
+
+\subsection{Practice Problems - Complex Analysis}
+
+\begin{enumerate}
+    \item Check if $f(z) = |z|^2$ is analytic.
+    
+    \item Find the harmonic conjugate of $u(x,y) = x^3 - 3xy^2$.
+    
+    \item Evaluate $\oint_C \frac{z^2 + 3z}{(z - 1)(z - 2)}\,dz$ where $C: |z| = 1.5$.
+    
+    \item Find all singularities and their types for $f(z) = \frac{e^z - 1}{z^3}$.
+    
+    \item Evaluate $\int_{-\infty}^{\infty} \frac{dx}{1 + x^2}$ using residue theorem.
+    
+    \item Find the Laurent series of $f(z) = \frac{1}{z(z-1)}$ in the annulus $0 < |z| < 1$.
+    
+    \item Evaluate $\int_0^{2\pi} \frac{d\theta}{5 + 4\sin\theta}$ using residue calculus.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 3: DIFFERENTIAL EQUATIONS
+%======================================================================
+\newpage
+\section{Differential Equations}
+
+\subsection{Classification of Differential Equations}
+
+\begin{definition}
+\textbf{Order:} Highest derivative present
+
+\textbf{Degree:} Power of highest derivative (when polynomial in derivatives)
+
+\textbf{Linear:} Can be written as $a_n(x)y^{(n)} + \cdots + a_1(x)y' + a_0(x)y = f(x)$
+\end{definition}
+
+\subsection{First-Order ODEs}
+
+\begin{importantbox}
+\textbf{Standard Forms:}
+
+\textbf{1. Separable:} $\frac{dy}{dx} = f(x)g(y)$
+
+Solution: $\int \frac{dy}{g(y)} = \int f(x)\,dx$
+
+\textbf{2. Linear:} $\frac{dy}{dx} + P(x)y = Q(x)$
+
+Integrating factor: $\mu(x) = e^{\int P(x)dx}$
+
+Solution: $y = \frac{1}{\mu(x)}\left[\int \mu(x)Q(x)dx + C\right]$
+
+\textbf{3. Exact:} $M(x,y)dx + N(x,y)dy = 0$ where $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$
+
+Solution: $\int M\,dx + \int (\text{terms in } N \text{ not involving } x)\,dy = C$
+
+\textbf{4. Bernoulli:} $\frac{dy}{dx} + P(x)y = Q(x)y^n$
+
+Substitution: $v = y^{1-n}$ converts to linear.
+\end{importantbox}
+
+\subsection{Second-Order Linear ODEs}
+
+\begin{definition}
+Standard form: $y'' + p(x)y' + q(x)y = r(x)$
+
+\textbf{Homogeneous:} $r(x) = 0$
+
+\textbf{Non-homogeneous:} $r(x) \neq 0$
+\end{definition}
+
+\begin{theorem}[Superposition Principle]
+If $y_1$ and $y_2$ are solutions to homogeneous equation, then:
+\[
+y = c_1y_1 + c_2y_2
+\]
+is also a solution (if $y_1$, $y_2$ are linearly independent).
+\end{theorem}
+
+\subsubsection{Constant Coefficients}
+
+\begin{importantbox}
+\textbf{Equation:} $ay'' + by' + cy = 0$
+
+\textbf{Characteristic equation:} $ar^2 + br + c = 0$
+
+\textbf{Solutions based on roots:}
+\begin{enumerate}
+    \item \textbf{Real distinct roots $r_1, r_2$:} $y = c_1e^{r_1x} + c_2e^{r_2x}$
+    
+    \item \textbf{Real repeated root $r$:} $y = (c_1 + c_2x)e^{rx}$
+    
+    \item \textbf{Complex roots $\alpha \pm i\beta$:} $y = e^{\alpha x}(c_1\cos\beta x + c_2\sin\beta x)$
+\end{enumerate}
+\end{importantbox}
+
+\subsection{Series Solutions - Power Series Method}
+
+\begin{definition}
+Assume solution of form:
+\[
+y = \sum_{n=0}^{\infty} a_n x^n
+\]
+Substitute into DE and match coefficients to find recurrence relation for $a_n$.
+\end{definition}
+
+\begin{tipbox}
+\textbf{When to Use Power Series:}
+\begin{itemize}
+    \item Coefficients are analytic functions
+    \item Near ordinary points
+    \item Initial conditions at $x = 0$
+\end{itemize}
+\end{tipbox}
+
+\subsection{Frobenius Method}
+
+\begin{definition}
+For equations with regular singular point at $x = 0$, assume:
+\[
+y = x^r\sum_{n=0}^{\infty} a_n x^n = \sum_{n=0}^{\infty} a_n x^{n+r}
+\]
+where $a_0 \neq 0$.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Frobenius Method Steps:}
+\begin{enumerate}
+    \item Identify the singular point (usually $x = 0$)
+    \item Substitute $y = \sum a_n x^{n+r}$ into DE
+    \item Find indicial equation from lowest power of $x$
+    \item Solve indicial equation for $r$
+    \item Find recurrence relation for $a_n$
+    \item Construct solutions based on roots of indicial equation
+\end{enumerate}
+\end{importantbox}
+
+\begin{theorem}[Types of Solutions Based on Indicial Roots]
+Let $r_1$ and $r_2$ be roots of indicial equation with $r_1 \geq r_2$:
+
+\textbf{Case 1: $r_1 - r_2$ not integer}
+Two linearly independent solutions: $y_1 = x^{r_1}\sum a_n x^n$, $y_2 = x^{r_2}\sum b_n x^n$
+
+\textbf{Case 2: $r_1 = r_2$}
+$y_1 = x^{r_1}\sum a_n x^n$, $y_2 = y_1\ln x + x^{r_1}\sum c_n x^n$
+
+\textbf{Case 3: $r_1 - r_2$ = positive integer}
+$y_1 = x^{r_1}\sum a_n x^n$, $y_2 = Cy_1\ln x + x^{r_2}\sum b_n x^n$
+\end{theorem}
+
+\begin{example}
+Solve $2xy'' + y' + y = 0$ using Frobenius method.
+
+\textbf{Solution:}
+$x = 0$ is regular singular point.
+
+Assume $y = \sum_{n=0}^{\infty} a_n x^{n+r}$
+
+$y' = \sum_{n=0}^{\infty} (n+r)a_n x^{n+r-1}$
+
+$y'' = \sum_{n=0}^{\infty} (n+r)(n+r-1)a_n x^{n+r-2}$
+
+Substitute:
+\[
+2x\sum(n+r)(n+r-1)a_n x^{n+r-2} + \sum(n+r)a_n x^{n+r-1} + \sum a_n x^{n+r} = 0
+\]
+\[
+\sum[2(n+r)(n+r-1) + (n+r)]a_n x^{n+r-1} + \sum a_n x^{n+r} = 0
+\]
+
+Lowest power ($x^{r-1}$): $[2r(r-1) + r]a_0 = 0$
+
+Indicial equation: $2r^2 - r = r(2r - 1) = 0$
+
+Roots: $r_1 = \frac{1}{2}$, $r_2 = 0$
+
+(Continue to find recurrence relations...)
+\end{example}
+
+\subsection{Special Functions}
+
+\subsubsection{Legendre Polynomials}
+
+\begin{definition}
+Legendre's equation:
+\[
+(1 - x^2)y'' - 2xy' + n(n+1)y = 0
+\]
+Solutions are Legendre polynomials $P_n(x)$ when $n$ is non-negative integer.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Properties of Legendre Polynomials:}
+\begin{enumerate}
+    \item Rodrigues' formula: $P_n(x) = \frac{1}{2^n n!}\frac{d^n}{dx^n}(x^2 - 1)^n$
+    
+    \item $P_n(1) = 1$, $P_n(-1) = (-1)^n$, $P_n(-x) = (-1)^n P_n(x)$
+    
+    \item Orthogonality: $\int_{-1}^{1} P_m(x)P_n(x)dx = \frac{2}{2n+1}\delta_{mn}$
+    
+    \item Recurrence: $(n+1)P_{n+1}(x) = (2n+1)xP_n(x) - nP_{n-1}(x)$
+    
+    \item First few: $P_0 = 1$, $P_1 = x$, $P_2 = \frac{1}{2}(3x^2 - 1)$, $P_3 = \frac{1}{2}(5x^3 - 3x)$
+\end{enumerate}
+\end{importantbox}
+
+\subsubsection{Bessel Functions}
+
+\begin{definition}
+Bessel's equation:
+\[
+x^2y'' + xy' + (x^2 - n^2)y = 0
+\]
+Solutions are Bessel functions $J_n(x)$ (first kind) and $Y_n(x)$ (second kind).
+\end{definition}
+
+\begin{importantbox}
+\textbf{Properties of Bessel Functions:}
+\begin{enumerate}
+    \item Series: $J_n(x) = \sum_{k=0}^{\infty} \frac{(-1)^k}{k!(n+k)!}\left(\frac{x}{2}\right)^{2k+n}$
+    
+    \item $J_{-n}(x) = (-1)^n J_n(x)$ for integer $n$
+    
+    \item Orthogonality: $\int_0^a xJ_n(\alpha_m x)J_n(\alpha_n x)dx = \frac{a^2}{2}[J_{n+1}(\alpha_m a)]^2\delta_{mn}$
+    
+    \item Recurrence: $J_{n-1}(x) + J_{n+1}(x) = \frac{2n}{x}J_n(x)$
+    
+    \item Derivative: $\frac{d}{dx}[x^n J_n(x)] = x^n J_{n-1}(x)$
+\end{enumerate}
+\end{importantbox}
+
+\subsubsection{Hermite Polynomials}
+
+\begin{definition}
+Hermite's equation:
+\[
+y'' - 2xy' + 2ny = 0
+\]
+Solutions are Hermite polynomials $H_n(x)$ when $n$ is non-negative integer.
+\end{definition}
+
+\begin{formula}[Hermite Polynomial Properties]
+\begin{enumerate}
+    \item Generating function: $e^{2xt - t^2} = \sum_{n=0}^{\infty} \frac{H_n(x)}{n!}t^n$
+    
+    \item Rodrigues: $H_n(x) = (-1)^n e^{x^2}\frac{d^n}{dx^n}e^{-x^2}$
+    
+    \item Orthogonality: $\int_{-\infty}^{\infty} H_m(x)H_n(x)e^{-x^2}dx = \sqrt{\pi}2^n n!\delta_{mn}$
+    
+    \item First few: $H_0 = 1$, $H_1 = 2x$, $H_2 = 4x^2 - 2$, $H_3 = 8x^3 - 12x$
+\end{enumerate}
+\end{formula}
+
+\subsubsection{Laguerre Polynomials}
+
+\begin{definition}
+Laguerre's equation:
+\[
+xy'' + (1-x)y' + ny = 0
+\]
+Solutions are Laguerre polynomials $L_n(x)$.
+\end{definition}
+
+\begin{formula}[Laguerre Polynomial Properties]
+\begin{enumerate}
+    \item Rodrigues: $L_n(x) = \frac{e^x}{n!}\frac{d^n}{dx^n}(x^n e^{-x})$
+    
+    \item Orthogonality: $\int_0^{\infty} L_m(x)L_n(x)e^{-x}dx = \delta_{mn}$
+    
+    \item Associated Laguerre: $L_n^k(x) = (-1)^k\frac{d^k}{dx^k}L_{n+k}(x)$ (appears in hydrogen atom)
+\end{enumerate}
+\end{formula}
+
+\subsection{Sturm-Liouville Theory}
+
+\begin{definition}
+Sturm-Liouville equation:
+\[
+\frac{d}{dx}\left[p(x)\frac{dy}{dx}\right] + [q(x) + \lambda w(x)]y = 0
+\]
+with boundary conditions.
+\end{definition}
+
+\begin{theorem}[Properties of Sturm-Liouville Problems]
+\begin{enumerate}
+    \item Eigenvalues are real
+    \item Eigenfunctions corresponding to different eigenvalues are orthogonal with weight $w(x)$
+    \item Eigenfunctions form a complete set
+\end{enumerate}
+\end{theorem}
+
+\subsection{Partial Differential Equations - Separation of Variables}
+
+\begin{tipbox}
+\textbf{Method of Separation of Variables:}
+\begin{enumerate}
+    \item Assume $u(x,t) = X(x)T(t)$ (or appropriate variables)
+    \item Substitute into PDE
+    \item Separate variables: each side equals constant
+    \item Solve resulting ODEs with boundary conditions
+    \item Superpose solutions to satisfy initial conditions
+\end{enumerate}
+\end{tipbox}
+
+\subsubsection{Heat Equation}
+
+\begin{example}
+Solve: $\frac{\partial u}{\partial t} = k\frac{\partial^2 u}{\partial x^2}$, $0 < x < L$
+
+BC: $u(0,t) = u(L,t) = 0$, IC: $u(x,0) = f(x)$
+
+\textbf{Solution:}
+Assume $u(x,t) = X(x)T(t)$:
+\[
+X(x)T'(t) = kX''(x)T(t) \implies \frac{T'}{kT} = \frac{X''}{X} = -\lambda
+\]
+
+$X'' + \lambda X = 0$ with $X(0) = X(L) = 0$ gives:
+
+$\lambda_n = \left(\frac{n\pi}{L}\right)^2$, $X_n = \sin\frac{n\pi x}{L}$
+
+$T' + k\lambda_n T = 0$ gives $T_n = e^{-k\lambda_n t}$
+
+General solution:
+\[
+u(x,t) = \sum_{n=1}^{\infty} b_n \sin\frac{n\pi x}{L}e^{-k(n\pi/L)^2 t}
+\]
+where $b_n = \frac{2}{L}\int_0^L f(x)\sin\frac{n\pi x}{L}dx$
+\end{example}
+
+\subsubsection{Wave Equation}
+
+\begin{formula}
+$\frac{\partial^2 u}{\partial t^2} = c^2\frac{\partial^2 u}{\partial x^2}$
+
+Solution: $u(x,t) = \sum_{n=1}^{\infty}\left(a_n\cos\frac{n\pi ct}{L} + b_n\sin\frac{n\pi ct}{L}\right)\sin\frac{n\pi x}{L}$
+\end{formula}
+
+\subsubsection{Laplace Equation}
+
+\begin{formula}
+$\nabla^2 u = 0$ (in 2D: $\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$)
+
+Solutions in different geometries use separation in appropriate coordinates.
+\end{formula}
+
+\subsection{Green's Functions}
+
+\begin{definition}
+Green's function $G(x,\xi)$ for operator $L$ satisfies:
+\[
+LG(x,\xi) = \delta(x - \xi)
+\]
+with appropriate boundary conditions.
+
+Solution to $Ly = f(x)$ is: $y(x) = \int G(x,\xi)f(\xi)d\xi$
+\end{definition}
+
+\subsection{Practice Problems - Differential Equations}
+
+\begin{enumerate}
+    \item Solve $x\frac{dy}{dx} + 2y = x^2$ using integrating factor.
+    
+    \item Find general solution: $y'' - 4y' + 4y = 0$
+    
+    \item Solve by Frobenius method: $xy'' + 2y' - y = 0$
+    
+    \item Express $f(x) = x$ on $[-1,1]$ as series of Legendre polynomials.
+    
+    \item Show that $J_0(x)$ satisfies $xJ_0'' + J_0' + xJ_0 = 0$.
+    
+    \item Solve heat equation with $u(x,0) = \sin(3\pi x/L)$ on $[0,L]$.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 4: LINEAR ALGEBRA
+%======================================================================
+\newpage
+\section{Linear Algebra}
+
+\subsection{Vector Spaces}
+
+\begin{definition}
+A \textbf{vector space} $V$ over field $\mathbb{F}$ is a set with operations of addition and scalar multiplication satisfying:
+\begin{enumerate}
+    \item Closure under addition and scalar multiplication
+    \item Associativity and commutativity of addition
+    \item Existence of zero vector and additive inverses
+    \item Distributivity and compatibility of scalar multiplication
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\textbf{Subspace:} Subset $W \subseteq V$ that is itself a vector space.
+
+\textbf{Span:} $\text{span}\{v_1, \ldots, v_n\} = \{c_1v_1 + \cdots + c_nv_n : c_i \in \mathbb{F}\}$
+
+\textbf{Linear Independence:} Vectors $v_1, \ldots, v_n$ are linearly independent if:
+\[
+c_1v_1 + \cdots + c_nv_n = 0 \implies c_1 = \cdots = c_n = 0
+\]
+
+\textbf{Basis:} Linearly independent spanning set.
+
+\textbf{Dimension:} Number of vectors in basis.
+\end{definition}
+
+\subsection{Matrices and Determinants}
+
+\begin{importantbox}
+\textbf{Matrix Operations:}
+\begin{enumerate}
+    \item Addition: $(A + B)_{ij} = A_{ij} + B_{ij}$
+    \item Scalar multiplication: $(cA)_{ij} = cA_{ij}$
+    \item Multiplication: $(AB)_{ij} = \sum_k A_{ik}B_{kj}$
+    \item Transpose: $(A^T)_{ij} = A_{ji}$
+    \item Conjugate transpose (Hermitian): $(A^\dagger)_{ij} = \overline{A_{ji}}$
+\end{enumerate}
+\end{importantbox}
+
+\begin{formula}[Properties of Determinants]
+\begin{enumerate}
+    \item $\det(AB) = \det(A)\det(B)$
+    \item $\det(A^T) = \det(A)$
+    \item $\det(A^{-1}) = \frac{1}{\det(A)}$
+    \item $\det(cA) = c^n\det(A)$ for $n \times n$ matrix
+    \item Row operations: swap rows → sign change; add multiple of row → no change; multiply row by $c$ → multiply det by $c$
+\end{enumerate}
+\end{formula}
+
+\begin{tipbox}
+\textbf{Computing Determinants:}
+\begin{itemize}
+    \item $2 \times 2$: $\det\begin{pmatrix}a & b \\ c & d\end{pmatrix} = ad - bc$
+    \item $3 \times 3$: Use cofactor expansion or Sarrus rule
+    \item General: Use row reduction to triangular form, then product of diagonal
+\end{itemize}
+\end{tipbox}
+
+\subsection{Eigenvalues and Eigenvectors}
+
+\begin{definition}
+For matrix $A$, scalar $\lambda$ is an \textbf{eigenvalue} with \textbf{eigenvector} $v \neq 0$ if:
+\[
+Av = \lambda v
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Finding Eigenvalues and Eigenvectors:}
+\begin{enumerate}
+    \item Find characteristic polynomial: $\det(A - \lambda I) = 0$
+    \item Solve for eigenvalues $\lambda_1, \ldots, \lambda_n$
+    \item For each $\lambda_i$, solve $(A - \lambda_i I)v = 0$ for eigenvector $v$
+\end{enumerate}
+\end{importantbox}
+
+\begin{theorem}[Properties of Eigenvalues]
+For $n \times n$ matrix $A$ with eigenvalues $\lambda_1, \ldots, \lambda_n$:
+\begin{enumerate}
+    \item $\text{tr}(A) = \sum \lambda_i$
+    \item $\det(A) = \prod \lambda_i$
+    \item $A$ and $A^T$ have same eigenvalues
+    \item Eigenvalues of $A^k$ are $\lambda_i^k$
+    \item Eigenvalues of $A^{-1}$ are $\lambda_i^{-1}$ (if $A$ invertible)
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+Find eigenvalues and eigenvectors of $A = \begin{pmatrix}2 & 1 \\ 1 & 2\end{pmatrix}$.
+
+\textbf{Solution:}
+Characteristic equation:
+\[
+\det\begin{pmatrix}2-\lambda & 1 \\ 1 & 2-\lambda\end{pmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = 0
+\]
+
+Eigenvalues: $\lambda_1 = 3$, $\lambda_2 = 1$
+
+For $\lambda_1 = 3$:
+\[
+\begin{pmatrix}-1 & 1 \\ 1 & -1\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix} = 0 \implies v^{(1)} = \begin{pmatrix}1 \\ 1\end{pmatrix}
+\]
+
+For $\lambda_2 = 1$:
+\[
+\begin{pmatrix}1 & 1 \\ 1 & 1\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix} = 0 \implies v^{(2)} = \begin{pmatrix}1 \\ -1\end{pmatrix}
+\]
+\end{example}
+
+\subsection{Diagonalization}
+
+\begin{definition}
+Matrix $A$ is \textbf{diagonalizable} if there exists invertible $P$ such that:
+\[
+P^{-1}AP = D
+\]
+where $D$ is diagonal.
+\end{definition}
+
+\begin{theorem}
+$A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvectors.
+
+If $P = [v_1 | v_2 | \cdots | v_n]$ (eigenvectors as columns), then:
+\[
+P^{-1}AP = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_n)
+\]
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Applications of Diagonalization:}
+\begin{enumerate}
+    \item Computing matrix powers: $A^n = PD^nP^{-1}$
+    \item Solving systems of ODEs
+    \item Finding matrix exponential: $e^A = Pe^DP^{-1}$
+    \item Understanding dynamics of linear systems
+\end{enumerate}
+\end{importantbox}
+
+\subsection{Hermitian and Unitary Matrices}
+
+\begin{definition}
+\textbf{Hermitian matrix:} $A^\dagger = A$ (self-adjoint)
+
+\textbf{Unitary matrix:} $U^\dagger U = UU^\dagger = I$
+
+\textbf{Real versions:}
+\begin{itemize}
+    \item Symmetric: $A^T = A$
+    \item Orthogonal: $O^TO = OO^T = I$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Spectral Theorem for Hermitian Matrices]
+If $A$ is Hermitian, then:
+\begin{enumerate}
+    \item All eigenvalues are real
+    \item Eigenvectors corresponding to distinct eigenvalues are orthogonal
+    \item $A$ can be diagonalized by unitary matrix: $U^\dagger AU = D$
+    \item $A = \sum_i \lambda_i |v_i\rangle\langle v_i|$ (spectral decomposition)
+\end{enumerate}
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Why Hermitian Matrices Matter in Physics:}
+\begin{itemize}
+    \item Observables in quantum mechanics are Hermitian operators
+    \item Real eigenvalues = measurable quantities
+    \item Orthogonal eigenvectors = orthogonal states
+    \item Complete set of eigenvectors = complete set of states
+\end{itemize}
+\end{importantbox}
+
+\begin{example}
+Show that $A = \begin{pmatrix}1 & i \\ -i & 1\end{pmatrix}$ is Hermitian and find its eigenvalues.
+
+\textbf{Solution:}
+Check: $A^\dagger = \begin{pmatrix}1 & -(-i) \\ -i & 1\end{pmatrix} = \begin{pmatrix}1 & i \\ -i & 1\end{pmatrix} = A$ ✓
+
+Characteristic equation:
+\[
+\det\begin{pmatrix}1-\lambda & i \\ -i & 1-\lambda\end{pmatrix} = (1-\lambda)^2 + 1 = \lambda^2 - 2\lambda + 2 = 0
+\]
+
+Wait, this gives complex eigenvalues! Let me recalculate...
+
+Actually: $(1-\lambda)^2 - (i)(-i) = (1-\lambda)^2 - 1 = -2\lambda + \lambda^2 = 0$
+
+$\lambda(\lambda - 2) = 0$, so $\lambda = 0, 2$ (real, as expected) ✓
+\end{example}
+
+\subsection{Inner Product Spaces}
+
+\begin{definition}
+An \textbf{inner product} on vector space $V$ is a function $\langle \cdot, \cdot \rangle : V \times V \to \mathbb{C}$ satisfying:
+\begin{enumerate}
+    \item Conjugate symmetry: $\langle u, v \rangle = \overline{\langle v, u \rangle}$
+    \item Linearity in first argument: $\langle au + bv, w \rangle = a\langle u, w \rangle + b\langle v, w \rangle$
+    \item Positive definiteness: $\langle v, v \rangle \geq 0$ with equality iff $v = 0$
+\end{enumerate}
+\end{definition}
+
+\begin{formula}[Important Inner Products]
+\textbf{Euclidean:} $\langle x, y \rangle = x^Ty = \sum x_iy_i$
+
+\textbf{Complex:} $\langle x, y \rangle = x^\dagger y = \sum \overline{x_i}y_i$
+
+\textbf{Function space $L^2$:} $\langle f, g \rangle = \int f^*(x)g(x)dx$
+\end{formula}
+
+\begin{definition}
+\textbf{Norm:} $\|v\| = \sqrt{\langle v, v \rangle}$
+
+\textbf{Orthogonal:} $\langle u, v \rangle = 0$
+
+\textbf{Orthonormal basis:} $\langle e_i, e_j \rangle = \delta_{ij}$
+\end{definition}
+
+\subsection{Gram-Schmidt Orthogonalization}
+
+\begin{importantbox}
+\textbf{Gram-Schmidt Process:}
+
+Given linearly independent vectors $v_1, \ldots, v_n$, construct orthonormal $e_1, \ldots, e_n$:
+
+\begin{align}
+u_1 &= v_1 \\
+u_2 &= v_2 - \frac{\langle v_2, u_1 \rangle}{\langle u_1, u_1 \rangle}u_1 \\
+u_3 &= v_3 - \frac{\langle v_3, u_1 \rangle}{\langle u_1, u_1 \rangle}u_1 - \frac{\langle v_3, u_2 \rangle}{\langle u_2, u_2 \rangle}u_2 \\
+&\vdots \\
+e_i &= \frac{u_i}{\|u_i\|}
+\end{align}
+\end{importantbox}
+
+\subsection{Linear Transformations}
+
+\begin{definition}
+A function $T: V \to W$ is a \textbf{linear transformation} if:
+\[
+T(au + bv) = aT(u) + bT(v)
+\]
+\end{definition}
+
+\begin{definition}
+\textbf{Kernel (null space):} $\ker(T) = \{v \in V : T(v) = 0\}$
+
+\textbf{Image (range):} $\text{Im}(T) = \{T(v) : v \in V\}$
+
+\textbf{Rank:} $\text{rank}(T) = \dim(\text{Im}(T))$
+
+\textbf{Nullity:} $\text{nullity}(T) = \dim(\ker(T))$
+\end{definition}
+
+\begin{theorem}[Rank-Nullity Theorem]
+For linear transformation $T: V \to W$:
+\[
+\dim(V) = \text{rank}(T) + \text{nullity}(T)
+\]
+\end{theorem}
+
+\subsection{Change of Basis}
+
+\begin{formula}
+If $[v]_B$ represents vector $v$ in basis $B$ and $[v]_{B'}$ in basis $B'$:
+\[
+[v]_{B'} = P_{B \to B'}[v]_B
+\]
+where $P_{B \to B'}$ is change of basis matrix.
+
+For linear transformation $T$ with matrix $[T]_B$ in basis $B$:
+\[
+[T]_{B'} = P^{-1}[T]_BP
+\]
+\end{formula}
+
+\subsection{Special Matrices and Decompositions}
+
+\begin{importantbox}
+\textbf{Important Matrix Decompositions:}
+
+\textbf{1. LU Decomposition:} $A = LU$ (lower × upper triangular)
+
+\textbf{2. QR Decomposition:} $A = QR$ (orthogonal × upper triangular)
+
+\textbf{3. Singular Value Decomposition (SVD):} $A = U\Sigma V^\dagger$
+\begin{itemize}
+    \item $U$, $V$ unitary
+    \item $\Sigma$ diagonal with singular values $\sigma_i \geq 0$
+    \item Works for any matrix (not just square)
+\end{itemize}
+
+\textbf{4. Spectral Decomposition (Hermitian):} $A = \sum_i \lambda_i|v_i\rangle\langle v_i|$
+\end{importantbox}
+
+\subsection{Cayley-Hamilton Theorem}
+
+\begin{theorem}
+Every square matrix satisfies its own characteristic equation.
+
+If $p(\lambda) = \det(A - \lambda I)$ is the characteristic polynomial, then $p(A) = 0$.
+\end{theorem}
+
+\begin{tipbox}
+\textbf{Use of Cayley-Hamilton:}
+\begin{itemize}
+    \item Computing matrix powers
+    \item Finding matrix inverse
+    \item Simplifying matrix polynomials
+\end{itemize}
+\end{tipbox}
+
+\subsection{Positive Definite Matrices}
+
+\begin{definition}
+Real symmetric (or Hermitian) matrix $A$ is \textbf{positive definite} if:
+\[
+x^TAx > 0 \quad \forall x \neq 0
+\]
+\end{definition}
+
+\begin{theorem}[Equivalent Conditions]
+For Hermitian $A$, the following are equivalent:
+\begin{enumerate}
+    \item $A$ is positive definite
+    \item All eigenvalues are positive
+    \item All principal minors are positive
+    \item $A = B^\dagger B$ for some invertible $B$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Practice Problems - Linear Algebra}
+
+\begin{enumerate}
+    \item Find eigenvalues and eigenvectors of $A = \begin{pmatrix}3 & 1 \\ 0 & 2\end{pmatrix}$. Is it diagonalizable?
+    
+    \item Show that eigenvalues of unitary matrix have magnitude 1.
+    
+    \item Prove that trace of product is independent of order: $\text{tr}(AB) = \text{tr}(BA)$.
+    
+    \item Use Gram-Schmidt to orthonormalize: $v_1 = (1,1,0)$, $v_2 = (1,0,1)$, $v_3 = (0,1,1)$.
+    
+    \item Find SVD of $A = \begin{pmatrix}1 & 1 \\ 0 & 1\end{pmatrix}$.
+    
+    \item Verify Cayley-Hamilton theorem for $A = \begin{pmatrix}2 & 1 \\ 1 & 2\end{pmatrix}$.
+    
+    \item Show that if $A$ is Hermitian and $B$ is unitary, then $BAB^\dagger$ is Hermitian.
+\end{enumerate}
+
+%======================================================================
+% APPENDIX: EXAM STRATEGY & IMPORTANT FORMULAS
+%======================================================================
+\newpage
+\section{GATE Exam Strategy}
+
+\subsection{Time Management}
+
+\begin{tipbox}
+\textbf{3-Hour Exam Strategy:}
+\begin{itemize}
+    \item \textbf{First 15 min:} Quick scan of all questions
+    \item \textbf{Next 90 min:} Solve questions you're confident about
+    \item \textbf{Next 60 min:} Tackle moderate difficulty questions
+    \item \textbf{Last 15 min:} Quick check and difficult questions
+\end{itemize}
+\end{tipbox}
+
+\subsection{Common Mistakes to Avoid}
+
+\begin{enumerate}
+    \item Not checking dimensions in vector calculus
+    \item Sign errors in determinants and cross products
+    \item Forgetting $2\pi i$ in Cauchy's formulas
+    \item Wrong coordinate system formulas (cylindrical vs spherical)
+    \item Algebraic errors in eigenvalue calculations
+    \item Not verifying orthogonality conditions
+    \item Boundary condition mistakes in PDEs
+\end{enumerate}
+
+\subsection{Formula Sheet - Quick Reference}
+
+\begin{importantbox}
+\textbf{Vector Calculus:}
+\begin{align*}
+\nabla\phi &= \frac{\partial\phi}{\partial x}\hat{i} + \frac{\partial\phi}{\partial y}\hat{j} + \frac{\partial\phi}{\partial z}\hat{k} \\
+\nabla \cdot \vec{F} &= \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z} \\
+\nabla \times \vec{F} &= \begin{vmatrix}\hat{i} & \hat{j} & \hat{k} \\ \partial_x & \partial_y & \partial_z \\ F_x & F_y & F_z\end{vmatrix}
+\end{align*}
+
+\textbf{Complex Analysis:}
+\begin{align*}
+f(z_0) &= \frac{1}{2\pi i}\oint_C \frac{f(z)}{z - z_0}dz \\
+\oint_C f(z)dz &= 2\pi i \sum \text{Res}(f, z_k)
+\end{align*}
+
+\textbf{Special Functions:}
+\begin{align*}
+P_n(1) &= 1, \quad P_n(-1) = (-1)^n \\
+\int_{-1}^{1} P_m P_n dx &= \frac{2}{2n+1}\delta_{mn}
+\end{align*}
+
+\textbf{Linear Algebra:}
+\begin{align*}
+\det(AB) &= \det(A)\det(B) \\
+\text{tr}(A) &= \sum \lambda_i \\
+A &= PDP^{-1} \implies A^n = PD^nP^{-1}
+\end{align*}
+\end{importantbox}
+
+\subsection{Previous Years' Focus Areas}
+
+\begin{enumerate}
+    \item Divergence theorem applications
+    \item Residue calculus for real integrals
+    \item Frobenius method for ODEs
+    \item Legendre and Bessel function properties
+    \item Eigenvalue problems
+    \item Hermitian matrix properties
+    \item Orthogonalization procedures
+\end{enumerate}
+
+\subsection{Final Tips}
+
+\begin{tipbox}
+\textbf{Last Month Before Exam:}
+\begin{itemize}
+    \item Solve 10+ previous years' papers under timed conditions
+    \item Revise this formula sheet daily
+    \item Focus on speed and accuracy
+    \item Practice standard problems (each topic 20+ problems)
+    \item Don't learn new topics - consolidate what you know
+    \item Stay healthy - sleep well, eat well, exercise
+\end{itemize}
+\end{tipbox}
+
+%======================================================================
+% CONCLUSION
+%======================================================================
+\newpage
+\section{Conclusion}
+
+Mathematical Physics is the backbone of GATE Physics. Master these four pillars:
+\begin{enumerate}
+    \item \textbf{Vector Calculus:} div, grad, curl, and integral theorems
+    \item \textbf{Complex Analysis:} Cauchy's theorems and residue calculus
+    \item \textbf{Differential Equations:} Frobenius method and special functions
+    \item \textbf{Linear Algebra:} Eigenvalues and Hermitian matrices
+\end{enumerate}
+
+\begin{importantbox}
+\textbf{Your Success Mantra:}
+\begin{center}
+\Large
+Practice + Understanding + Speed = GATE Success
+\end{center}
+
+Study this guide thoroughly. Solve all examples. Practice problems daily. You will ace GATE 2026!
+\end{importantbox}
+
+\vspace{1cm}
+\begin{center}
+\textbf{\Large All the Best for GATE 2026!}
+\end{center}
+
+\end{document}

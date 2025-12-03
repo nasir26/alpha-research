@@ -1,0 +1,247 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║              MAP OF QUANTUM COMPUTING                                ║
+║              (Written on Board)                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 1. CORE CONCEPTS                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+   • Qubits (vs classical bits)
+     - Superposition: |0⟩ + |1⟩
+     - Entanglement: Bell states
+     - Measurement: collapses state
+
+   • Quantum Gates
+     - Pauli gates (X, Y, Z)
+     - Hadamard (H)
+     - CNOT (entanglement)
+     - Phase gates
+
+   • Quantum Circuits
+     - Unitary operations
+     - Reversibility
+     - No-cloning theorem
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 2. HARDWARE ARCHITECTURES                                            │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Superconducting (IBM, Google)
+   ├─ Transmon qubits
+   ├─ Microwave control
+   └─ Cryogenic temps (~20mK)
+
+   Trapped Ions (IonQ, Honeywell)
+   ├─ Yb+, Ca+ ions
+   ├─ Laser control
+   └─ Long coherence times
+
+   Photonic (Xanadu, PsiQuantum)
+   ├─ Quantum optics
+   ├─ Room temp operation
+   └─ Linear optical circuits
+
+   Neutral Atoms (ColdQuanta, QuEra)
+   ├─ Rydberg states
+   ├─ Optical tweezers
+   └─ Programmable arrays
+
+   Topological (Microsoft)
+   ├─ Anyons
+   ├─ Error-resistant
+   └─ Still theoretical
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 3. KEY ALGORITHMS                                                    │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Shor's Algorithm
+   └─ Factoring → breaks RSA encryption
+      O(log³ N) vs classical O(e^N)
+
+   Grover's Algorithm
+   └─ Unstructured search
+      O(√N) vs classical O(N)
+
+   Quantum Approximate Optimization (QAOA)
+   └─ Combinatorial optimization
+      Max-cut, TSP, etc.
+
+   Variational Quantum Eigensolver (VQE)
+   └─ Chemistry simulations
+      Molecular ground states
+
+   Quantum Machine Learning
+   ├─ Quantum neural networks
+   ├─ Quantum kernels
+   └─ Hybrid classical-quantum
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 4. APPLICATIONS                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Cryptography
+   ├─ Breaking: RSA, ECC
+   └─ Building: QKD, post-quantum crypto
+
+   Drug Discovery
+   └─ Molecular simulation
+      Protein folding, catalysts
+
+   Financial Modeling
+   ├─ Portfolio optimization
+   ├─ Risk analysis
+   └─ Monte Carlo simulation
+
+   Material Science
+   └─ Superconductors, batteries
+
+   AI/ML
+   └─ Quantum advantage in specific tasks
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 5. ERROR CORRECTION & NOISE                                          │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Challenges:
+   • Decoherence (T1, T2 times)
+   • Gate errors (~0.1-1%)
+   • Measurement errors
+   • Crosstalk between qubits
+
+   Solutions:
+   • Surface codes (most promising)
+   • Stabilizer codes
+   • Fault-tolerant thresholds
+   • Error mitigation techniques
+
+   Threshold Theorem:
+   └─ If error rate < ~1%, can correct
+      exponentially → need 100-1000s
+      physical qubits per logical qubit
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 6. QUANTUM SUPREMACY / ADVANTAGE                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Google (2019): Sycamore
+   └─ 53 qubits, random circuit sampling
+      "200 seconds vs 10,000 years"
+
+   Chinese (2020): Jiuzhang
+   └─ Photonic, boson sampling
+
+   Current Status:
+   • NISQ era (Noisy Intermediate Scale)
+   • ~100-1000 qubits
+   • Limited coherence
+   • No practical advantage yet
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 7. MAJOR PLAYERS                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Big Tech:
+   ├─ IBM (Qiskit, 1000+ qubits roadmap)
+   ├─ Google (Cirq, Sycamore)
+   ├─ Microsoft (Azure Quantum, Q#)
+   └─ Amazon (Braket, cloud access)
+
+   Startups:
+   ├─ IonQ (trapped ions, public)
+   ├─ Rigetti (superconducting)
+   ├─ Xanadu (photonic, PennyLane)
+   ├─ PsiQuantum (photonic, $3B+)
+   └─ Quantinuum (Honeywell + Cambridge)
+
+   Academia:
+   └─ MIT, Caltech, UMD, ETH Zurich...
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 8. SOFTWARE STACK                                                    │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Languages:
+   ├─ Qiskit (Python, IBM)
+   ├─ Cirq (Python, Google)
+   ├─ Q# (Microsoft)
+   ├─ PennyLane (Xanadu)
+   └─ Braket (Amazon)
+
+   Simulators:
+   ├─ Classical: Qiskit Aer, Cirq
+   ├─ GPU-accelerated
+   └─ Tensor networks
+
+   Cloud Platforms:
+   └─ IBM Quantum, AWS Braket, Azure
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 9. TIMELINE & ROADMAP                                                │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Past:
+   • 1980s: Feynman, Deutsch
+   • 1994: Shor's algorithm
+   • 1996: Grover's algorithm
+   • 2019: Quantum supremacy claimed
+
+   Present (NISQ):
+   • 50-1000 qubits
+   • High error rates
+   • Limited applications
+
+   Future:
+   • 2025-2030: 1000-10000 qubits
+   • Error correction working
+   • First practical advantages?
+
+   Long-term:
+   • Million+ qubits
+   • Fault-tolerant
+   • Transformative applications
+
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 10. CHALLENGES                                                       │
+└─────────────────────────────────────────────────────────────────────┘
+
+   Technical:
+   • Scaling qubit count
+   • Reducing error rates
+   • Improving coherence
+   • Better connectivity
+
+   Theoretical:
+   • Finding more useful algorithms
+   • Proving quantum advantage
+   • Understanding limits
+
+   Practical:
+   • Cost (millions per system)
+   • Expertise gap
+   • Integration with classical
+
+
+═══════════════════════════════════════════════════════════════════════
+
+   KEY TAKEAWAY:
+   
+   Quantum computing = exponential speedup for SPECIFIC problems
+   NOT a replacement for classical computing
+   
+   Still early days, but progress accelerating!
+   
+   "The quantum winter is over" - but spring is just beginning 🌱
+
+═══════════════════════════════════════════════════════════════════════

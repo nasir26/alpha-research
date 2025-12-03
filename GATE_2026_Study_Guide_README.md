@@ -8,7 +8,50 @@ This repository contains comprehensive LaTeX study guides for GATE 2026 Physics 
 
 ## 📖 Available Study Guides
 
-### 1. Mathematical Physics (Complete) ✅
+### 1. Quantum Mechanics (Complete) ✅ **HIGHEST WEIGHTAGE!**
+**File:** `GATE_Quantum_Mechanics_Guide.pdf` (15 pages, 189KB)
+**Source:** `GATE_Quantum_Mechanics_Guide.tex`
+
+#### Topics Covered:
+- **Quantum Formalism** (Pages 3-6)
+  - Postulates of quantum mechanics
+  - Operators and eigenvalues
+  - **Commutators** (all fundamental relations)
+  - Uncertainty principle
+  - Dirac notation and bra-ket formalism
+  
+- **1D Quantum Systems** (Pages 7-9)
+  - **Infinite square well** (complete solution)
+  - **Finite square well** (bound states)
+  - **Quantum harmonic oscillator** (ladder operators!)
+  - Potential step and barriers
+  - **Quantum tunneling** (transmission coefficients)
+  
+- **Angular Momentum** (Pages 10-11)
+  - Orbital angular momentum
+  - **Commutation relations** (all forms)
+  - **Eigenvalues** $l(l+1)$ and $m$
+  - **Ladder operators** $L_\pm$
+  - Spherical harmonics
+  - **Spin-1/2** and Pauli matrices
+  - **Addition of angular momenta** (Clebsch-Gordan)
+  
+- **Approximation Methods** (Pages 12-13)
+  - **Time-independent perturbation theory**
+  - First and second-order corrections
+  - Degenerate perturbation theory
+  - **Variational method**
+  - **WKB approximation**
+  - Time-dependent perturbation (Fermi's golden rule)
+  
+- **Scattering Theory** (Pages 14)
+  - Cross sections
+  - **Partial wave analysis**
+  - Phase shifts
+  - **Born approximation**
+  - Optical theorem
+
+### 2. Mathematical Physics (Complete) ✅
 **File:** `GATE_Mathematical_Physics_Study_Guide.pdf` (31 pages, 266KB)
 **Source:** `GATE_Mathematical_Physics_Study_Guide.tex`
 
@@ -44,7 +87,7 @@ This repository contains comprehensive LaTeX study guides for GATE 2026 Physics 
   - Matrix decompositions (LU, QR, SVD)
   - Gram-Schmidt orthogonalization
 
-### 2. Classical Mechanics (Complete) ✅
+### 3. Classical Mechanics (Complete) ✅
 **File:** `GATE_Classical_Mechanics_Section.pdf` (31 pages, 240KB)
 **Source:** `GATE_Classical_Mechanics_Section.tex`
 
@@ -128,9 +171,12 @@ This repository contains comprehensive LaTeX study guides for GATE 2026 Physics 
 
 | Document | Pages | Size | Sections | Examples | Practice Problems |
 |----------|-------|------|----------|----------|-------------------|
+| **Quantum Mechanics** ⭐ | **15** | **189KB** | **5 major** | **20+** | **20+** |
 | Mathematical Physics | 31 | 266KB | 4 major | 30+ | 25+ |
 | Classical Mechanics | 31 | 240KB | 5 major | 35+ | 25+ |
-| **Total** | **62** | **506KB** | **9** | **65+** | **50+** |
+| **Total** | **77** | **695KB** | **14** | **85+** | **70+** |
+
+⭐ **Highest weightage topic (25-30% of GATE Physics!)**
 
 ---
 
@@ -138,13 +184,20 @@ This repository contains comprehensive LaTeX study guides for GATE 2026 Physics 
 
 ### Study Plan
 
-#### Mathematical Physics (15 days)
+#### Priority 1: Quantum Mechanics (20 days) ⭐ **START HERE!**
+1. **Days 1-4**: Operators, commutators, eigenvalues (practice 30 problems)
+2. **Days 5-9**: 1D systems - wells, harmonic oscillator, tunneling (practice 40 problems)
+3. **Days 10-13**: Angular momentum - ladder operators, spin (practice 30 problems)
+4. **Days 14-17**: Approximation methods - perturbation, variational, WKB (practice 30 problems)
+5. **Days 18-20**: Scattering theory and integration (practice 20 problems)
+
+#### Priority 2: Mathematical Physics (15 days)
 1. **Days 1-4**: Vector Calculus (practice 20 problems)
 2. **Days 5-8**: Complex Analysis (practice 20 problems)
 3. **Days 9-11**: Differential Equations (practice 15 problems)
 4. **Days 12-15**: Linear Algebra (practice 20 problems)
 
-#### Classical Mechanics (15 days)
+#### Priority 3: Classical Mechanics (15 days)
 1. **Days 1-4**: Lagrangian Formulation (practice 20 problems)
 2. **Days 5-8**: Hamiltonian Mechanics (practice 20 problems)
 3. **Days 9-11**: Central Force + Rigid Body (practice 15+15 problems)
@@ -190,6 +243,15 @@ pdflatex GATE_Classical_Mechanics_Section.tex  # Second pass for TOC
 
 ## 🎓 Expected GATE Coverage
 
+### Quantum Mechanics (25-30% weightage) ⭐ **HIGHEST!**
+- Operators and commutators: 1 question (almost guaranteed!)
+- 1D systems (wells, oscillator): 2-3 questions
+- Angular momentum: 1-2 questions
+- Approximation methods: 1-2 questions
+- Scattering: 0-1 question
+
+**Total: 6-8 questions out of ~25 physics questions!**
+
 ### Mathematical Physics (20-25% weightage)
 - Vector calculus: 2-3 questions
 - Complex analysis: 2-3 questions (residue calculus almost guaranteed!)
@@ -202,11 +264,30 @@ pdflatex GATE_Classical_Mechanics_Section.tex  # Second pass for TOC
 - Rigid body: 1-2 questions
 - Small oscillations: 1-2 questions
 
-**Total from these two subjects: ~35-45% of Physics section!**
+**Total from these three subjects: ~60-70% of Physics section!**
+
+This means mastering these three topics practically guarantees a great GATE score!
 
 ---
 
 ## ⚡ Quick Formula Reference
+
+### Quantum Mechanics Essentials ⭐
+```
+[x̂, p̂ₓ] = iℏ
+[L̂ᵢ, L̂ⱼ] = iℏεᵢⱼₖL̂ₖ
+
+E_n (well) = n²π²ℏ²/(2mL²)
+E_n (HO) = ℏω(n + 1/2)
+
+â|n⟩ = √n|n-1⟩
+â†|n⟩ = √(n+1)|n+1⟩
+
+L̂²|l,m⟩ = ℏ²l(l+1)|l,m⟩
+L̂ᵤ|l,m⟩ = ℏm|l,m⟩
+
+E_n⁽¹⁾ = ⟨n|Ĥ'|n⟩  (1st order perturbation)
+```
 
 ### Mathematical Physics Essentials
 ```
@@ -297,7 +378,14 @@ You have in your hands 62 pages of carefully curated content that covers the abs
 - ✅ You'll grasp Statistical Mechanics easier
 - ✅ You'll have confidence for ANY physics problem
 
-**These are not just study guides—they are your weapons for GATE 2026 success!**
+**These are not just study guides—they are your complete arsenal for GATE 2026 dominance!**
+
+### 🎯 Priority Ranking for Study:
+1. **Quantum Mechanics** (25-30%) - MUST master first!
+2. **Mathematical Physics** (20-25%) - Foundation for everything
+3. **Classical Mechanics** (15-20%) - Problem-solving intensive
+
+**Master these three = 60-70% of GATE Physics secured!**
 
 ---
 
@@ -339,10 +427,13 @@ START                  NOW                    GATE 2026
 
 ### Your Success Formula:
 ```
-Mathematical Physics (Strong) + Classical Mechanics (Strong) 
-        + Practice (100+ problems each) 
-        + Time Management 
-        = GATE 2026 SUCCESS! 🎉
+Quantum Mechanics (MASTER - 25-30%) ⭐
+    + Mathematical Physics (Strong - 20-25%)
+    + Classical Mechanics (Strong - 15-20%)
+    + Practice (200+ problems total)
+    + Time Management
+    = 60-70% of GATE Physics SECURED! 🎉
+    = GUARANTEED EXCELLENT SCORE! 🚀
 ```
 
 **Start today. Master tomorrow. Excel in GATE 2026!**

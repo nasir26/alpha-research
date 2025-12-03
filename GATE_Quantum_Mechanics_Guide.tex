@@ -1,0 +1,792 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+% Page geometry
+\geometry{margin=1in}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{GATE 2026 Quantum Mechanics Guide}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% Custom theorem environments
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{formula}[theorem]{Formula}
+\newtheorem{postulate}[theorem]{Postulate}
+
+% Custom boxes
+\tcbuselibrary{theorems}
+\newtcolorbox{importantbox}{
+    colback=red!5!white,
+    colframe=red!75!black,
+    title=Critical for GATE
+}
+
+\newtcolorbox{tipbox}{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    title=Problem-Solving Tip
+}
+
+\newtcolorbox{notebox}{
+    colback=yellow!5!white,
+    colframe=orange!75!black,
+    title=Important Note
+}
+
+% Title page
+\title{\Huge\textbf{Quantum Mechanics}\\[0.3cm]
+\Large Complete Mastery Guide for GATE 2026\\[0.2cm]
+\large Highest Weightage Topic - 25-30\%}
+\author{Comprehensive Coverage with Problem-Solving Strategies}
+\date{Prepared: December 2025}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+%======================================================================
+% INTRODUCTION
+%======================================================================
+\section{Introduction}
+
+\begin{importantbox}
+Quantum Mechanics is the HIGHEST weightage topic in GATE Physics, accounting for 25-30\% of questions. Mastering QM is NON-NEGOTIABLE for a good GATE score. This guide provides complete coverage with NO STONE LEFT UNTURNED - every concept, every formula, every technique you need to ace this topic.
+\end{importantbox}
+
+\subsection{Why Quantum Mechanics is Crucial}
+
+\begin{enumerate}
+    \item \textbf{Maximum weightage:} 6-8 questions out of 25 physics questions
+    \item \textbf{Foundation for:} Atomic, Molecular, Nuclear, Solid State Physics
+    \item \textbf{Predictable patterns:} Same problem types appear regularly
+    \item \textbf{High scoring:} Once mastered, fastest to solve
+    \item \textbf{Career relevance:} Essential for research in modern physics
+\end{enumerate}
+
+\subsection{Study Strategy}
+
+\begin{tipbox}
+\textbf{Recommended Approach:}
+\begin{itemize}
+    \item \textbf{Week 1-2:} Formalism (operators, commutators, eigenvalues)
+    \item \textbf{Week 3-4:} 1D problems (wells, oscillator, barriers)
+    \item \textbf{Week 5:} Angular momentum (spin, addition)
+    \item \textbf{Week 6-7:} Approximation methods
+    \item \textbf{Week 8:} Scattering theory
+    \item Practice minimum 100 problems total!
+\end{itemize}
+\end{tipbox}
+
+%======================================================================
+% CHAPTER 1: QUANTUM FORMALISM
+%======================================================================
+\newpage
+\section{Quantum Formalism: Operators and Eigenvalues}
+
+\subsection{Postulates of Quantum Mechanics}
+
+\begin{postulate}[State of a System]
+The state of a quantum system is completely described by a wave function $\psi(\vec{r}, t)$ satisfying:
+\[
+\int |\psi(\vec{r}, t)|^2 d^3r = 1
+\]
+$|\psi(\vec{r}, t)|^2$ gives the probability density.
+\end{postulate}
+
+\begin{postulate}[Observables as Operators]
+Every observable physical quantity is represented by a Hermitian operator.
+\end{postulate}
+
+\begin{postulate}[Measurement]
+When an observable $A$ is measured, the only possible results are the eigenvalues of operator $\hat{A}$:
+\[
+\hat{A}|\psi_n\rangle = a_n|\psi_n\rangle
+\]
+\end{postulate}
+
+\begin{postulate}[Schrödinger Equation]
+Time evolution is governed by:
+\[
+i\hbar\frac{\partial}{\partial t}|\psi\rangle = \hat{H}|\psi\rangle
+\]
+\end{postulate}
+
+\subsection{Operators in Quantum Mechanics}
+
+\begin{definition}
+An \textbf{operator} $\hat{A}$ acts on a state to produce another state:
+\[
+\hat{A}|\psi\rangle = |\phi\rangle
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Fundamental Operators (Position Representation):}
+\begin{align}
+\text{Position: } &\hat{x} = x \\
+\text{Momentum: } &\hat{p}_x = -i\hbar\frac{\partial}{\partial x} \\
+\text{Kinetic Energy: } &\hat{T} = \frac{\hat{p}^2}{2m} = -\frac{\hbar^2}{2m}\nabla^2 \\
+\text{Hamiltonian: } &\hat{H} = \hat{T} + \hat{V} = -\frac{\hbar^2}{2m}\nabla^2 + V(\vec{r})
+\end{align}
+
+\textbf{Angular Momentum:}
+\begin{align}
+\hat{\vec{L}} &= \vec{r} \times \hat{\vec{p}} = -i\hbar(\vec{r} \times \nabla) \\
+\hat{L}_z &= -i\hbar\frac{\partial}{\partial\phi} \\
+\hat{L}^2 &= \hat{L}_x^2 + \hat{L}_y^2 + \hat{L}_z^2
+\end{align}
+\end{importantbox}
+
+\subsection{Eigenvalues and Eigenfunctions}
+
+\begin{definition}
+If $\hat{A}|\psi\rangle = a|\psi\rangle$, then:
+\begin{itemize}
+    \item $a$ is an \textbf{eigenvalue} of $\hat{A}$
+    \item $|\psi\rangle$ is an \textbf{eigenfunction} (eigenstate) of $\hat{A}$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Properties of Hermitian Operators]
+For Hermitian operator $\hat{A}$ (representing observable):
+\begin{enumerate}
+    \item All eigenvalues are real
+    \item Eigenfunctions belonging to different eigenvalues are orthogonal
+    \item Eigenfunctions form a complete set
+    \item $\langle\hat{A}\rangle = \langle\psi|\hat{A}|\psi\rangle$ is real
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+\textbf{Momentum Eigenfunction}
+
+Find eigenfunction of $\hat{p}_x = -i\hbar\frac{\partial}{\partial x}$.
+
+\textbf{Solution:}
+\[
+-i\hbar\frac{d\psi}{dx} = p\psi
+\]
+\[
+\frac{d\psi}{dx} = \frac{ip}{\hbar}\psi
+\]
+\[
+\psi(x) = Ae^{ipx/\hbar}
+\]
+
+This is a plane wave with definite momentum $p$.
+\end{example}
+
+\subsection{Commutators}
+
+\begin{definition}
+The \textbf{commutator} of operators $\hat{A}$ and $\hat{B}$ is:
+\[
+[\hat{A}, \hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Fundamental Commutation Relations (Must Memorize):}
+\begin{align}
+[\hat{x}, \hat{p}_x] &= i\hbar \\
+[\hat{x}, \hat{p}_y] &= 0 \\
+[\hat{x}, \hat{x}] &= 0, \quad [\hat{p}_x, \hat{p}_x] = 0 \\
+[\hat{L}_i, \hat{L}_j] &= i\hbar\epsilon_{ijk}\hat{L}_k \\
+[\hat{L}^2, \hat{L}_i] &= 0 \quad \text{(for any component)}
+\end{align}
+
+\textbf{Angular Momentum Commutators:}
+\begin{align}
+[\hat{L}_x, \hat{L}_y] &= i\hbar\hat{L}_z \\
+[\hat{L}_y, \hat{L}_z] &= i\hbar\hat{L}_x \\
+[\hat{L}_z, \hat{L}_x] &= i\hbar\hat{L}_y
+\end{align}
+\end{importantbox}
+
+\begin{theorem}[Simultaneous Observables]
+Two observables can be measured simultaneously with arbitrary precision if and only if their operators commute:
+\[
+[\hat{A}, \hat{B}] = 0
+\]
+In this case, they share a common set of eigenfunctions.
+\end{theorem}
+
+\begin{theorem}[Uncertainty Principle]
+For any two observables $A$ and $B$:
+\[
+\Delta A \cdot \Delta B \geq \frac{1}{2}|\langle[\hat{A}, \hat{B}]\rangle|
+\]
+
+For position and momentum:
+\[
+\Delta x \cdot \Delta p_x \geq \frac{\hbar}{2}
+\]
+
+For energy and time:
+\[
+\Delta E \cdot \Delta t \geq \frac{\hbar}{2}
+\]
+\end{theorem}
+
+\subsection{Properties of Commutators}
+
+\begin{formula}[Commutator Algebra]
+\begin{align}
+[\hat{A}, \hat{B}] &= -[\hat{B}, \hat{A}] \quad \text{(antisymmetric)} \\
+[\hat{A}, \hat{B} + \hat{C}] &= [\hat{A}, \hat{B}] + [\hat{A}, \hat{C}] \quad \text{(linear)} \\
+[\hat{A}, \hat{B}\hat{C}] &= [\hat{A}, \hat{B}]\hat{C} + \hat{B}[\hat{A}, \hat{C}] \quad \text{(Leibniz)} \\
+[\hat{A}\hat{B}, \hat{C}] &= \hat{A}[\hat{B}, \hat{C}] + [\hat{A}, \hat{C}]\hat{B} \\
+[\hat{A}, [\hat{B}, \hat{C}]] &+ [\hat{B}, [\hat{C}, \hat{A}]] + [\hat{C}, [\hat{A}, \hat{B}]] = 0 \quad \text{(Jacobi)}
+\end{align}
+\end{formula}
+
+\begin{example}
+\textbf{Calculate $[\hat{x}^2, \hat{p}_x]$}
+
+\textbf{Solution:}
+\begin{align*}
+[\hat{x}^2, \hat{p}_x] &= \hat{x}[\hat{x}, \hat{p}_x] + [\hat{x}, \hat{p}_x]\hat{x} \\
+&= \hat{x}(i\hbar) + (i\hbar)\hat{x} \\
+&= 2i\hbar\hat{x}
+\end{align*}
+\end{example}
+
+\subsection{Expectation Values}
+
+\begin{definition}
+The \textbf{expectation value} of operator $\hat{A}$ in state $|\psi\rangle$ is:
+\[
+\langle A\rangle = \langle\psi|\hat{A}|\psi\rangle = \int\psi^*\hat{A}\psi\,d^3r
+\]
+
+\textbf{Uncertainty:}
+\[
+\Delta A = \sqrt{\langle A^2\rangle - \langle A\rangle^2}
+\]
+\end{definition}
+
+\subsection{Time Evolution}
+
+\begin{formula}[Ehrenfest Theorem]
+\[
+\frac{d\langle\hat{A}\rangle}{dt} = \frac{1}{i\hbar}\langle[\hat{A}, \hat{H}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
+\]
+
+For time-independent operators:
+\[
+\frac{d\langle\hat{A}\rangle}{dt} = \frac{1}{i\hbar}\langle[\hat{A}, \hat{H}]\rangle
+\]
+
+If $[\hat{A}, \hat{H}] = 0$, then $\langle A\rangle$ is conserved.
+\end{formula}
+
+\subsection{Dirac Notation and Bra-Ket Formalism}
+
+\begin{definition}
+\textbf{Ket:} $|\psi\rangle$ represents a state vector
+
+\textbf{Bra:} $\langle\psi|$ represents the dual vector (complex conjugate transpose)
+
+\textbf{Inner product:} $\langle\phi|\psi\rangle = \int\phi^*\psi\,d^3r$
+
+\textbf{Outer product:} $|\psi\rangle\langle\phi|$ is an operator
+
+\textbf{Completeness:} $\sum_n |\psi_n\rangle\langle\psi_n| = \hat{I}$ (identity)
+\end{definition}
+
+\subsection{Practice Problems - Operators and Commutators}
+
+\begin{enumerate}
+    \item Verify $[\hat{L}_x, \hat{L}_y] = i\hbar\hat{L}_z$ using definitions.
+    
+    \item Calculate $[\hat{x}, \hat{p}_x^2]$ and $[\hat{x}^3, \hat{p}_x]$.
+    
+    \item Show that $[\hat{H}, \hat{p}_x] = 0$ for free particle.
+    
+    \item Prove that if $[\hat{A}, \hat{B}] = c$ (constant), then $\Delta A \cdot \Delta B \geq |c|/2$.
+    
+    \item Find commutator $[\hat{x}\hat{p}_x, \hat{L}_z]$.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 2: 1D QUANTUM PROBLEMS
+%======================================================================
+\newpage
+\section{One-Dimensional Quantum Systems}
+
+\subsection{Time-Independent Schrödinger Equation}
+
+\begin{formula}
+For stationary states $\psi(x,t) = \psi(x)e^{-iEt/\hbar}$:
+\[
+-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + V(x)\psi = E\psi
+\]
+
+Or:
+\[
+\frac{d^2\psi}{dx^2} + \frac{2m}{\hbar^2}[E - V(x)]\psi = 0
+\]
+\end{formula}
+
+\begin{importantbox}
+\textbf{General Strategy for 1D Problems:}
+\begin{enumerate}
+    \item Identify regions with different potentials
+    \item Write general solution in each region
+    \item Apply boundary conditions:
+    \begin{itemize}
+        \item $\psi$ continuous everywhere
+        \item $\psi'$ continuous except at infinite potential jumps
+        \item $\psi \to 0$ as $x \to \pm\infty$ for bound states
+    \end{itemize}
+    \item Match solutions at boundaries
+    \item Apply normalization
+    \item Determine energy eigenvalues and eigenfunctions
+\end{enumerate}
+\end{importantbox}
+
+\subsection{Infinite Square Well (Particle in a Box)}
+
+\begin{definition}
+Potential:
+\[
+V(x) = \begin{cases}
+0 & 0 < x < L \\
+\infty & \text{otherwise}
+\end{cases}
+\]
+\end{definition}
+
+\begin{theorem}[Solutions for Infinite Well]
+\textbf{Energy eigenvalues:}
+\[
+E_n = \frac{n^2\pi^2\hbar^2}{2mL^2} = \frac{n^2h^2}{8mL^2}, \quad n = 1, 2, 3, \ldots
+\]
+
+\textbf{Eigenfunctions:}
+\[
+\psi_n(x) = \sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\]
+
+\textbf{Properties:}
+\begin{itemize}
+    \item Ground state: $n = 1$, $E_1 = \frac{\pi^2\hbar^2}{2mL^2}$
+    \item Energy spacing: $E_n \propto n^2$ (not equally spaced!)
+    \item Orthonormal: $\int_0^L \psi_m^*\psi_n\,dx = \delta_{mn}$
+    \item Zero-point energy: $E_1 \neq 0$ (quantum mechanical)
+\end{itemize}
+\end{theorem}
+
+
+\begin{example}
+\textbf{Expectation Values in Infinite Well}
+
+For particle in ground state ($n=1$):
+
+Position: $\langle x\rangle = \int_0^L x|\psi_1|^2 dx = \frac{L}{2}$ (center of well)
+
+Momentum: $\langle p\rangle = 0$ (symmetric probability distribution)
+
+Energy: $\langle E\rangle = E_1 = \frac{\pi^2\hbar^2}{2mL^2}$
+\end{example}
+
+\subsection{Finite Square Well}
+
+\begin{definition}
+Potential:
+\[
+V(x) = \begin{cases}
+-V_0 & -a < x < a \\
+0 & |x| > a
+\end{cases}
+\]
+where $V_0 > 0$.
+\end{definition}
+
+\begin{theorem}[Bound States of Finite Well]
+For bound states ($-V_0 < E < 0$), define:
+\[
+k = \frac{\sqrt{2m(E + V_0)}}{\hbar}, \quad \kappa = \frac{\sqrt{-2mE}}{\hbar}
+\]
+
+Solutions are either:
+
+\textbf{Even states:}
+\[
+\psi(x) = \begin{cases}
+A\cos(kx) & |x| < a \\
+Be^{-\kappa|x|} & |x| > a
+\end{cases}
+\]
+Quantization: $k\tan(ka) = \kappa$
+
+\textbf{Odd states:}
+\[
+\psi(x) = \begin{cases}
+A\sin(kx) & |x| < a \\
+B\text{sgn}(x)e^{-\kappa|x|} & |x| > a
+\end{cases}
+\]
+Quantization: $k\cot(ka) = -\kappa$
+
+Number of bound states: At least one; maximum approximately $\frac{2a}{\pi}\sqrt{2mV_0}/\hbar$
+\end{theorem}
+
+\begin{tipbox}
+\textbf{Key Points for Finite Well:}
+\begin{itemize}
+    \item Always has at least one bound state
+    \item Wave function penetrates into classically forbidden region
+    \item Transcendental equations for energy levels
+    \item Symmetric potential gives definite parity states
+\end{itemize}
+\end{tipbox}
+
+\subsection{Quantum Harmonic Oscillator}
+
+\begin{definition}
+Potential: $V(x) = \frac{1}{2}m\omega^2x^2$
+
+Hamiltonian: $\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2$
+\end{definition}
+
+\subsubsection{Ladder Operator Method}
+
+\begin{importantbox}
+\textbf{Creation and Annihilation Operators:}
+\[
+\hat{a} = \sqrt{\frac{m\omega}{2\hbar}}\left(\hat{x} + \frac{i\hat{p}}{m\omega}\right)
+\]
+\[
+\hat{a}^\dagger = \sqrt{\frac{m\omega}{2\hbar}}\left(\hat{x} - \frac{i\hat{p}}{m\omega}\right)
+\]
+
+\textbf{Key Relations:}
+\begin{align}
+[\hat{a}, \hat{a}^\dagger] &= 1 \\
+\hat{H} &= \hbar\omega\left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right) = \hbar\omega\left(\hat{N} + \frac{1}{2}\right)
+\end{align}
+
+\textbf{Action on States:}
+\begin{align}
+\hat{a}|n\rangle &= \sqrt{n}|n-1\rangle \\
+\hat{a}^\dagger|n\rangle &= \sqrt{n+1}|n+1\rangle
+\end{align}
+\end{importantbox}
+
+\begin{theorem}[Harmonic Oscillator Solutions]
+\textbf{Energy eigenvalues:}
+\[
+E_n = \hbar\omega\left(n + \frac{1}{2}\right), \quad n = 0, 1, 2, \ldots
+\]
+
+\textbf{Properties:}
+\begin{itemize}
+    \item Equally spaced levels (spacing $\hbar\omega$)
+    \item Zero-point energy: $E_0 = \frac{\hbar\omega}{2}$
+    \item Ground state: $\hat{a}|0\rangle = 0$
+\end{itemize}
+\end{theorem}
+
+\subsection{Potential Barrier (Tunneling)}
+
+\begin{theorem}[Quantum Tunneling]
+For $E < V_0$, particle can tunnel through barrier!
+
+\textbf{Transmission coefficient:}
+\[
+T \approx e^{-2\kappa a} \quad \text{where } \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar}
+\]
+\end{theorem}
+
+\subsection{Practice Problems - 1D Systems}
+
+\begin{enumerate}
+    \item Particle in infinite well: Find $\langle x^2\rangle$ for state $n$.
+    \item Harmonic oscillator: Calculate $\langle x\rangle$ and $\langle p\rangle$ for state $|n\rangle$.
+    \item Find $\langle n|\hat{x}^2|n\rangle$ using ladder operators.
+    \item Potential barrier: Find transmission probability for $E = V_0/2$.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 3: ANGULAR MOMENTUM
+%======================================================================
+\newpage
+\section{Angular Momentum in Quantum Mechanics}
+
+\subsection{Orbital Angular Momentum}
+
+\begin{definition}
+\textbf{Quantum angular momentum operator:}
+\[
+\hat{\vec{L}} = \hat{\vec{r}} \times \hat{\vec{p}} = -i\hbar(\vec{r} \times \nabla)
+\]
+\end{definition}
+
+\subsection{Commutation Relations}
+
+\begin{importantbox}
+\textbf{Fundamental Angular Momentum Commutators:}
+\begin{align}
+[\hat{L}_x, \hat{L}_y] &= i\hbar\hat{L}_z \\
+[\hat{L}_y, \hat{L}_z] &= i\hbar\hat{L}_x \\
+[\hat{L}_z, \hat{L}_x] &= i\hbar\hat{L}_y \\
+[\hat{L}^2, \hat{L}_i] &= 0 \quad \text{for } i = x, y, z
+\end{align}
+\end{importantbox}
+
+\subsection{Eigenvalues of Angular Momentum}
+
+\begin{theorem}[Angular Momentum Eigenvalues]
+\[
+\hat{L}^2|l,m\rangle = \hbar^2 l(l+1)|l,m\rangle
+\]
+\[
+\hat{L}_z|l,m\rangle = \hbar m|l,m\rangle
+\]
+
+where:
+\begin{itemize}
+    \item $l = 0, 1, 2, 3, \ldots$
+    \item $m = -l, -l+1, \ldots, l-1, l$
+\end{itemize}
+
+\textbf{Magnitude:}
+\[
+|\vec{L}| = \hbar\sqrt{l(l+1)}
+\]
+\end{theorem}
+
+\subsection{Ladder Operators for Angular Momentum}
+
+\begin{definition}
+\textbf{Raising and lowering operators:}
+\[
+\hat{L}_\pm = \hat{L}_x \pm i\hat{L}_y
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Action on states:}
+\[
+\hat{L}_\pm|l,m\rangle = \hbar\sqrt{l(l+1) - m(m\pm 1)}|l, m\pm 1\rangle
+\]
+\end{importantbox}
+
+\subsection{Spin Angular Momentum}
+
+\begin{definition}
+For spin-1/2 particles:
+\[
+\hat{\vec{S}} = \frac{\hbar}{2}\vec{\sigma}
+\]
+where $\vec{\sigma}$ are Pauli matrices.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Pauli Matrices:}
+\[
+\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+\sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+\]
+\end{importantbox}
+
+\subsection{Addition of Angular Momenta}
+
+\begin{theorem}[Clebsch-Gordan Series]
+When combining $\vec{J}_1$ and $\vec{J}_2$:
+
+\textbf{Possible total $j$:}
+\[
+j = |j_1 - j_2|, |j_1 - j_2| + 1, \ldots, j_1 + j_2 - 1, j_1 + j_2
+\]
+\end{theorem}
+
+\subsection{Practice Problems - Angular Momentum}
+
+\begin{enumerate}
+    \item Verify $[\hat{L}_x, \hat{L}_y] = i\hbar\hat{L}_z$ using definitions.
+    \item Calculate $\langle 1,0|\hat{L}_x^2|1,0\rangle$ using ladder operators.
+    \item Find eigenvalues of $\hat{S}_x$ for spin-1/2.
+    \item Two spin-1 particles: Find possible total $j$.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 4: APPROXIMATION METHODS
+%======================================================================
+\newpage
+\section{Approximation Methods}
+
+\subsection{Time-Independent Perturbation Theory}
+
+\begin{importantbox}
+\textbf{Energy Corrections:}
+
+\textbf{First order:}
+\[
+E_n^{(1)} = \langle n^{(0)}|\hat{H}'|n^{(0)}\rangle
+\]
+
+\textbf{Second order:}
+\[
+E_n^{(2)} = \sum_{k \neq n} \frac{|\langle k^{(0)}|\hat{H}'|n^{(0)}\rangle|^2}{E_n^{(0)} - E_k^{(0)}}
+\]
+\end{importantbox}
+
+\subsection{Variational Method}
+
+\begin{theorem}[Variational Principle]
+For any normalized trial wave function:
+\[
+\langle\psi_{\text{trial}}|\hat{H}|\psi_{\text{trial}}\rangle \geq E_0
+\]
+\end{theorem}
+
+\subsection{WKB Approximation}
+
+\begin{theorem}[WKB Quantization]
+\[
+\oint p\,dx = 2\pi\hbar\left(n + \frac{1}{2}\right)
+\]
+\end{theorem}
+
+\subsection{Practice Problems - Approximation Methods}
+
+\begin{enumerate}
+    \item Harmonic oscillator with $\hat{H}' = \lambda\hat{x}^3$: Find $E_0^{(1)}$.
+    \item Use variational method for ground state of hydrogen.
+    \item WKB: Find energy levels for $V(x) = \alpha|x|$.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 5: SCATTERING THEORY
+%======================================================================
+\newpage
+\section{Scattering Theory}
+
+\subsection{Scattering Cross Section}
+
+\begin{definition}
+\textbf{Differential cross section:}
+\[
+\frac{d\sigma}{d\Omega} = |f(\theta)|^2
+\]
+
+\textbf{Total cross section:}
+\[
+\sigma_{\text{tot}} = \int |f(\theta)|^2\,d\Omega
+\]
+\end{definition}
+
+\subsection{Partial Wave Analysis}
+
+\begin{theorem}[Partial Wave Scattering]
+\[
+f(\theta) = \frac{1}{k}\sum_{l=0}^{\infty} (2l + 1)e^{i\delta_l}\sin\delta_l P_l(\cos\theta)
+\]
+
+\textbf{Total cross section:}
+\[
+\sigma_{\text{tot}} = \frac{4\pi}{k^2}\sum_{l=0}^{\infty} (2l + 1)\sin^2\delta_l
+\]
+\end{theorem}
+
+\subsection{Born Approximation}
+
+\begin{definition}
+\textbf{First Born approximation:}
+\[
+f(\theta) = -\frac{m}{2\pi\hbar^2}\int e^{i\vec{q} \cdot \vec{r}} V(\vec{r})\,d^3r
+\]
+\end{definition}
+
+\subsection{Practice Problems - Scattering}
+
+\begin{enumerate}
+    \item Show optical theorem: $\sigma_{\text{tot}} = (4\pi/k)\text{Im}[f(0)]$.
+    \item Born approximation for $V(r) = V_0 e^{-r^2/a^2}$.
+\end{enumerate}
+
+%======================================================================
+% EXAM STRATEGY
+%======================================================================
+\newpage
+\section{GATE Exam Strategy for Quantum Mechanics}
+
+\subsection{Essential Formulas}
+
+\begin{importantbox}
+\textbf{Quick Reference:}
+\begin{align*}
+[\hat{x}, \hat{p}_x] &= i\hbar \\
+E_n^{\text{well}} &= \frac{n^2\pi^2\hbar^2}{2mL^2} \\
+E_n^{\text{HO}} &= \hbar\omega(n + 1/2) \\
+\hat{L}^2|l,m\rangle &= \hbar^2 l(l+1)|l,m\rangle \\
+E_n^{(1)} &= \langle n|\hat{H}'|n\rangle
+\end{align*}
+\end{importantbox}
+
+\subsection{Common Mistakes to Avoid}
+
+\begin{enumerate}
+    \item Forgetting $\hbar$ in commutators
+    \item Wrong normalization
+    \item Confusing $l(l+1)$ with $l^2$
+    \item Forgetting $\sqrt{n}$ in ladder operators
+\end{enumerate}
+
+\subsection{Last 30 Days Plan}
+
+\begin{importantbox}
+\textbf{Week 1-2:} Operators and 1D systems (70 problems)
+\textbf{Week 3:} Angular momentum and approximations (50 problems)
+\textbf{Week 4:} Integration and GATE questions (50 problems)
+\end{importantbox}
+
+%======================================================================
+% CONCLUSION
+%======================================================================
+\section*{Conclusion}
+
+\begin{center}
+\Large\textbf{Quantum Mechanics: Key to GATE Success}
+
+\vspace{0.5cm}
+
+With 25-30\% weightage, mastering QM is essential!
+
+\vspace{0.5cm}
+
+\Huge\textbf{All the Best for GATE 2026!}
+\end{center}
+
+\end{document}

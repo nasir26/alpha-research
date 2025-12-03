@@ -1,0 +1,1721 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+% Page geometry
+\geometry{margin=1in}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{GATE 2026 Classical Mechanics Study Guide}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% Custom theorem environments
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{formula}[theorem]{Formula}
+
+% Custom boxes
+\tcbuselibrary{theorems}
+\newtcolorbox{importantbox}{
+    colback=red!5!white,
+    colframe=red!75!black,
+    title=Important for GATE
+}
+
+\newtcolorbox{tipbox}{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    title=Exam Tip
+}
+
+\newtcolorbox{notebox}{
+    colback=yellow!5!white,
+    colframe=orange!75!black,
+    title=Note
+}
+
+% Title page
+\title{\Huge\textbf{Classical Mechanics}\\[0.3cm]
+\Large Complete Study Guide for GATE 2026\\[0.2cm]
+\large Problem-Solving Intensive Mastery}
+\author{Comprehensive Coverage of All Topics}
+\date{Prepared: December 2025}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+%======================================================================
+% INTRODUCTION
+%======================================================================
+\section{Introduction}
+
+\begin{importantbox}
+Classical Mechanics is the most problem-solving intensive subject in GATE Physics. It requires not just understanding but the ability to apply concepts quickly and accurately. This guide covers every essential topic with complete problem-solving strategies and NO STONE LEFT UNTURNED.
+\end{importantbox}
+
+\subsection{Why Classical Mechanics is Crucial}
+\begin{enumerate}
+    \item Foundation for Quantum Mechanics and Statistical Mechanics
+    \item Most predictable question patterns in GATE
+    \item High weightage (15-20\% of physics questions)
+    \item Directly applicable problem-solving skills
+    \item Tests mathematical physics mastery
+\end{enumerate}
+
+\subsection{Study Strategy}
+\begin{tipbox}
+\begin{itemize}
+    \item Master the formulation before solving problems
+    \item Practice at least 50 problems per topic
+    \item Time yourself - aim for 3-4 minutes per problem
+    \item Understand physical meaning, not just equations
+    \item Connect Lagrangian and Hamiltonian viewpoints
+\end{itemize}
+\end{tipbox}
+
+%======================================================================
+% CHAPTER 1: LAGRANGIAN FORMULATION
+%======================================================================
+\newpage
+\section{Lagrangian Formulation}
+
+\subsection{Motivation and Fundamental Concepts}
+
+\begin{definition}
+The \textbf{Lagrangian} of a system is defined as:
+\[
+L = T - V
+\]
+where $T$ is kinetic energy and $V$ is potential energy.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Why Lagrangian Mechanics?}
+\begin{itemize}
+    \item Works with any set of coordinates (not just Cartesian)
+    \item Constraints handled automatically
+    \item Scalar function (easier than vector equations)
+    \item Suitable for complex systems
+    \item Basis for quantum field theory
+\end{itemize}
+\end{importantbox}
+
+\subsection{Generalized Coordinates}
+
+\begin{definition}
+\textbf{Generalized coordinates} $q_1, q_2, \ldots, q_n$ are any set of independent coordinates that completely specify the configuration of a system.
+
+\textbf{Degrees of freedom:} Number of independent generalized coordinates needed.
+
+For $N$ particles in 3D with $k$ holonomic constraints:
+\[
+\text{DOF} = 3N - k
+\]
+\end{definition}
+
+\begin{example}
+Find degrees of freedom for:
+\begin{enumerate}
+    \item Single particle in space: DOF = 3 (can use $x, y, z$ or $r, \theta, \phi$)
+    \item Particle on sphere: DOF = 2 (constraint: $x^2 + y^2 + z^2 = R^2$)
+    \item Double pendulum: DOF = 2 (use $\theta_1, \theta_2$)
+    \item Rigid body: DOF = 6 (3 translation + 3 rotation)
+\end{enumerate}
+\end{example}
+
+\subsection{D'Alembert's Principle and Virtual Work}
+
+\begin{definition}
+\textbf{Virtual displacement} $\delta q_i$: Infinitesimal displacement consistent with constraints at fixed time.
+
+\textbf{Virtual work:}
+\[
+\delta W = \sum_i F_i \cdot \delta r_i
+\]
+\end{definition}
+
+\begin{theorem}[D'Alembert's Principle]
+For a system in equilibrium under applied forces $F_i$ and constraint forces:
+\[
+\sum_i (F_i - \dot{p}_i) \cdot \delta r_i = 0
+\]
+where constraint forces do no virtual work.
+\end{theorem}
+
+\subsection{Euler-Lagrange Equations}
+
+\begin{theorem}[Euler-Lagrange Equations]
+For a system with Lagrangian $L(q_i, \dot{q}_i, t)$, the equations of motion are:
+\[
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) - \frac{\partial L}{\partial q_i} = 0
+\]
+for each generalized coordinate $q_i$.
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Steps to Solve Problems Using Lagrangian:}
+\begin{enumerate}
+    \item Choose appropriate generalized coordinates
+    \item Write kinetic energy $T$ in terms of $q_i$ and $\dot{q}_i$
+    \item Write potential energy $V$ in terms of $q_i$
+    \item Form Lagrangian: $L = T - V$
+    \item Apply Euler-Lagrange equation for each coordinate
+    \item Solve the resulting differential equations
+\end{enumerate}
+\end{importantbox}
+
+\begin{example}
+\textbf{Simple Pendulum using Lagrangian Formulation}
+
+Setup: Mass $m$, length $l$, angle $\theta$ from vertical.
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item Generalized coordinate: $q = \theta$
+    
+    \item Kinetic energy:
+    \[
+    T = \frac{1}{2}m v^2 = \frac{1}{2}m(l\dot{\theta})^2 = \frac{1}{2}ml^2\dot{\theta}^2
+    \]
+    
+    \item Potential energy (taking lowest point as reference):
+    \[
+    V = mgl(1 - \cos\theta)
+    \]
+    
+    \item Lagrangian:
+    \[
+    L = T - V = \frac{1}{2}ml^2\dot{\theta}^2 - mgl(1 - \cos\theta)
+    \]
+    
+    \item Apply Euler-Lagrange:
+    \[
+    \frac{\partial L}{\partial \theta} = -mgl\sin\theta, \quad \frac{\partial L}{\partial \dot{\theta}} = ml^2\dot{\theta}
+    \]
+    \[
+    \frac{d}{dt}(ml^2\dot{\theta}) = -mgl\sin\theta
+    \]
+    
+    \item Equation of motion:
+    \[
+    \ddot{\theta} + \frac{g}{l}\sin\theta = 0
+    \]
+    
+    For small angles: $\ddot{\theta} + \omega_0^2\theta = 0$ where $\omega_0 = \sqrt{g/l}$
+\end{enumerate}
+\end{example}
+
+\subsection{Constraints}
+
+\begin{definition}
+\textbf{Holonomic constraints:} Can be written as $f(q_1, \ldots, q_n, t) = 0$
+
+Examples:
+\begin{itemize}
+    \item Particle on sphere: $x^2 + y^2 + z^2 - R^2 = 0$
+    \item Rigid body: $|r_i - r_j| = \text{const}$
+    \item Rolling without slipping: $x = R\theta$
+\end{itemize}
+
+\textbf{Non-holonomic constraints:} Involve velocities, cannot be integrated.
+
+Example: Rolling without slipping in general: $v_{\text{contact}} = 0$
+\end{definition}
+
+\begin{tipbox}
+\textbf{Handling Constraints:}
+\begin{itemize}
+    \item \textbf{Holonomic:} Reduce number of coordinates OR use Lagrange multipliers
+    \item \textbf{Non-holonomic:} Must use Lagrange multipliers
+\end{itemize}
+\end{tipbox}
+
+\subsection{Lagrange Multipliers Method}
+
+\begin{theorem}
+For constraints $g_k(q, t) = 0$, the modified Euler-Lagrange equations are:
+\[
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) - \frac{\partial L}{\partial q_i} = \sum_k \lambda_k \frac{\partial g_k}{\partial q_i}
+\]
+where $\lambda_k$ are Lagrange multipliers (related to constraint forces).
+\end{theorem}
+
+\begin{example}
+\textbf{Bead on Rotating Hoop}
+
+A bead of mass $m$ slides on a hoop of radius $R$ rotating with constant angular velocity $\omega$ about vertical diameter.
+
+\textbf{Solution:}
+Generalized coordinate: $\theta$ (angle from top)
+
+Position: $x = R\sin\theta\cos(\omega t)$, $y = R\sin\theta\sin(\omega t)$, $z = R\cos\theta$
+
+Velocities:
+\begin{align*}
+\dot{x} &= R\dot{\theta}\cos\theta\cos(\omega t) - R\omega\sin\theta\sin(\omega t) \\
+\dot{y} &= R\dot{\theta}\cos\theta\sin(\omega t) + R\omega\sin\theta\cos(\omega t) \\
+\dot{z} &= -R\dot{\theta}\sin\theta
+\end{align*}
+
+Kinetic energy:
+\begin{align*}
+T &= \frac{1}{2}m(\dot{x}^2 + \dot{y}^2 + \dot{z}^2) \\
+&= \frac{1}{2}m[R^2\dot{\theta}^2 + R^2\omega^2\sin^2\theta]
+\end{align*}
+
+Potential energy: $V = -mgR\cos\theta$
+
+Lagrangian:
+\[
+L = \frac{1}{2}mR^2[\dot{\theta}^2 + \omega^2\sin^2\theta] + mgR\cos\theta
+\]
+
+Euler-Lagrange equation:
+\[
+\frac{d}{dt}(mR^2\dot{\theta}) - mR^2\omega^2\sin\theta\cos\theta - mgR\sin\theta = 0
+\]
+
+\[
+\ddot{\theta} = (\omega^2\cos\theta - \frac{g}{R})\sin\theta
+\]
+
+Equilibrium: $\ddot{\theta} = 0 \implies \cos\theta = \frac{g}{R\omega^2}$ (for $\omega^2 > g/R$)
+\end{example}
+
+\subsection{Generalized Momentum and Cyclic Coordinates}
+
+\begin{definition}
+\textbf{Generalized momentum} (canonical momentum):
+\[
+p_i = \frac{\partial L}{\partial \dot{q}_i}
+\]
+
+\textbf{Cyclic (ignorable) coordinate:} If $\frac{\partial L}{\partial q_i} = 0$, then $q_i$ is cyclic.
+\end{definition}
+
+\begin{theorem}
+If $q_i$ is a cyclic coordinate, then its conjugate momentum $p_i$ is conserved:
+\[
+\frac{dp_i}{dt} = 0 \implies p_i = \text{constant}
+\]
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Common Cyclic Coordinates and Conservation Laws:}
+\begin{itemize}
+    \item Translation invariance ($x$ cyclic) $\implies$ Linear momentum conserved
+    \item Rotational invariance ($\theta$ cyclic) $\implies$ Angular momentum conserved
+    \item Time independence ($t$ not explicit) $\implies$ Energy conserved
+\end{itemize}
+\end{importantbox}
+
+\begin{example}
+\textbf{Central Force Problem in Lagrangian Formulation}
+
+For a particle in central force $F(r)$ (potential $V(r)$):
+
+Using polar coordinates $(r, \theta)$:
+\[
+L = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\theta}^2) - V(r)
+\]
+
+$\theta$ is cyclic! Therefore:
+\[
+p_\theta = \frac{\partial L}{\partial \dot{\theta}} = mr^2\dot{\theta} = l = \text{const (angular momentum)}
+\]
+
+For $r$:
+\[
+\frac{d}{dt}(m\dot{r}) - mr\dot{\theta}^2 + \frac{dV}{dr} = 0
+\]
+
+Using $l = mr^2\dot{\theta}$:
+\[
+m\ddot{r} = \frac{l^2}{mr^3} - \frac{dV}{dr}
+\]
+\end{example}
+
+\subsection{Conservation Laws and Noether's Theorem}
+
+\begin{theorem}[Noether's Theorem]
+Every continuous symmetry of the Lagrangian corresponds to a conservation law:
+\begin{itemize}
+    \item \textbf{Translation symmetry} $\implies$ Momentum conservation
+    \item \textbf{Rotation symmetry} $\implies$ Angular momentum conservation
+    \item \textbf{Time translation} $\implies$ Energy conservation
+\end{itemize}
+\end{theorem}
+
+\subsection{Energy Function and Conservation}
+
+\begin{definition}
+The \textbf{energy function} (Jacobi's integral):
+\[
+h = \sum_i \dot{q}_i \frac{\partial L}{\partial \dot{q}_i} - L = \sum_i p_i\dot{q}_i - L
+\]
+\end{definition}
+
+\begin{theorem}
+If $L$ does not depend explicitly on time ($\partial L/\partial t = 0$), then energy is conserved:
+\[
+\frac{dh}{dt} = -\frac{\partial L}{\partial t}
+\]
+
+If $\partial L/\partial t = 0$, then $h = E = T + V$ (total energy).
+\end{theorem}
+
+\subsection{Practice Problems - Lagrangian Mechanics}
+
+\begin{enumerate}
+    \item Derive equations of motion for Atwood machine using Lagrangian.
+    
+    \item Find Lagrangian for double pendulum and derive equations of motion.
+    
+    \item A cylinder rolls without slipping down an incline. Use Lagrangian with constraint.
+    
+    \item Particle on surface of sphere under gravity - find equation of motion.
+    
+    \item Two masses connected by spring on frictionless table - find normal modes.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 2: HAMILTONIAN MECHANICS
+%======================================================================
+\newpage
+\section{Hamiltonian Mechanics}
+
+\subsection{From Lagrangian to Hamiltonian}
+
+\begin{definition}
+The \textbf{Hamiltonian} is obtained via Legendre transformation:
+\[
+H(q_i, p_i, t) = \sum_i p_i\dot{q}_i - L(q_i, \dot{q}_i, t)
+\]
+where $p_i = \frac{\partial L}{\partial \dot{q}_i}$ are generalized momenta.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Procedure to Find Hamiltonian:}
+\begin{enumerate}
+    \item Start with Lagrangian $L(q, \dot{q}, t)$
+    \item Find generalized momenta: $p_i = \frac{\partial L}{\partial \dot{q}_i}$
+    \item Invert to get $\dot{q}_i = \dot{q}_i(q, p, t)$
+    \item Substitute into $H = \sum p_i\dot{q}_i - L$
+    \item Express everything in terms of $(q, p, t)$
+\end{enumerate}
+\end{importantbox}
+
+\begin{example}
+\textbf{Hamiltonian for Simple Harmonic Oscillator}
+
+Lagrangian: $L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2$
+
+Momentum: $p = \frac{\partial L}{\partial \dot{x}} = m\dot{x} \implies \dot{x} = \frac{p}{m}$
+
+Hamiltonian:
+\begin{align*}
+H &= p\dot{x} - L = p \cdot \frac{p}{m} - \frac{1}{2}m\left(\frac{p}{m}\right)^2 + \frac{1}{2}kx^2 \\
+&= \frac{p^2}{m} - \frac{p^2}{2m} + \frac{1}{2}kx^2 \\
+&= \frac{p^2}{2m} + \frac{1}{2}kx^2 = T + V
+\end{align*}
+\end{example}
+
+\subsection{Hamilton's Equations}
+
+\begin{theorem}[Hamilton's Canonical Equations]
+\[
+\dot{q}_i = \frac{\partial H}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial H}{\partial q_i}
+\]
+These are $2n$ first-order equations (versus $n$ second-order Euler-Lagrange equations).
+\end{theorem}
+
+\begin{tipbox}
+\textbf{When to Use Hamiltonian vs Lagrangian:}
+\begin{itemize}
+    \item \textbf{Lagrangian:} Better for deriving equations of motion
+    \item \textbf{Hamiltonian:} Better for phase space analysis, perturbation theory, quantum mechanics transition
+    \item Both give same physics!
+\end{itemize}
+\end{tipbox}
+
+\begin{example}
+\textbf{Hamilton's Equations for SHO}
+
+From previous: $H = \frac{p^2}{2m} + \frac{1}{2}kx^2$
+
+\[
+\dot{x} = \frac{\partial H}{\partial p} = \frac{p}{m}
+\]
+\[
+\dot{p} = -\frac{\partial H}{\partial x} = -kx
+\]
+
+Combining: $m\ddot{x} = \dot{p} = -kx \implies \ddot{x} + \omega^2 x = 0$ where $\omega = \sqrt{k/m}$
+\end{example}
+
+\subsection{Phase Space}
+
+\begin{definition}
+\textbf{Phase space} is the $2n$-dimensional space of all $(q_i, p_i)$ coordinates.
+
+\textbf{Phase space trajectory:} Path traced by system in phase space as it evolves.
+
+\textbf{Phase portrait:} Collection of trajectories for different initial conditions.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Properties of Phase Space Trajectories:}
+\begin{enumerate}
+    \item Trajectories never cross (deterministic evolution)
+    \item Closed trajectory $\implies$ Periodic motion
+    \item Energy surfaces are constant $H$ surfaces
+    \item Liouville's theorem: Phase space volume conserved
+\end{enumerate}
+\end{importantbox}
+
+\subsection{Poisson Brackets}
+
+\begin{definition}
+The \textbf{Poisson bracket} of two functions $f(q, p, t)$ and $g(q, p, t)$ is:
+\[
+\{f, g\} = \sum_i \left(\frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i} - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i}\right)
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Fundamental Poisson Brackets (FPB):}
+\[
+\{q_i, q_j\} = 0, \quad \{p_i, p_j\} = 0, \quad \{q_i, p_j\} = \delta_{ij}
+\]
+\end{importantbox}
+
+\begin{theorem}[Time Evolution via Poisson Brackets]
+For any function $f(q, p, t)$:
+\[
+\frac{df}{dt} = \{f, H\} + \frac{\partial f}{\partial t}
+\]
+
+In particular, Hamilton's equations are:
+\[
+\dot{q}_i = \{q_i, H\}, \quad \dot{p}_i = \{p_i, H\}
+\]
+\end{theorem}
+
+\begin{theorem}[Conservation and Poisson Brackets]
+A quantity $f$ is conserved if:
+\[
+\frac{df}{dt} = 0 \iff \{f, H\} = 0 \text{ and } \frac{\partial f}{\partial t} = 0
+\]
+\end{theorem}
+
+\begin{example}
+\textbf{Angular Momentum Conservation}
+
+For central force, $H = \frac{p^2}{2m} + V(r)$ where $r = \sqrt{x^2 + y^2 + z^2}$
+
+Angular momentum: $L_z = xp_y - yp_x$
+
+Check conservation:
+\begin{align*}
+\{L_z, H\} &= \{xp_y - yp_x, \frac{p_x^2 + p_y^2 + p_z^2}{2m} + V(r)\} \\
+&= \{xp_y, V(r)\} - \{yp_x, V(r)\} \\
+&= x\frac{\partial V}{\partial y} - y\frac{\partial V}{\partial x} \\
+&= x \cdot \frac{dV}{dr} \cdot \frac{y}{r} - y \cdot \frac{dV}{dr} \cdot \frac{x}{r} = 0
+\end{align*}
+
+Therefore $L_z$ is conserved!
+\end{example}
+
+\subsection{Properties of Poisson Brackets}
+
+\begin{formula}[Poisson Bracket Properties]
+\begin{enumerate}
+    \item \textbf{Antisymmetry:} $\{f, g\} = -\{g, f\}$
+    
+    \item \textbf{Linearity:} $\{af + bg, h\} = a\{f, h\} + b\{g, h\}$
+    
+    \item \textbf{Leibniz rule:} $\{fg, h\} = f\{g, h\} + \{f, h\}g$
+    
+    \item \textbf{Jacobi identity:} $\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0$
+\end{enumerate}
+\end{formula}
+
+\subsection{Canonical Transformations}
+
+\begin{definition}
+A transformation $(q, p) \to (Q, P)$ is \textbf{canonical} if it preserves the form of Hamilton's equations:
+\[
+\dot{Q}_i = \frac{\partial K}{\partial P_i}, \quad \dot{P}_i = -\frac{\partial K}{\partial Q_i}
+\]
+where $K(Q, P, t)$ is the new Hamiltonian.
+\end{definition}
+
+\begin{theorem}[Conditions for Canonical Transformation]
+A transformation is canonical if and only if:
+\begin{enumerate}
+    \item It preserves Poisson brackets (symplectic condition):
+    \[
+    \{Q_i, Q_j\} = 0, \quad \{P_i, P_j\} = 0, \quad \{Q_i, P_j\} = \delta_{ij}
+    \]
+    
+    \item OR there exists a generating function $F$ such that:
+    \[
+    p_i dq_i - P_i dQ_i = dF
+    \]
+\end{enumerate}
+\end{theorem}
+
+\subsection{Generating Functions}
+
+\begin{importantbox}
+\textbf{Four Types of Generating Functions:}
+
+\textbf{Type 1: $F_1(q, Q, t)$}
+\[
+p_i = \frac{\partial F_1}{\partial q_i}, \quad P_i = -\frac{\partial F_1}{\partial Q_i}, \quad K = H + \frac{\partial F_1}{\partial t}
+\]
+
+\textbf{Type 2: $F_2(q, P, t)$}
+\[
+p_i = \frac{\partial F_2}{\partial q_i}, \quad Q_i = \frac{\partial F_2}{\partial P_i}, \quad K = H + \frac{\partial F_2}{\partial t}
+\]
+
+\textbf{Type 3: $F_3(p, Q, t)$}
+\[
+q_i = -\frac{\partial F_3}{\partial p_i}, \quad P_i = -\frac{\partial F_3}{\partial Q_i}, \quad K = H + \frac{\partial F_3}{\partial t}
+\]
+
+\textbf{Type 4: $F_4(p, P, t)$}
+\[
+q_i = -\frac{\partial F_4}{\partial p_i}, \quad Q_i = \frac{\partial F_4}{\partial P_i}, \quad K = H + \frac{\partial F_4}{\partial t}
+\]
+\end{importantbox}
+
+\begin{example}
+\textbf{Identity Transformation}
+
+$F_2 = q_i P_i$
+
+\[
+p_i = \frac{\partial F_2}{\partial q_i} = P_i, \quad Q_i = \frac{\partial F_2}{\partial P_i} = q_i
+\]
+
+This swaps coordinates and momenta!
+\end{example}
+
+\begin{example}
+\textbf{Point Transformation}
+
+$F_2 = f(q, t) P$ generates $Q = f(q, t)$, $P = p \frac{\partial q}{\partial Q}$
+\end{example}
+
+\subsection{Hamilton-Jacobi Theory}
+
+\begin{definition}
+The \textbf{Hamilton-Jacobi equation} is:
+\[
+H\left(q_i, \frac{\partial S}{\partial q_i}, t\right) + \frac{\partial S}{\partial t} = 0
+\]
+where $S(q, t)$ is Hamilton's principal function.
+\end{definition}
+
+\begin{theorem}
+If $S(q, \alpha, t)$ is a complete solution with $n$ independent constants $\alpha_i$, then:
+\[
+p_i = \frac{\partial S}{\partial q_i}, \quad \beta_i = \frac{\partial S}{\partial \alpha_i}
+\]
+give the solution with $\alpha_i$ and $\beta_i$ as constants of integration.
+\end{theorem}
+
+\begin{tipbox}
+\textbf{Hamilton-Jacobi Method:}
+\begin{enumerate}
+    \item Write Hamilton-Jacobi equation
+    \item Try separation: $S = W(q) - Et$ for time-independent $H$
+    \item Solve for $W(q)$: $H(q, \partial W/\partial q) = E$
+    \item Find $p = \partial S/\partial q$ and integrate for $q(t)$
+\end{enumerate}
+\end{tipbox}
+
+\begin{example}
+\textbf{Harmonic Oscillator via Hamilton-Jacobi}
+
+$H = \frac{p^2}{2m} + \frac{1}{2}kx^2 = E$
+
+Try $S = W(x) - Et$:
+\[
+\frac{1}{2m}\left(\frac{dW}{dx}\right)^2 + \frac{1}{2}kx^2 = E
+\]
+
+\[
+\frac{dW}{dx} = \sqrt{2m(E - \frac{1}{2}kx^2)}
+\]
+
+\[
+W = \int \sqrt{2mE - mkx^2}\, dx
+\]
+
+Complete solution leads to $x(t) = A\cos(\omega t + \phi)$ where $\omega = \sqrt{k/m}$
+\end{example}
+
+\subsection{Action-Angle Variables}
+
+\begin{definition}
+For periodic motion, \textbf{action variable}:
+\[
+J = \oint p\, dq = \oint p(q, E)\, dq
+\]
+where integral is over one complete period.
+
+\textbf{Angle variable} $w$ conjugate to $J$ increases by $2\pi$ per cycle.
+\end{definition}
+
+\begin{theorem}
+In action-angle variables:
+\[
+H = H(J) \implies \dot{J} = 0, \quad \dot{w} = \frac{\partial H}{\partial J} = \omega(J)
+\]
+Motion is uniform in $w$: $w = \omega t + w_0$
+\end{theorem}
+
+\subsection{Practice Problems - Hamiltonian Mechanics}
+
+\begin{enumerate}
+    \item Find Hamiltonian for particle in electromagnetic field.
+    
+    \item Calculate $\{L_x, L_y\}$ where $\vec{L} = \vec{r} \times \vec{p}$.
+    
+    \item Show that $F_2 = qP\cot\theta$ generates canonical transformation.
+    
+    \item Solve simple pendulum using Hamilton-Jacobi equation.
+    
+    \item Find action-angle variables for 1D harmonic oscillator.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 3: CENTRAL FORCE MOTION
+%======================================================================
+\newpage
+\section{Central Force Motion}
+
+\subsection{Central Force Definition}
+
+\begin{definition}
+A \textbf{central force} is one that:
+\begin{itemize}
+    \item Depends only on distance from origin: $\vec{F} = F(r)\hat{r}$
+    \item Is along the radial direction
+    \item Derives from potential: $F(r) = -\frac{dV}{dr}$
+\end{itemize}
+\end{definition}
+
+\begin{importantbox}
+\textbf{Consequences of Central Force:}
+\begin{enumerate}
+    \item Angular momentum $\vec{L}$ is conserved
+    \item Motion is in a plane perpendicular to $\vec{L}$
+    \item Areal velocity is constant (Kepler's 2nd law)
+    \item Energy is conserved
+\end{enumerate}
+\end{importantbox}
+
+\subsection{Conservation Laws}
+
+\begin{theorem}[Angular Momentum Conservation]
+For central force:
+\[
+\vec{L} = \vec{r} \times \vec{p} = \text{constant}
+\]
+
+Magnitude: $L = mr^2\dot{\theta}$
+\end{theorem}
+
+\begin{theorem}[Areal Velocity]
+Area swept out per unit time:
+\[
+\frac{dA}{dt} = \frac{1}{2}r^2\dot{\theta} = \frac{L}{2m} = \text{constant}
+\]
+\end{theorem}
+
+\subsection{Equation of Motion in Plane}
+
+\begin{formula}[Central Force Equations]
+In polar coordinates $(r, \theta)$:
+
+\textbf{Radial equation:}
+\[
+m\ddot{r} = mr\dot{\theta}^2 - \frac{dV}{dr} = \frac{L^2}{mr^3} - \frac{dV}{dr}
+\]
+
+\textbf{Angular equation:}
+\[
+\frac{d}{dt}(mr^2\dot{\theta}) = 0 \implies L = mr^2\dot{\theta} = \text{const}
+\]
+\end{formula}
+
+\subsection{Effective Potential}
+
+\begin{definition}
+The \textbf{effective potential} is:
+\[
+V_{\text{eff}}(r) = V(r) + \frac{L^2}{2mr^2}
+\]
+where the second term is the centrifugal barrier.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Energy Equation:}
+\[
+E = \frac{1}{2}m\dot{r}^2 + V_{\text{eff}}(r)
+\]
+
+This reduces 2D motion to effective 1D motion in $r$!
+
+\textbf{Analysis:}
+\begin{itemize}
+    \item $E > V_{\text{eff}}$: Motion possible
+    \item $E = V_{\text{eff}}$: Turning point
+    \item $\frac{dV_{\text{eff}}}{dr} = 0$ and $E = V_{\text{eff}}$: Circular orbit
+\end{itemize}
+\end{importantbox}
+
+\subsection{Orbit Equation}
+
+\begin{theorem}[Binet's Equation]
+Let $u = 1/r$. The orbit equation is:
+\[
+\frac{d^2u}{d\theta^2} + u = -\frac{m}{L^2u^2}F(1/u)
+\]
+
+For potential $V(r)$:
+\[
+\frac{d^2u}{d\theta^2} + u = -\frac{m}{L^2u^2}\frac{d}{dr}V(r) = \frac{m}{L^2}\frac{d}{du}V(1/u)
+\]
+\end{theorem}
+
+\subsection{Kepler Problem (Inverse Square Law)}
+
+\begin{definition}
+\textbf{Gravitational force:} $F = -\frac{GMm}{r^2} = -\frac{k}{r^2}$
+
+\textbf{Potential:} $V(r) = -\frac{k}{r}$ where $k = GMm$
+\end{definition}
+
+\subsubsection{Orbit Equation for Kepler Problem}
+
+\begin{theorem}
+For inverse square law, Binet's equation gives:
+\[
+\frac{d^2u}{d\theta^2} + u = \frac{mk}{L^2}
+\]
+
+General solution:
+\[
+u = \frac{1}{r} = \frac{mk}{L^2}(1 + e\cos(\theta - \theta_0))
+\]
+
+Or, choosing $\theta_0 = 0$:
+\[
+r = \frac{l}{1 + e\cos\theta}
+\]
+where $l = \frac{L^2}{mk}$ is the semi-latus rectum and $e$ is eccentricity.
+\end{theorem}
+
+\begin{importantbox}
+\textbf{Conic Sections Based on Eccentricity:}
+\begin{itemize}
+    \item $e = 0$: Circle (constant $r$)
+    \item $0 < e < 1$: Ellipse (bound orbit)
+    \item $e = 1$: Parabola (just unbound)
+    \item $e > 1$: Hyperbola (unbound, scattering)
+\end{itemize}
+
+Eccentricity in terms of energy:
+\[
+e = \sqrt{1 + \frac{2EL^2}{mk^2}}
+\]
+\end{importantbox}
+
+\subsubsection{Kepler's Laws}
+
+\begin{theorem}[Kepler's Three Laws]
+\textbf{1. Law of Orbits:} Planets move in ellipses with Sun at one focus.
+\[
+r = \frac{a(1-e^2)}{1 + e\cos\theta}
+\]
+
+\textbf{2. Law of Areas:} Equal areas swept in equal times.
+\[
+\frac{dA}{dt} = \frac{L}{2m} = \text{const}
+\]
+
+\textbf{3. Law of Periods:} $T^2 \propto a^3$
+\[
+T^2 = \frac{4\pi^2}{GM}a^3
+\]
+where $a$ is semi-major axis.
+\end{theorem}
+
+\begin{example}
+\textbf{Derive Kepler's Third Law}
+
+For ellipse: $a = \frac{l}{1-e^2}$, Area $= \pi ab = \pi a^2\sqrt{1-e^2}$
+
+Areal velocity: $\frac{dA}{dt} = \frac{L}{2m}$
+
+Period: $T = \frac{\text{Area}}{dA/dt} = \frac{\pi a^2\sqrt{1-e^2}}{L/2m}$
+
+Using $l = L^2/(mk)$ and $a = l/(1-e^2)$:
+\[
+T^2 = \frac{4\pi^2 m a^3}{k} = \frac{4\pi^2 a^3}{GM}
+\]
+\end{example}
+
+\subsection{Energy Analysis}
+
+\begin{formula}[Energy for Different Orbits]
+Total energy: $E = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\theta}^2) - \frac{k}{r}$
+
+Using $L = mr^2\dot{\theta}$:
+\[
+E = \frac{1}{2}m\dot{r}^2 + \frac{L^2}{2mr^2} - \frac{k}{r}
+\]
+
+\textbf{For circular orbit} ($\dot{r} = 0$, $r = r_0$):
+\[
+E = \frac{L^2}{2mr_0^2} - \frac{k}{r_0} = -\frac{k}{2r_0} \quad (\text{using force balance})
+\]
+
+\textbf{For elliptical orbit:}
+\[
+E = -\frac{k}{2a}
+\]
+where $a$ is semi-major axis.
+
+\textbf{For parabolic orbit:} $E = 0$
+
+\textbf{For hyperbolic orbit:} $E > 0$
+\end{formula}
+
+\subsection{Scattering in Central Force}
+
+\begin{definition}
+For repulsive central force (e.g., Coulomb scattering), particles follow hyperbolic trajectories.
+
+\textbf{Impact parameter} $b$: Perpendicular distance from force center to incoming trajectory.
+
+\textbf{Scattering angle} $\Theta$: Angle between incoming and outgoing asymptotes.
+\end{definition}
+
+\begin{formula}[Rutherford Scattering]
+For Coulomb potential $V = k/r$ (repulsive, $k > 0$):
+\[
+\Theta = \pi - 2\theta_{\min}
+\]
+where $\theta_{\min}$ is angle at closest approach.
+
+Relation between impact parameter and scattering angle:
+\[
+b = \frac{k}{2E}\cot\frac{\Theta}{2}
+\]
+
+Differential cross-section:
+\[
+\frac{d\sigma}{d\Omega} = \left(\frac{k}{4E}\right)^2 \frac{1}{\sin^4(\Theta/2)}
+\]
+\end{formula}
+
+\subsection{Virial Theorem}
+
+\begin{theorem}[Virial Theorem]
+For a bound system with potential $V = kr^n$:
+\[
+\langle T \rangle = \frac{n}{2}\langle V \rangle
+\]
+
+For inverse square law ($n = -1$):
+\[
+\langle T \rangle = -\frac{1}{2}\langle V \rangle \implies E = \langle T \rangle + \langle V \rangle = \frac{1}{2}\langle V \rangle = -\langle T \rangle
+\]
+\end{theorem}
+
+\subsection{Practice Problems - Central Force Motion}
+
+\begin{enumerate}
+    \item Particle in potential $V = -k/r + c/r^2$. Find conditions for circular orbit.
+    
+    \item Calculate escape velocity from Earth's surface.
+    
+    \item For elliptical orbit, find ratio of speeds at perihelion and aphelion.
+    
+    \item Derive scattering angle for hard sphere scattering.
+    
+    \item Find period of small radial oscillations about circular orbit.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 4: RIGID BODY DYNAMICS
+%======================================================================
+\newpage
+\section{Rigid Body Dynamics}
+
+\subsection{Rigid Body Definition and Kinematics}
+
+\begin{definition}
+A \textbf{rigid body} is a collection of particles with fixed distances between them:
+\[
+|r_i - r_j| = \text{constant}
+\]
+
+\textbf{Degrees of freedom:} 6 (3 translation + 3 rotation)
+\end{definition}
+
+\subsection{Angular Velocity and Rotation}
+
+\begin{definition}
+\textbf{Angular velocity vector} $\vec{\omega}$:
+
+Velocity of point $P$ relative to origin:
+\[
+\vec{v} = \vec{v}_{\text{CM}} + \vec{\omega} \times \vec{r}'
+\]
+where $\vec{r}'$ is position relative to center of mass.
+\end{definition}
+
+\begin{formula}[Rotation Matrices]
+Rotation about $z$-axis by angle $\phi$:
+\[
+R_z(\phi) = \begin{pmatrix}
+\cos\phi & -\sin\phi & 0 \\
+\sin\phi & \cos\phi & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\]
+
+Similarly for $R_x(\theta)$ and $R_y(\psi)$.
+\end{formula}
+
+\subsection{Euler Angles}
+
+\begin{definition}
+\textbf{Euler angles} $(\phi, \theta, \psi)$ specify orientation:
+\begin{enumerate}
+    \item Rotation by $\phi$ about $z$-axis
+    \item Rotation by $\theta$ about new $x$-axis (line of nodes)
+    \item Rotation by $\psi$ about new $z$-axis
+\end{enumerate}
+
+Total rotation: $R = R_z(\phi)R_x(\theta)R_z(\psi)$
+\end{definition}
+
+\begin{importantbox}
+\textbf{Angular Velocity in Terms of Euler Angles:}
+\begin{align}
+\omega_x &= \dot{\phi}\sin\theta\sin\psi + \dot{\theta}\cos\psi \\
+\omega_y &= \dot{\phi}\sin\theta\cos\psi - \dot{\theta}\sin\psi \\
+\omega_z &= \dot{\phi}\cos\theta + \dot{\psi}
+\end{align}
+\end{importantbox}
+
+\subsection{Moment of Inertia Tensor}
+
+\begin{definition}
+The \textbf{moment of inertia tensor} is:
+\[
+I_{ij} = \sum_\alpha m_\alpha(r_\alpha^2\delta_{ij} - x_{i\alpha}x_{j\alpha})
+\]
+
+In matrix form:
+\[
+\mathbf{I} = \begin{pmatrix}
+I_{xx} & I_{xy} & I_{xz} \\
+I_{yx} & I_{yy} & I_{yz} \\
+I_{zx} & I_{zy} & I_{zz}
+\end{pmatrix}
+\]
+
+where:
+\begin{align}
+I_{xx} &= \sum m(y^2 + z^2) \\
+I_{yy} &= \sum m(x^2 + z^2) \\
+I_{zz} &= \sum m(x^2 + y^2) \\
+I_{xy} &= I_{yx} = -\sum mxy \quad \text{(products of inertia)}
+\end{align}
+\end{definition}
+
+\begin{importantbox}
+\textbf{For Continuous Body:}
+\[
+I_{xx} = \int (y^2 + z^2)\rho\,dV, \quad I_{xy} = -\int xy\rho\,dV
+\]
+\end{importantbox}
+
+\subsection{Principal Axes}
+
+\begin{theorem}
+Every rigid body has three orthogonal \textbf{principal axes} along which $\mathbf{I}$ is diagonal:
+\[
+\mathbf{I} = \begin{pmatrix}
+I_1 & 0 & 0 \\
+0 & I_2 & 0 \\
+0 & 0 & I_3
+\end{pmatrix}
+\]
+
+Principal moments are eigenvalues of inertia tensor.
+\end{theorem}
+
+\begin{tipbox}
+\textbf{Finding Principal Axes:}
+\begin{enumerate}
+    \item Form inertia tensor $\mathbf{I}$
+    \item Solve $\det(\mathbf{I} - I\lambda) = 0$ for eigenvalues $I_1, I_2, I_3$
+    \item Find eigenvectors (principal axes)
+\end{enumerate}
+\end{tipbox}
+
+\subsection{Parallel Axis Theorem}
+
+\begin{theorem}[Parallel Axis Theorem]
+If $I_{\text{CM}}$ is moment of inertia about axis through center of mass, and $I$ is moment about parallel axis at distance $d$:
+\[
+I = I_{\text{CM}} + Md^2
+\]
+where $M$ is total mass.
+\end{theorem}
+
+\begin{theorem}[Perpendicular Axis Theorem]
+For planar body in $xy$-plane:
+\[
+I_z = I_x + I_y
+\]
+\end{theorem}
+
+\begin{example}
+\textbf{Moments of Inertia for Common Shapes}
+
+\textbf{1. Uniform Rod (length $L$, mass $M$):}
+\begin{itemize}
+    \item About center, perpendicular: $I = \frac{1}{12}ML^2$
+    \item About end, perpendicular: $I = \frac{1}{3}ML^2$
+\end{itemize}
+
+\textbf{2. Uniform Disk (radius $R$, mass $M$):}
+\begin{itemize}
+    \item About center, perpendicular to disk: $I = \frac{1}{2}MR^2$
+    \item About diameter: $I = \frac{1}{4}MR^2$
+\end{itemize}
+
+\textbf{3. Solid Sphere (radius $R$, mass $M$):}
+\begin{itemize}
+    \item About diameter: $I = \frac{2}{5}MR^2$
+\end{itemize}
+
+\textbf{4. Hollow Sphere (radius $R$, mass $M$):}
+\begin{itemize}
+    \item About diameter: $I = \frac{2}{3}MR^2$
+\end{itemize}
+
+\textbf{5. Solid Cylinder (radius $R$, length $L$, mass $M$):}
+\begin{itemize}
+    \item About axis: $I = \frac{1}{2}MR^2$
+    \item About diameter through center: $I = \frac{1}{12}ML^2 + \frac{1}{4}MR^2$
+\end{itemize}
+\end{example}
+
+\subsection{Angular Momentum}
+
+\begin{definition}
+For rigid body rotating with $\vec{\omega}$:
+\[
+\vec{L} = \mathbf{I} \cdot \vec{\omega}
+\]
+
+In component form: $L_i = \sum_j I_{ij}\omega_j$
+\end{definition}
+
+\begin{importantbox}
+\textbf{Key Point:} $\vec{L}$ and $\vec{\omega}$ are NOT necessarily parallel unless rotating about principal axis!
+
+In principal axes:
+\[
+L_1 = I_1\omega_1, \quad L_2 = I_2\omega_2, \quad L_3 = I_3\omega_3
+\]
+\end{importantbox}
+
+\subsection{Kinetic Energy}
+
+\begin{formula}[Kinetic Energy of Rigid Body]
+\[
+T = \frac{1}{2}M v_{\text{CM}}^2 + \frac{1}{2}\vec{\omega} \cdot \mathbf{I} \cdot \vec{\omega}
+\]
+
+In principal axes:
+\[
+T_{\text{rot}} = \frac{1}{2}(I_1\omega_1^2 + I_2\omega_2^2 + I_3\omega_3^2)
+\]
+\end{formula}
+
+\subsection{Euler's Equations}
+
+\begin{theorem}[Euler's Equations of Motion]
+In body-fixed principal axes:
+\begin{align}
+I_1\dot{\omega}_1 + (I_3 - I_2)\omega_2\omega_3 &= N_1 \\
+I_2\dot{\omega}_2 + (I_1 - I_3)\omega_3\omega_1 &= N_2 \\
+I_3\dot{\omega}_3 + (I_2 - I_1)\omega_1\omega_2 &= N_3
+\end{align}
+where $N_i$ are components of external torque.
+\end{theorem}
+
+\begin{tipbox}
+These equations account for the fact that principal axes rotate with the body!
+\end{tipbox}
+
+\subsection{Torque-Free Motion}
+
+\begin{theorem}[Torque-Free Symmetric Top]
+For symmetric top ($I_1 = I_2 \neq I_3$) with no external torque:
+
+$\omega_3 = $ constant
+
+$\omega_1$ and $\omega_2$ precess:
+\[
+\omega_1 = A\cos(\Omega t), \quad \omega_2 = A\sin(\Omega t)
+\]
+where $\Omega = \frac{I_3 - I_1}{I_1}\omega_3$
+\end{theorem}
+
+\subsection{Heavy Symmetric Top}
+
+\begin{definition}
+Symmetric top with one point fixed (e.g., spinning top under gravity).
+
+Using Euler angles, Lagrangian is:
+\[
+L = \frac{1}{2}I_1(\dot{\theta}^2 + \dot{\phi}^2\sin^2\theta) + \frac{1}{2}I_3(\dot{\psi} + \dot{\phi}\cos\theta)^2 - Mgl\cos\theta
+\]
+\end{definition}
+
+\begin{importantbox}
+\textbf{Constants of Motion:}
+\begin{itemize}
+    \item Energy $E$ (time-independent)
+    \item $p_\phi = L_z$ (azimuthal angular momentum, $\phi$ cyclic)
+    \item $p_\psi = I_3\omega_3$ (spin angular momentum, $\psi$ cyclic)
+\end{itemize}
+
+These lead to:
+\[
+\frac{1}{2}I_1\dot{\theta}^2 + V_{\text{eff}}(\theta) = E
+\]
+where
+\[
+V_{\text{eff}}(\theta) = \frac{(p_\phi - p_\psi\cos\theta)^2}{2I_1\sin^2\theta} + Mgl\cos\theta
+\]
+\end{importantbox}
+
+\subsection{Precession and Nutation}
+
+\begin{definition}
+\textbf{Precession:} Slow rotation of symmetry axis around vertical ($\dot{\phi}$)
+
+\textbf{Nutation:} Wobbling of symmetry axis ($\theta$ oscillation)
+
+\textbf{Spin:} Fast rotation about symmetry axis ($\dot{\psi}$)
+\end{definition}
+
+\begin{formula}[Steady Precession]
+For fast-spinning top ($\omega_3$ large), approximate steady precession rate:
+\[
+\Omega_p = \dot{\phi} \approx \frac{Mgl}{I_3\omega_3}
+\]
+\end{formula}
+
+\subsection{Practice Problems - Rigid Body Dynamics}
+
+\begin{enumerate}
+    \item Find moment of inertia tensor for rectangular plate.
+    
+    \item Solid sphere rolls without slipping down incline - find acceleration.
+    
+    \item Symmetric top spinning - derive Euler's equations and find solutions.
+    
+    \item Calculate precession frequency of gyroscope.
+    
+    \item Torque-free asymmetric top - discuss stability of rotation about each principal axis.
+\end{enumerate}
+
+%======================================================================
+% CHAPTER 5: SMALL OSCILLATIONS
+%======================================================================
+\newpage
+\section{Small Oscillations and Normal Modes}
+
+\subsection{Motivation}
+
+\begin{importantbox}
+Small oscillations about equilibrium appear everywhere:
+\begin{itemize}
+    \item Molecular vibrations
+    \item Crystal lattice vibrations (phonons)
+    \item Structural engineering
+    \item Quantum harmonic oscillators
+    \item Perturbations in orbits
+\end{itemize}
+
+Method: Expand potential near equilibrium and keep quadratic terms.
+\end{importantbox}
+
+\subsection{Single Oscillator Review}
+
+\begin{formula}[Simple Harmonic Oscillator]
+Equation: $m\ddot{x} + kx = 0$ or $\ddot{x} + \omega_0^2x = 0$ where $\omega_0 = \sqrt{k/m}$
+
+Solution: $x(t) = A\cos(\omega_0 t + \phi)$
+
+Energy: $E = \frac{1}{2}kA^2 = \frac{1}{2}m\omega_0^2A^2$
+\end{formula}
+
+\subsection{Coupled Oscillators - Two Masses}
+
+\begin{example}
+\textbf{Two Masses Connected by Springs}
+
+Setup: Masses $m_1$, $m_2$ connected by springs $k_1$, $k$, $k_2$ on frictionless surface.
+
+Displacements: $x_1$, $x_2$ from equilibrium.
+
+Equations of motion:
+\begin{align}
+m_1\ddot{x}_1 &= -k_1 x_1 + k(x_2 - x_1) \\
+m_2\ddot{x}_2 &= -k(x_2 - x_1) - k_2 x_2
+\end{align}
+
+Matrix form:
+\[
+\begin{pmatrix} m_1 & 0 \\ 0 & m_2 \end{pmatrix}
+\begin{pmatrix} \ddot{x}_1 \\ \ddot{x}_2 \end{pmatrix}
+= -\begin{pmatrix} k_1 + k & -k \\ -k & k + k_2 \end{pmatrix}
+\begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+\]
+
+Or: $\mathbf{M}\ddot{\vec{x}} = -\mathbf{K}\vec{x}$
+\end{example}
+
+\subsection{General Theory of Small Oscillations}
+
+\begin{theorem}[Small Oscillations About Equilibrium]
+For system with generalized coordinates $q_i$, expand potential about equilibrium $q_i^{(0)}$:
+\[
+V = V_0 + \sum_i \frac{\partial V}{\partial q_i}\bigg|_0 \eta_i + \frac{1}{2}\sum_{ij} \frac{\partial^2 V}{\partial q_i \partial q_j}\bigg|_0 \eta_i\eta_j + \cdots
+\]
+
+where $\eta_i = q_i - q_i^{(0)}$ are displacements.
+
+At equilibrium: $\frac{\partial V}{\partial q_i}\bigg|_0 = 0$
+
+Keeping quadratic terms:
+\[
+V \approx V_0 + \frac{1}{2}\sum_{ij} V_{ij}\eta_i\eta_j
+\]
+where $V_{ij} = \frac{\partial^2 V}{\partial q_i \partial q_j}\bigg|_0$
+\end{theorem}
+
+\begin{formula}[Kinetic Energy]
+For small velocities:
+\[
+T = \frac{1}{2}\sum_{ij} T_{ij}\dot{\eta}_i\dot{\eta}_j
+\]
+where $T_{ij}$ are mass matrix elements (often $T_{ij} = m_i\delta_{ij}$).
+\end{formula}
+
+\subsection{Normal Modes}
+
+\begin{definition}
+A \textbf{normal mode} is a motion where all parts oscillate with same frequency and phase.
+
+Try solution: $\eta_i(t) = a_i e^{i\omega t}$
+
+Substituting into $T\ddot{\vec{\eta}} + V\vec{\eta} = 0$:
+\[
+(-\omega^2 \mathbf{T} + \mathbf{V})\vec{a} = 0
+\]
+
+Non-trivial solution requires:
+\[
+\det(\mathbf{V} - \omega^2\mathbf{T}) = 0
+\]
+
+This is the \textbf{secular equation} giving $n$ normal frequencies $\omega_1, \ldots, \omega_n$.
+\end{definition}
+
+\begin{importantbox}
+\textbf{Procedure to Find Normal Modes:}
+\begin{enumerate}
+    \item Set up kinetic and potential energy matrices $\mathbf{T}$ and $\mathbf{V}$
+    \item Solve secular equation $\det(\mathbf{V} - \omega^2\mathbf{T}) = 0$ for eigenvalues $\omega_k^2$
+    \item For each $\omega_k$, solve $(\mathbf{V} - \omega_k^2\mathbf{T})\vec{a}^{(k)} = 0$ for eigenvector $\vec{a}^{(k)}$
+    \item General solution is superposition:
+    \[
+    \eta_i(t) = \sum_k C_k a_i^{(k)}\cos(\omega_k t + \phi_k)
+    \]
+    \item Determine $C_k$ and $\phi_k$ from initial conditions
+\end{enumerate}
+\end{importantbox}
+
+\begin{example}
+\textbf{Two Identical Masses, Three Identical Springs}
+
+$m_1 = m_2 = m$, $k_1 = k = k_2$
+
+Mass matrix: $\mathbf{M} = m\mathbf{I}$
+
+Stiffness matrix: $\mathbf{K} = k\begin{pmatrix} 2 & -1 \\ -1 & 2 \end{pmatrix}$
+
+Secular equation:
+\[
+\det\begin{pmatrix} 2k - m\omega^2 & -k \\ -k & 2k - m\omega^2 \end{pmatrix} = 0
+\]
+\[
+(2k - m\omega^2)^2 - k^2 = 0
+\]
+\[
+2k - m\omega^2 = \pm k
+\]
+
+Normal frequencies:
+\[
+\omega_1 = \sqrt{\frac{k}{m}}, \quad \omega_2 = \sqrt{\frac{3k}{m}}
+\]
+
+For $\omega_1$: $\vec{a}^{(1)} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ (symmetric mode - masses move together)
+
+For $\omega_2$: $\vec{a}^{(2)} = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$ (antisymmetric mode - masses move opposite)
+
+General solution:
+\begin{align}
+x_1(t) &= A_1\cos(\omega_1 t + \phi_1) + A_2\cos(\omega_2 t + \phi_2) \\
+x_2(t) &= A_1\cos(\omega_1 t + \phi_1) - A_2\cos(\omega_2 t + \phi_2)
+\end{align}
+\end{example}
+
+\subsection{Normal Coordinates}
+
+\begin{definition}
+\textbf{Normal coordinates} $Q_k$ are linear combinations of $\eta_i$ such that Lagrangian becomes:
+\[
+L = \frac{1}{2}\sum_k (\dot{Q}_k^2 - \omega_k^2 Q_k^2)
+\]
+
+Each $Q_k$ oscillates independently:
+\[
+\ddot{Q}_k + \omega_k^2 Q_k = 0
+\]
+\end{definition}
+
+\begin{formula}[Transformation to Normal Coordinates]
+\[
+\eta_i = \sum_k a_i^{(k)} Q_k
+\]
+where $\vec{a}^{(k)}$ are normalized eigenvectors.
+
+In matrix form: $\vec{\eta} = \mathbf{A}\vec{Q}$ where columns of $\mathbf{A}$ are eigenvectors.
+\end{formula}
+
+\subsection{Orthogonality of Normal Modes}
+
+\begin{theorem}
+Normal modes satisfy orthogonality relations:
+\[
+\sum_i T_{ij} a_j^{(k)} a_i^{(l)} = M_k\delta_{kl}
+\]
+\[
+\sum_i V_{ij} a_j^{(k)} a_i^{(l)} = M_k\omega_k^2\delta_{kl}
+\]
+
+For simple case $T_{ij} = m\delta_{ij}$:
+\[
+\vec{a}^{(k)} \cdot \vec{a}^{(l)} = \delta_{kl} \quad \text{(after normalization)}
+\]
+\end{theorem}
+
+\subsection{Energy in Normal Modes}
+
+\begin{formula}
+In normal coordinates:
+\[
+E = \sum_k E_k = \sum_k \frac{1}{2}(\dot{Q}_k^2 + \omega_k^2 Q_k^2)
+\]
+
+Each normal mode carries energy independently:
+\[
+E_k = \frac{1}{2}\omega_k^2 A_k^2
+\]
+where $Q_k(t) = A_k\cos(\omega_k t + \phi_k)$.
+\end{formula}
+
+\subsection{Continuous Systems - String Vibrations}
+
+\begin{example}
+\textbf{Vibrating String (Length $L$, Tension $T$, Linear Density $\mu$)}
+
+Wave equation:
+\[
+\frac{\partial^2 y}{\partial t^2} = v^2 \frac{\partial^2 y}{\partial x^2}
+\]
+where $v = \sqrt{T/\mu}$ is wave speed.
+
+Boundary conditions: $y(0,t) = y(L,t) = 0$
+
+Normal modes:
+\[
+y_n(x,t) = A_n\sin\left(\frac{n\pi x}{L}\right)\cos(\omega_n t + \phi_n)
+\]
+
+Normal frequencies:
+\[
+\omega_n = \frac{n\pi v}{L} = \frac{n\pi}{L}\sqrt{\frac{T}{\mu}}, \quad n = 1, 2, 3, \ldots
+\]
+
+General solution:
+\[
+y(x,t) = \sum_{n=1}^{\infty} A_n\sin\left(\frac{n\pi x}{L}\right)\cos(\omega_n t + \phi_n)
+\]
+\end{example}
+
+\subsection{Damped Oscillations}
+
+\begin{formula}[Damped Harmonic Oscillator]
+Equation: $m\ddot{x} + \gamma\dot{x} + kx = 0$ or $\ddot{x} + 2\beta\dot{x} + \omega_0^2 x = 0$
+
+where $\beta = \gamma/(2m)$ is damping coefficient, $\omega_0 = \sqrt{k/m}$.
+
+\textbf{Three cases:}
+
+\textbf{1. Underdamped} ($\beta < \omega_0$): Oscillatory decay
+\[
+x(t) = Ae^{-\beta t}\cos(\omega t + \phi), \quad \omega = \sqrt{\omega_0^2 - \beta^2}
+\]
+
+\textbf{2. Critically damped} ($\beta = \omega_0$): Fastest return without oscillation
+\[
+x(t) = (A + Bt)e^{-\beta t}
+\]
+
+\textbf{3. Overdamped} ($\beta > \omega_0$): Slow exponential decay
+\[
+x(t) = Ae^{-(\beta - \sqrt{\beta^2 - \omega_0^2})t} + Be^{-(\beta + \sqrt{\beta^2 - \omega_0^2})t}
+\]
+\end{formula}
+
+\subsection{Forced Oscillations and Resonance}
+
+\begin{formula}[Driven Damped Oscillator]
+Equation: $m\ddot{x} + \gamma\dot{x} + kx = F_0\cos(\omega_d t)$
+
+Steady-state solution:
+\[
+x(t) = A(\omega_d)\cos(\omega_d t - \delta)
+\]
+
+Amplitude:
+\[
+A(\omega_d) = \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega_d^2)^2 + (2\beta\omega_d)^2}}
+\]
+
+Phase lag:
+\[
+\tan\delta = \frac{2\beta\omega_d}{\omega_0^2 - \omega_d^2}
+\]
+
+\textbf{Resonance:} Maximum amplitude at $\omega_d = \omega_r = \sqrt{\omega_0^2 - 2\beta^2}$
+
+At resonance:
+\[
+A_{\max} = \frac{F_0}{2\beta m\omega_0} \approx \frac{F_0}{2\beta m\omega_r} \quad (\text{for small } \beta)
+\]
+
+\textbf{Quality factor:}
+\[
+Q = \frac{\omega_0}{2\beta} = \frac{\text{Energy stored}}{\text{Energy lost per cycle}}
+\]
+\end{formula}
+
+\subsection{Practice Problems - Small Oscillations}
+
+\begin{enumerate}
+    \item Three identical masses connected by identical springs in a line. Find all normal frequencies and modes.
+    
+    \item Double pendulum with small angles - find normal modes.
+    
+    \item Molecule vibrations: CO$_2$ (linear) - find normal modes (3 modes).
+    
+    \item Loaded string: $N$ equal masses on string - find normal frequencies (limit to continuous string).
+    
+    \item Driven oscillator: find width of resonance peak (full width at half maximum).
+\end{enumerate}
+
+%======================================================================
+% APPENDIX: EXAM STRATEGY & IMPORTANT FORMULAS
+%======================================================================
+\newpage
+\section{Classical Mechanics - GATE Exam Strategy}
+
+\subsection{Topic-wise Weightage and Strategy}
+
+\begin{tipbox}
+\textbf{Expected Question Distribution:}
+\begin{itemize}
+    \item \textbf{Lagrangian/Hamiltonian:} 2-3 questions (High weightage!)
+    \item \textbf{Central Force/Kepler:} 1-2 questions
+    \item \textbf{Rigid Body:} 1-2 questions
+    \item \textbf{Small Oscillations:} 1-2 questions
+\end{itemize}
+\end{tipbox}
+
+\subsection{Common Problem Types}
+
+\begin{enumerate}
+    \item \textbf{Direct Lagrangian formulation:} Given system, write $L$ and derive equations
+    \item \textbf{Constrained motion:} Pendulums, beads on wires, rolling
+    \item \textbf{Central force orbits:} Find eccentricity, period, energy
+    \item \textbf{Moment of inertia calculations:} Parallel axis, various shapes
+    \item \textbf{Normal mode frequencies:} Coupled oscillators, find eigenvalues
+\end{enumerate}
+
+\subsection{Essential Formula Quick Reference}
+
+\begin{importantbox}
+\textbf{Lagrangian Mechanics:}
+\begin{align*}
+L &= T - V \\
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) - \frac{\partial L}{\partial q_i} &= 0 \\
+p_i &= \frac{\partial L}{\partial \dot{q}_i}
+\end{align*}
+
+\textbf{Hamiltonian Mechanics:}
+\begin{align*}
+H &= \sum p_i\dot{q}_i - L \\
+\dot{q}_i &= \frac{\partial H}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial H}{\partial q_i} \\
+\{f,g\} &= \sum_i\left(\frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i} - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i}\right)
+\end{align*}
+
+\textbf{Central Force:}
+\begin{align*}
+r &= \frac{l}{1 + e\cos\theta} \quad \text{(orbit equation)} \\
+E &= -\frac{k}{2a} \quad \text{(ellipse energy)} \\
+T^2 &= \frac{4\pi^2}{GM}a^3 \quad \text{(Kepler's 3rd law)}
+\end{align*}
+
+\textbf{Rigid Body:}
+\begin{align*}
+\vec{L} &= \mathbf{I} \cdot \vec{\omega} \\
+T_{\text{rot}} &= \frac{1}{2}\vec{\omega} \cdot \mathbf{I} \cdot \vec{\omega} \\
+I &= I_{\text{CM}} + Md^2 \quad \text{(parallel axis)}
+\end{align*}
+
+\textbf{Small Oscillations:}
+\begin{align*}
+\det(\mathbf{V} - \omega^2\mathbf{M}) &= 0 \quad \text{(secular equation)} \\
+\omega_{\text{res}} &= \sqrt{\omega_0^2 - 2\beta^2} \quad \text{(resonance)}
+\end{align*}
+\end{importantbox}
+
+\subsection{Time-Saving Tips}
+
+\begin{enumerate}
+    \item Always check for cyclic coordinates first - conserved momenta save time!
+    \item For central force, remember $L$ is conserved - reduces to 1D problem
+    \item Know moments of inertia by heart for standard shapes
+    \item For coupled oscillators, look for symmetry - can simplify eigenvalue problem
+    \item In exams, you can often guess normal mode patterns from symmetry
+\end{enumerate}
+
+\subsection{Common Mistakes to Avoid}
+
+\begin{enumerate}
+    \item Forgetting minus sign in $L = T - V$ (not $T + V$!)
+    \item Wrong sign in Hamilton's equations ($\dot{p} = -\partial H/\partial q$)
+    \item Confusing angular momentum $L$ with angular velocity $\omega$
+    \item Not using parallel axis theorem when needed
+    \item Wrong normalization of eigenvectors
+    \item Forgetting $r^2\dot{\theta}$ term in polar coordinates kinetic energy
+\end{enumerate}
+
+\subsection{Must-Practice Problems}
+
+\begin{enumerate}
+    \item Bead on rotating hoop/wire
+    \item Double pendulum
+    \item Particle in central potential with $V = -k/r + c/r^2$
+    \item Atwood machine variations
+    \item Rolling cylinders/spheres
+    \item Symmetric top under gravity
+    \item Three-mass-three-spring system
+    \item Forced oscillator at resonance
+\end{enumerate}
+
+%======================================================================
+% CONCLUSION
+%======================================================================
+\newpage
+\section{Final Words}
+
+Classical Mechanics is the most problem-solving intensive subject. Success requires:
+
+\begin{enumerate}
+    \item \textbf{Deep Understanding:} Know why each formulation works
+    \item \textbf{Pattern Recognition:} Most problems are variations of standard types
+    \item \textbf{Speed:} Practice until you can set up Lagrangian in under 1 minute
+    \item \textbf{Accuracy:} Double-check signs and factors of 2!
+\end{enumerate}
+
+\begin{importantbox}
+\textbf{30-Day Study Plan:}
+\begin{itemize}
+    \item \textbf{Week 1:} Lagrangian formulation - 20 problems
+    \item \textbf{Week 2:} Hamiltonian mechanics - 20 problems
+    \item \textbf{Week 3:} Central force + Rigid body - 15 + 15 problems
+    \item \textbf{Week 4:} Small oscillations + Mixed practice - 20 problems
+\end{itemize}
+
+\textbf{Last 10 Days:} Previous year GATE problems only!
+\end{importantbox}
+
+\vspace{1cm}
+\begin{center}
+\textbf{\Large Master Classical Mechanics = Strong Foundation for All of Physics!}
+
+\vspace{0.5cm}
+\textbf{\Large All the Best for GATE 2026!}
+\end{center}
+
+\end{document}
